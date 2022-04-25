@@ -3,6 +3,6 @@ const router = Router()
 
 const fileController = require('../controllers/FileController')
 
-router.get('/landingpage', fileController)
+router.get('/', fileController)
 
 module.exports = router
