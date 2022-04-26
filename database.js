@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 mongoose
-  .connect("mongodb://localhost/", {
+  .connect("mongodb+srv://soundtalk.eoijz.mongodb.net/myFirstDatabase", {
     useUnifiedTopology: true,
     useNewUrlParser: true
   })
