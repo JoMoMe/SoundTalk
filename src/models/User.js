@@ -1,4 +1,3 @@
-const { ObjectId } = require('mongodb');
 const {Schema, model} = require('mongoose')
 
 const userSchema = new Schema(
