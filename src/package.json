@@ -1,11 +1,10 @@
-
 {
   "name": "soundtalk",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "soundtalk": "node ./index.js",
+    "soundtalk": "nodemon ./index.js",
     "start": "node ./index.js"
   },
   "author": "",
@@ -17,6 +16,7 @@
     "mongodb": "^4.5.0",
     "mongoose": "^6.3.1",
     "morgan": "^1.10.0",
+    "nodemon": "^2.0.15",
     "package.json": "^2.0.1",
     "webpack": "^5.72.0"
   }

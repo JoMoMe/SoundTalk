@@ -1,25 +1,50 @@
-const userCtrl = {}
+const Users = require('../models/users');
 
-const User = require('../models/User')
+exports.getUsers = async (req, res) => {
+    const users = await Users.find()
+    res.send(users)
+}
 
-userCtrl.getUser = async (req, res) => {
-    const oneuser = await User.findById(req.params.id)
-    res.json(oneuser)
+exports.createUser = async (req, res) => {
+    try {
+        let users;
+
+        users = new Users(req.body)
+
+        console.log("object recibido",users)
+        await users.save()
+        res.send(users)
+    }
+    catch (error){
+        console.log(error)
+    }
 }
-userCtrl.createUser = (req, res) => {
-    const users = new User(req.body)
-    console.log("enviamos",users)
-    users.save()
-        .then(() => console.log("llego",users))
-        .catch((error) => res.json(error))
-}
-userCtrl.editUser = async (req, res) => {
-    await User.findByIdAndUpdate(req.params.id, req.body)
+
+exports.editUser = async (req, res) => {
+    await Users.findByIdAndUpdate(req.params.id, req.body)
     res.json({status: 'User actualizado'})
 }
-userCtrl.deleteUser = async (req, res) => {
-    await User.findByIdAndDelete(req.params.id)
+
+exports.deleteUser = async (req, res) => {
+    await Users.findByIdAndDelete(req.params.id)
     res.json({status: 'User eliminado'})
 }
 
-module.exports = userCtrl;
+exports.UserExists = async (req, res) => {
+    try {
+        const users = await Users.findOne(req.body.mail, req.body.password)
+        res.json({status: 'Mail y contraseña en orden, user encontrado', users})
+    }
+    catch (error){
+        console.log(error)
+    }}
+
+exports.RememberPassword = async (req, res) => {
+    try {
+        const users = await Users.findOne(req.body.mail)
+        res.send({message: "Mail encontrado",users})
+    }
+    catch (error){
+        console.log(error)
+    }
+}
