@@ -11,7 +11,7 @@ body{
     overflow: hidden;
 }
 
-@media only screen and (max-height: 820px) {
+@media only screen and (max-height: 920px) {
     body {
         overflow: scroll;
     }
