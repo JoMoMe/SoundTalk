@@ -16,7 +16,10 @@ app.use(morgan('dev'));
 //RUTAS
 app.use("/login",require('./routes/loginRoutes.js'))
 app.use("/register",require('./routes/registerRoutes.js'))
+app.use("/rememberpassword",require('./routes/rememberPasswordRoutes.js'))
 app.use("/menu/profile",require('./routes/userRoutes.js'))
+
+app.use("/menu",require('./routes/menuRoutes.js'))
 app.use("/menu/chats",require('./routes/chatRoutes.js'))
 
 module.exports = app;
