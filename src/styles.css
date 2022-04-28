@@ -1,1 +1,39 @@
 /* You can add global styles to this file, and also import other style files */
+html {
+    min-height: 100%;
+    position: relative;
+}
+
+body {
+    background-color: rgb(213, 235, 255);
+}
+
+.dropdown-toggle::after {
+    display:none;
+}
+
+.button--login{
+    margin-right: 1vw;
+}
+
+.button--register{
+    margin-right: 1vw;
+}
+
+.text-small {
+    font-size: 0.9rem;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+footer {
+    background: #212529;
+    color:white;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
