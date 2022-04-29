@@ -1,11 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Imports */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Questrial&display=swap');
+
+/* CSS */
+
 html {
     min-height: 100%;
     position: relative;
 }
 
 body {
-    background-color: rgb(213, 235, 255);
+    background-color: rgb(237, 206, 255);
 }
 
 .dropdown-toggle::after {

@@ -2,3 +2,83 @@ body {
     margin: 0;
     margin-bottom: 10%;
 }
+
+.title{
+    font-family: 'Fredoka One', cursive;
+    
+}
+
+p{
+    font-size: 5vw;
+}
+
+.text{
+    font-family: 'Questrial', sans-serif;
+    
+}
+
+h3{
+    font-size: 1.1vw;
+}
+
+.div--first{
+    background-image: url("/assets/img/Bckgd1.jpg");
+    background-repeat: no-repeat;
+    background-color: rgb(0, 114, 221);
+    background-size: cover;
+}
+
+.div--second{
+    background-image: url("/assets/img/Bckgd2.jpg");
+    background-repeat: no-repeat;
+    background-color: rgb(0, 114, 221);
+    background-size: cover;
+}
+
+.foto--landing{
+    width: 23vw;
+    height: auto;
+}
+
+
+@media only screen and (max-width: 1800px) {
+    
+    h3{
+        font-size: 1.45vw;
+    }
+
+}
+
+@media only screen and (max-width: 1400px) {
+    
+    .foto--landing{
+        width: 30vw;
+        height: auto;
+    }
+
+    h3{
+        font-size: 1.7vw;
+    }
+
+}
+
+@media only screen and (max-width: 990px) {
+    
+    .foto--landing{
+        width: 35vw;
+        height: auto;
+    }
+
+    h3{
+        font-size: 2vw;
+    }
+
+}
+
+@media only screen and (max-width: 800px) {
+    
+    .text--first{
+
+    }
+
+}
