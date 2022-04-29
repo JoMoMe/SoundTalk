@@ -1,8 +1,15 @@
 const Messages = require('../models/messages');
 
 exports.getMessage = async (req, res) => {
-    const onemessage = await Messages.findById(req.params.id)
-    res.json(onemessage)
+    try {
+        const onemessage = await Messages.findOne(
+            { _id: req.params.id}
+        )
+        res.json({message: onemessage})
+    }
+    catch (error){
+        console.log(error)
+    }
 }
 
 exports.createMessage = async (req, res) => {
@@ -10,7 +17,7 @@ exports.createMessage = async (req, res) => {
         let chats;
         chats = new Messages(req.body)
         await chats.save()
-        res.send(chats)
+        res.json({message: chats})
     }
     catch (error){
         console.log(error)
