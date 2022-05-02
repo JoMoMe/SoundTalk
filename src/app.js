@@ -1,11 +1,14 @@
 const express = require('express');
 const morgan = require('morgan');
 const DB = require('./database');
+const cors = require('cors')
 
 const app = express();
 
-//PUERTO DE CONEXIÓN
+//PUERTO DE CONEXIÓN DE BACKEND 4001 Y PERMISO DE
+//ENTRADA DE PUERTO FRONTEND 3077
 app.set('port', process.env.PORT || 4001);
+app.use(cors({origin: "http://localhost:3077"}))
 
 //TRADUCCION DE JSONS, HTMLS Y MORGAN
 app.use(express.json());
