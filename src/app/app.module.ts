@@ -6,8 +6,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import {GoTopButtonModule} from 'ng-go-top-button';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { GoTopButtonModule } from 'ng-go-top-button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 // ~~~~~~~~~~~~~~~~~~~~ Component/Modules imports ~~~~~~~~~~~~~~~~~~~~ //
 
@@ -16,6 +17,8 @@ import { AppComponent } from './app.component';
 import { LandingpageComponent } from './components/landingpage/landingpage.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { TermsComponent } from './components/terms/terms.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +26,8 @@ import { RegisterComponent } from './components/register/register.component';
     LandingpageComponent,
     LoginComponent,
     RegisterComponent,
+    MenuComponent,
+    TermsComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,7 +36,8 @@ import { RegisterComponent } from './components/register/register.component';
     GoTopButtonModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

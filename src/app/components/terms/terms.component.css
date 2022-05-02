@@ -1,0 +1,45 @@
+body {
+    margin: 0;
+    margin-bottom: 8.5vw;
+}
+
+h1{
+    font-weight: 700;
+}
+
+h2{
+    margin-top: 2vw;
+    font-weight: 500;
+}
+
+@media only screen and (max-width: 1300px) {
+    
+    body {
+        margin-bottom: 10.5vw;
+    }
+
+}
+
+@media only screen and (max-width: 1000px) {
+    
+    body {
+        margin-bottom: 15.5vw;
+    }
+
+}
+
+@media only screen and (max-width: 750px) {
+    
+    body {
+        margin-bottom: 18.5vw;
+    }
+
+}
+
+@media only screen and (max-width: 580px) {
+    
+    body {
+        margin-bottom: 25vw;
+    }
+
+}
