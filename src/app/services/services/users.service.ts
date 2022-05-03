@@ -17,10 +17,6 @@ export class RegisterService {
     role: 'User'
   };
 
-  userWithMailExists(mail: string){
-    return this.http.get(`${this.url_backend}/${mail}`);
-  }
-
   createUser(users: Users){
     users.role='User';
     return this.http.post(this.url_backend, users)

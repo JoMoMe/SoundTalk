@@ -15,14 +15,9 @@ export class RegisterComponent implements OnInit {
   }
 
   searchMailAndCreate(form: NgForm){
-      this.registerService.userWithMailExists(form.value.mail).subscribe(
-        res => console.log(res),
-        err => console.error(err)
-      )
-
-      this.registerService.createUser(form.value).subscribe(
-        res => console.log(res),
-        err => console.error(err)
-      )
+    this.registerService.createUser(form.value).subscribe(
+      res => console.log(res),
+      err => console.error(err)
+    )
   }
 }
