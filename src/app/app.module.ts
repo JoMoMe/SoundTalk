@@ -21,6 +21,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { TermsComponent } from './components/terms/terms.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { HeaderLoggedComponent } from './components/header-logged/header-logged.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { FooterComponent } from './components/footer/footer.component';
     TermsComponent,
     HeaderComponent,
     FooterComponent,
+    HeaderLoggedComponent,
   ],
   imports: [
     BrowserModule,

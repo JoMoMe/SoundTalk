@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+/* import {SidebarModule } from 'cdbangular'; */
 
 @Component({
   selector: 'app-menu',
