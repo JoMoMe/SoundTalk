@@ -21,6 +21,10 @@ h3{
     font-size: 1.1vw;
 }
 
+h2{
+    font-size: 1.7vw;
+}
+
 .div--first{
     background-image: url("/assets/img/Bckgd1.jpg");
     background-repeat: no-repeat;
@@ -60,6 +64,10 @@ h3{
         font-size: 1.45vw;
     }
 
+    h2{
+        font-size: 2vw;
+    }
+
 }
 
 @media only screen and (max-width: 1400px) {
@@ -73,7 +81,19 @@ h3{
         font-size: 1.7vw;
     }
 
+    h2{
+        font-size: 2.35vw;
+    }
+
 }
+
+/* @media only screen and (max-width: 1250px) {
+
+    .images--carousel{
+        
+    }
+
+} */
 
 @media only screen and (max-width: 990px) {
     
@@ -84,6 +104,10 @@ h3{
 
     h3{
         font-size: 2vw;
+    }
+
+    h2{
+        font-size: 2.65vw;
     }
 
 }
