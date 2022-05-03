@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RegisterService } from '../../services/services/users.service'
+import { RegisterAndLoginService } from '../../services/services/users.service'
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -9,13 +9,13 @@ import { NgForm } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(public registerService: RegisterService) { }
+  constructor(public registerandloginService: RegisterAndLoginService) { }
 
   ngOnInit(): void {
   }
 
   searchMailAndCreate(form: NgForm){
-    this.registerService.createUser(form.value).subscribe(
+    this.registerandloginService.createUser(form.value).subscribe(
       res => console.log(res),
       err => console.error(err)
     )

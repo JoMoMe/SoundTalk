@@ -9,5 +9,6 @@ export interface users {
     biography?: string
     contactsid?: string
     role: string
+    rememberme?: string
     _id?: string
 }

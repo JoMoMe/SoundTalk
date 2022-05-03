@@ -6,20 +6,28 @@ import { Form, NgForm } from '@angular/forms';
 @Injectable({
   providedIn: 'root'
 })
-export class RegisterService {
-  url_backend = 'http://localhost:4001/register'
+export class RegisterAndLoginService {
+  url_backendregister = 'http://localhost:4001/register'
+  url_backendlogin = 'http://localhost:4001/login'
+
   constructor(private http: HttpClient) {}
   
   createdUser: Users =  {
     username: '',
     mail: '',
     password: '',
-    role: 'User'
+    role: 'User',
+    rememberme: '',
   };
 
   createUser(users: Users){
     users.role='User';
-    return this.http.post(this.url_backend, users)
+    return this.http.post(this.url_backendregister, users)
   }
+
+  loginUser(users: Users){
+    return this.http.post(this.url_backendlogin, users)
+  }
+
 }
 
