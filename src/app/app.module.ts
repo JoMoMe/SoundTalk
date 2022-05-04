@@ -22,6 +22,7 @@ import { TermsComponent } from './components/terms/terms.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderLoggedComponent } from './components/header-logged/header-logged.component';
+import { ValidateComponent } from './components/validate/validate.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { HeaderLoggedComponent } from './components/header-logged/header-logged.
     HeaderComponent,
     FooterComponent,
     HeaderLoggedComponent,
+    ValidateComponent,
   ],
   imports: [
     BrowserModule,
