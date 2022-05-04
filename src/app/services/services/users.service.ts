@@ -8,9 +8,9 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class RegisterAndLoginService {
-  url_backendregister = 'http://localhost:4003/register'
-  url_backendlogin = 'http://localhost:4003/login'
-  url_contoken = 'http://localhost:4003/validate/token='+this.getUrl()
+  url_backendregister = 'http://localhost:4005/register'
+  url_backendlogin = 'http://localhost:4005/login'
+  url_contoken = 'http://localhost:4005/validate='+this.getUrl()
   
   constructor(private http: HttpClient, public router: Router) {}
 
@@ -42,6 +42,7 @@ export class RegisterAndLoginService {
   }
 
   verifyToken(){
+    console.log(this.url_contoken)
     return this.http.get(this.url_contoken)
   }
 
