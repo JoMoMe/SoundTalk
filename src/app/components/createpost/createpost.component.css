@@ -1,0 +1,29 @@
+.divider:after,
+.divider:before {
+content: "";
+flex: 1;
+height: 1px;
+background: #eee;
+}
+
+body{
+    height: 100%;
+    overflow: hidden;
+}
+
+button{
+    
+}
+
+/* Media Query  */
+@media only screen and (max-height: 820px) {
+    body {
+        overflow: scroll;
+    }
+}
+
+@media only screen and (max-width: 520px) {
+    .image{
+        display:none !important;
+    }
+}

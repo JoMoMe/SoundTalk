@@ -1,0 +1,78 @@
+html,
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+
+  body {
+    font-family: 'Fredoka One', cursive;
+    color: rgb(0, 0, 0);
+    -moz-font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .error-container {
+    text-align: center;
+    height: 100%;
+  }
+
+  @media (max-width: 480px) {
+    .error-container {
+      position: relative;
+      top: 50%;
+      height: initial;
+      -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+    }
+  }
+
+  .error-container h1 {
+    margin: 0;
+    font-size: 130px;
+    font-weight: 300;
+  }
+
+  @media (min-width: 480px) {
+    .error-container h1 {
+      position: relative;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+    }
+  }
+
+  @media (min-width: 768px) {
+    .error-container h1 {
+      font-size: 220px;
+    }
+  }
+
+  .return {
+    color: black;
+    font-weight: 400;
+    letter-spacing: -0.04em;
+    margin: 0;
+    font-size: 2vw;
+  }
+
+  @media (min-width: 480px) {
+    .return {
+      position: absolute;
+      width: 100%;
+      bottom: 30px;
+    }
+  }
+
+  .return a {
+    padding-bottom: 1px;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+  }
+
+  .return:hover {
+    color: rgb(148, 0, 128);
+    transition: 0.3s;
+  }

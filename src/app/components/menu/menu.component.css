@@ -2,12 +2,13 @@
     /* background-color: black; */
     background-color: white;
     transition: 0.5s;
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 2%;
 }
 
 .card:hover{
-    background-color: rgb(245, 245, 245);
+    background-color: rgb(240, 240, 240);
     /* color: black; */
 }
 
@@ -17,8 +18,62 @@
 
 .card-title{
     margin-top: -0.8%;
+    font-weight: bold;
 }
 
 .post--image{
-    height: 50vw;
+    height: auto;
+    width: 100%;
+    max-height: 1000px;
+}
+
+.post--up:hover{
+    color: rgb(255, 82, 82);
+    transition: 0.5s;
+}
+
+.post--text{
+    font-size: 18px;
+}
+
+/* audio{
+    
+} */
+
+@media only screen and (max-width: 1400px) {
+
+    .card{
+        margin-left: 25%;
+        margin-right: 25%;
+    }
+
+}
+
+@media only screen and (max-width: 1100px) {
+
+    .card{
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+
+}
+
+@media only screen and (max-width: 800px) {
+
+    .card{
+        margin-left: 10%;
+        margin-right: 10%;
+        margin-top: 4%;
+    }
+
+}
+
+@media only screen and (max-width: 500px) {
+
+    .card{
+        margin-left: 0%;
+        margin-right: 0%;
+        margin-top: 5%;
+    }
+
 }

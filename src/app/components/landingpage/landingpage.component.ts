@@ -9,17 +9,15 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 export class LandingpageComponent {
 
   images = [
-    {src: "/assets/img/Foto_Landing_4.png"},
-    {src: "https://picsum.photos/id/1011/900/500"},
-    {src: "https://picsum.photos/id/984/900/500"}
+    {src: "assets/img/Foto_Landing_4.png"},
+    {src: "assets/img/Foto_Landing_3.png"},
+    {src: "assets/img/Foto_Landing_2.png"},
+    {src: "assets/img/Foto_Landing_1.png"}
   ];
 
   constructor(config: NgbCarouselConfig) {
-    // customize default values of carousels used by this component tree
     config.interval = 5000;
-    config.wrap = false;
-    config.keyboard = false;
-    config.pauseOnHover = false;
+
   }
 
 }

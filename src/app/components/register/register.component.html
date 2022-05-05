@@ -3,7 +3,7 @@
     <div class="container py-2 h-100">
       <div class="row d-flex align-items-center justify-content-center h-100">
         <div class="image col-md-8 col-lg-7 col-xl-6">
-          <a href="/"><img src="/assets/img/secondLogo.png" class="rounded-circle"></a>
+          <a routerLink="/" routerLinkActive="active"><img src="assets/img/secondLogo.png" class="rounded-circle"></a>
         </div>
         <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
           <form #createUserForm="ngForm" (ngSubmit)="searchMailAndCreate(createUserForm)">
@@ -30,7 +30,7 @@
               <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Recuérdame ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="terms" required/>
-                <label class="form-check-label" for="terms"> He leido los <a href="/terms"> Terminos de servicio</a></label>
+                <label class="form-check-label" for="terms"> He leido los <a routerLink="/terms" routerLinkActive="active"> Terminos de servicio</a></label>
               </div>
 
             </div>
@@ -38,7 +38,7 @@
             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Botones ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
             <div class="d-flex justify-content-between">
               <button type="submit" class="btn btn-primary btn-lg btn-block">Crear</button>
-              <a href="/#/login" class="align-self-center">¿Tienes ya una cuenta?</a>
+              <a routerLink="/login" routerLinkActive="active" class="align-self-center">¿Tienes ya una cuenta?</a>
             </div>
           </form>
         </div>
