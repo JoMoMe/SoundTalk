@@ -10,10 +10,9 @@ import { Router } from '@angular/router';
 export class ValidateComponent implements OnInit {
 
   constructor(public registerandloginService: RegisterAndLoginService, public router: Router) { 
-  
   }
   
-  ngOnInit(): void {
+  ngOnInit() {
       this.registerandloginService.verifyToken().subscribe(
         res => console.log(res),
         err => console.error(err)

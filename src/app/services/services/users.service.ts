@@ -8,12 +8,10 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class RegisterAndLoginService {
-  url_backendregister = 'http://localhost:4005/register'
-  url_backendlogin = 'http://localhost:4005/login'
-  url_contoken = 'http://localhost:4005/validate='+this.getUrl()
-  
   constructor(private http: HttpClient, public router: Router) {}
 
+  url_backendregister = 'http://localhost:4005/register'
+  url_backendlogin = 'http://localhost:4005/login'
 
   createdUser: Users =  {
     username: '',
@@ -26,9 +24,10 @@ export class RegisterAndLoginService {
 
   getUrl(){
     var url = this.router.url
-    var urldivided = url.split('token?')
-    var token = urldivided[1]
-    return token
+    var urldivided = url.split('/')
+    var token = urldivided[2]
+    var url = 'http://localhost:4005/validate/'+token
+    return url
   }
 
   createUser(users: Users){
@@ -42,8 +41,7 @@ export class RegisterAndLoginService {
   }
 
   verifyToken(){
-    console.log(this.url_contoken)
-    return this.http.get(this.url_contoken)
+    return this.http.get(this.getUrl())
   }
 
 }
