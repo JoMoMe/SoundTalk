@@ -16,21 +16,11 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  makeCookie() {
-    var text = "";
-    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  
-    for (var i = 0; i < 5; i++)
-      text += possible.charAt(Math.floor(Math.random() * possible.length));
-  
-    return text;
-  }
-
   searchAndLoginUser(form: NgForm){
     this.registerandloginService.loginUser(form.value).subscribe(
       res => {
         console.log(res)
-        this.cookie.set('cookieSoundTalkSession',this.makeCookie());        
+        this.cookie.set('cookieSoundTalkSession','s');        
         this.router.navigate(['/menu'])
       },
       err => console.error(err)

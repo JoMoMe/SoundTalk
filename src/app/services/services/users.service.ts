@@ -22,6 +22,9 @@ export class RegisterAndLoginService {
     accountactive: 0,
   };
 
+  searchUser(users: Users){
+    return this.http.post(this.url_backendlogin, users)
+  }
 
   createUser(users: Users){
     users.role='User';
