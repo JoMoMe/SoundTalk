@@ -7,6 +7,7 @@ export interface users {
     gender?: string
     status?: string
     biography?: string
+    accountactive: number
     contactsid?: string
     role: string
     rememberme?: string
