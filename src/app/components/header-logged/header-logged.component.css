@@ -1,0 +1,11 @@
+.dropdown-toggle::after {
+    display:none;
+}
+
+.button--login{
+    margin-right: 1vw;
+}
+
+.button--register{
+    margin-right: 1vw;
+}
