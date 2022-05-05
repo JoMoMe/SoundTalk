@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RegisterAndLoginService } from '../../services/services/users.service'
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-validate',
@@ -9,12 +9,15 @@ import { Router } from '@angular/router';
 })
 export class ValidateComponent implements OnInit {
 
-  constructor(public registerandloginService: RegisterAndLoginService, public router: Router) { 
+  constructor(public registerandloginService: RegisterAndLoginService, public route: ActivatedRoute, public router: Router) { 
   }
-  
+
   ngOnInit() {
-      this.registerandloginService.verifyToken().subscribe(
-        res => console.log(res),
+      let token = this.route.snapshot.params['token'];
+      this.registerandloginService.verifyToken(token).subscribe(
+        res => {console.log(res)
+          this.router.navigate(['/login'])
+        },
         err => console.error(err)
       )
   }

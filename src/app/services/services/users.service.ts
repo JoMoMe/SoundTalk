@@ -22,13 +22,6 @@ export class RegisterAndLoginService {
     accountactive: 0,
   };
 
-  getUrl(){
-    var url = this.router.url
-    var urldivided = url.split('/')
-    var token = urldivided[2]
-    var url = 'http://localhost:4005/validate/'+token
-    return url
-  }
 
   createUser(users: Users){
     users.role='User';
@@ -40,8 +33,12 @@ export class RegisterAndLoginService {
     return this.http.post(this.url_backendlogin, users)
   }
 
-  verifyToken(){
-    return this.http.get(this.getUrl())
+  verifyToken(token: string){
+    return this.http.get('http://localhost:4005/validate/' + token)
+  }
+
+  loggedIn(): Boolean{
+    return !!localStorage.getItem('cookieSoundTalkSession')
   }
 
 }

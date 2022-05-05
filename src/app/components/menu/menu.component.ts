@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 /* import {SidebarModule } from 'cdbangular'; */
+import { Router } from '@angular/router';
+import { RegisterAndLoginService } from '../../services/services/users.service'
 
 @Component({
   selector: 'app-menu',
@@ -11,6 +13,7 @@ export class MenuComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }
