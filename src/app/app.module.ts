@@ -23,6 +23,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderLoggedComponent } from './components/header-logged/header-logged.component';
 import { ValidateComponent } from './components/validate/validate.component';
+import { NotfoundComponent } from './components/notfound/notfound.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { ValidateComponent } from './components/validate/validate.component';
     FooterComponent,
     HeaderLoggedComponent,
     ValidateComponent,
+    NotfoundComponent,
   ],
   imports: [
     BrowserModule,

@@ -3,8 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { LandingpageComponent } from './components/landingpage/landingpage.component';
 import { LoginComponent } from './components/login/login.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { NotfoundComponent } from './components/notfound/notfound.component';
 import { RegisterComponent } from './components/register/register.component';
 import { TermsComponent } from './components/terms/terms.component';
+import { ValidateComponent } from './components/validate/validate.component';
 
 const routes: Routes = [
   {path : '', component : LandingpageComponent},
@@ -13,6 +15,8 @@ const routes: Routes = [
   {path : 'register', component : RegisterComponent},
   {path : 'menu', component : MenuComponent},
   {path : 'terms', component : TermsComponent},
+  {path : 'validate', component : ValidateComponent},
+  {path : '**', component : NotfoundComponent},
 ];
 
 @NgModule({
