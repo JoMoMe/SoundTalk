@@ -12,6 +12,8 @@ export class RegisterAndLoginService {
 
   url_backendregister = 'http://localhost:4005/register'
   url_backendlogin = 'http://localhost:4005/login'
+  url_backendcookie = 'http://localhost:4005/login/cookie/'
+
 
   createdUser: Users =  {
     username: '',
@@ -21,6 +23,10 @@ export class RegisterAndLoginService {
     rememberme: '',
     accountactive: 0,
   };
+  
+  findUserByID(cookie: string){
+    return this.http.get(this.url_backendcookie + cookie)
+  }
 
   searchUser(users: Users){
     return this.http.post(this.url_backendlogin, users)
@@ -39,10 +45,5 @@ export class RegisterAndLoginService {
   verifyToken(token: string){
     return this.http.get('http://localhost:4005/validate/' + token)
   }
-
-  loggedIn(): Boolean{
-    return !!localStorage.getItem('cookieSoundTalkSession')
-  }
-
 }
 

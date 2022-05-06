@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 /* import {SidebarModule } from 'cdbangular'; */
 import { Router } from '@angular/router';
 import { RegisterAndLoginService } from '../../services/users/users.service'
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-menu',
@@ -10,9 +11,28 @@ import { RegisterAndLoginService } from '../../services/users/users.service'
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(public registerandloginService: RegisterAndLoginService, public router: Router, public cookie: CookieService) { }
 
   ngOnInit(): void {
+    var cookiefound = this.cookie.get('cookieSoundTalkSession')
+    if (cookiefound){
+      this.registerandloginService.findUserByID(cookiefound).subscribe(
+        res => {
+          console.log(res)
+          console.log("tienes la cookie, bienvenido!")
+          this.router.navigate(['/menu'])
+        },
+        err => console.error(err),
+      )
+    } 
+    else{
+      console.log("Logueate porfavor!")
+      this.router.navigate(['/login'])   
+    }      
+  }
+
+  createPost(form: NgForm){
+
   }
 
 }
