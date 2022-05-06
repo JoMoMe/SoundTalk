@@ -6,7 +6,7 @@
 
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CREAR POST ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-  <form class="create card rounded-3">
+  <form class="create card rounded-3" #postForm="ngForm" (ngSubmit)="createPost(postForm)">
 
     <div class="card-header">
       <h5 class="card-title mt-2">Crea un post</h5>
@@ -15,7 +15,7 @@
     <div class="card-body">
       <div class="form-group mb-3">
         <label>Titulo</label>
-        <input class="form-control mt-1" placeholder="Escribe un titulo...">
+        <input class="form-control mt-1" placeholder="Escribe un titulo..." id="title" name="title" [(ngModel)]="registerandloginService.createdPost.title">
       </div>
 
       <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
@@ -30,18 +30,18 @@
       
       <!-- Crear post imagen -->
 
-      <div hidden>
+      <div>
         <div class="form-group my-3">
-          <input type="file" accept="image/*" class="form-control" id="customFile" />
+          <input type="file" accept="image/*" class="form-control" id="photofile" id="photofile" name="photofile" [(ngModel)]="registerandloginService.createdPost.photofile"/>
           <button type="button" class="btn btn-success btn-sm mt-2">Crear post</button>
         </div>
       </div>
 
       <!-- Crear post audio -->
 
-      <div>
+      <div hidden>
         <div class="form-group my-3">
-          <input type="file" accept=".mp3,audio/*" class="form-control" id="customFile" />
+          <input type="file" accept=".mp3,audio/*" class="form-control" id="photofile" id="audiofile" name="audiofile" [(ngModel)]="registerandloginService.createdPost.audiofile"/>
           <button type="button" class="btn btn-success btn-sm mt-2">Crear post</button>
         </div>
       </div>
