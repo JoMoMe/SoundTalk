@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RegisterAndLoginService } from '../../services/services/users.service'
+import { RegisterAndLoginService } from '../../services/users/users.service'
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';

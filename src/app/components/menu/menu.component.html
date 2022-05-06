@@ -33,16 +33,25 @@
       <div hidden>
         <div class="form-group my-3">
           <input type="file" accept="image/*" class="form-control" id="customFile" />
-          <button type="button" class="btn btn-success btn-sm mt-2">Crear post</button>
+          <button type="button" class="btn btn-success btn-sm mt-2" id="post-image">Crear post</button>
         </div>
       </div>
 
       <!-- Crear post audio -->
 
-      <div>
+      <div hidden>
         <div class="form-group my-3">
           <input type="file" accept=".mp3,audio/*" class="form-control" id="customFile" />
-          <button type="button" class="btn btn-success btn-sm mt-2">Crear post</button>
+          <button type="button" class="btn btn-success btn-sm mt-2" id="post-audio">Crear post</button>
+        </div>
+      </div>
+
+      <!-- Crear post texto -->
+
+      <div>
+        <div class="form-group my-3">
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+          <button type="button" class="btn btn-success btn-sm mt-2" id="post-text">Crear post</button>
         </div>
       </div>
       
