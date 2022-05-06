@@ -11,8 +11,15 @@ body{
     overflow: hidden;
 }
 
-button{
-    
+.btn{
+    background-color: rgb(194, 89, 255);
+    border: none;
+    height: 50px;
+}
+
+h1{
+    font-family: 'Questrial', sans-serif;
+    font-weight: bold;
 }
 
 /* Media Query  */

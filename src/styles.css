@@ -15,18 +15,6 @@ body {
     background-color: rgb(237, 206, 255);
 }
 
-.dropdown-toggle::after {
-    display:none;
-}
-
-.button--login{
-    margin-right: 1vw;
-}
-
-.button--register{
-    margin-right: 1vw;
-}
-
 .text-small {
     font-size: 0.9rem;
 }
@@ -37,10 +25,3 @@ a {
     transition: all 0.3s;
 }
 
-footer {
-    background: #212529;
-    color:white;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-}

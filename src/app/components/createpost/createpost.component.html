@@ -11,19 +11,23 @@
           
           <form>
 
+            <div class="form-outline mb-4 text-center">
+              <h1>Crea un post</h1>
+            </div>
+
             <!-- Post image button -->
             <div class="form-outline mb-4">
-              <button type="button" class="btn btn-primary btn-lg btn-block w-100">Lorem, ipsum dolor sit</button>
+              <a routerLink="/createpostimage" routerLinkActive="active"><button type="button" class="btn btn-success btn-lg btn-block w-100">Post con imagen <i class="fa-solid fa-image"></i></button></a>
             </div>
   
             <!-- Post audio button -->
             <div class="form-outline mb-4">
-              <button type="button" class="btn btn-primary btn-lg btn-block w-100">Lorem, ipsum dolor sit</button>
+              <a routerLink="/createpostaudio" routerLinkActive="active"><button type="button" class="btn btn-success btn-lg btn-block w-100">Post con audio <i class="fa-solid fa-circle-play"></i></button></a>
             </div>
 
-            <!-- Post audio button -->
+            <!-- Post text button -->
             <div class="form-outline mb-4">
-              <button type="button" class="btn btn-primary btn-lg btn-block w-100">Lorem, ipsum dolor sit</button>
+              <a routerLink="/createposttext" routerLinkActive="active"><button type="button" class="btn btn-success btn-lg btn-block w-100">Post con texto <i class="fa-solid fa-comment"></i></button></a>
             </div>
 
           </form>

@@ -12,6 +12,22 @@
     /* color: black; */
 }
 
+.create{
+    background-color: rgb(245, 245, 245);
+}
+
+.create:hover{
+    background-color: rgb(248, 248, 248);
+    /* color: black; */
+}
+
+.tipo{
+    background-color: rgb(204, 115, 255);
+    border: none;
+    color: white;
+    font-weight: bold;
+}
+
 .user--photo{
     margin-right: 2px;
 }

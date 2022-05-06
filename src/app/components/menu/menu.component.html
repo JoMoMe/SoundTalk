@@ -4,6 +4,52 @@
 
   <app-header-logged></app-header-logged>
 
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CREAR POST ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <form class="create card rounded-3">
+
+    <div class="card-header">
+      <h5 class="card-title mt-2">Crea un post</h5>
+    </div>
+    
+    <div class="card-body">
+      <div class="form-group mb-3">
+        <label>Titulo</label>
+        <input class="form-control mt-1" placeholder="Escribe un titulo...">
+      </div>
+
+      <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+        <button type="button" class="tipo btn btn-outline-primary btn-sm me-2" id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">Tipo de post</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownManual">
+          <button ngbDropdownItem>Imagen</button>
+          <button ngbDropdownItem>Audio</button>
+          <button ngbDropdownItem>Texto</button>
+        </div>
+      </div>
+      <hr class="w-100 my-3"/>
+      
+      <!-- Crear post imagen -->
+
+      <div hidden>
+        <div class="form-group my-3">
+          <input type="file" accept="image/*" class="form-control" id="customFile" />
+          <button type="button" class="btn btn-success btn-sm mt-2">Crear post</button>
+        </div>
+      </div>
+
+      <!-- Crear post audio -->
+
+      <div>
+        <div class="form-group my-3">
+          <input type="file" accept=".mp3,audio/*" class="form-control" id="customFile" />
+          <button type="button" class="btn btn-success btn-sm mt-2">Crear post</button>
+        </div>
+      </div>
+      
+    </div>
+
+  </form>
+
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ POST IMAGE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <!-- routerLink="/" routerLinkActive="active" -->
 
@@ -36,7 +82,7 @@
       </div>
       
       <div class="card-body">
-        <audio class="w-100" controls src='assets/Hola.mp3' type="audio/mp3">
+        <audio class="w-100" controls src='assets/audio/RickRoll.mp3' type="audio/mp3">
           Your browser does not support the <code>audio</code> element.
         </audio>
       </div>
