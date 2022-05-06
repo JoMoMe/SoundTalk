@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 /* import {SidebarModule } from 'cdbangular'; */
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
-import { RegisterAndLoginService } from '../../services/services/users.service'
+import { RegisterAndLoginService } from '../../services/users/users.service'
 import { CookieService } from 'ngx-cookie-service';
-import { json } from 'express';
 
 @Component({
   selector: 'app-menu',
