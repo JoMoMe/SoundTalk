@@ -58,6 +58,26 @@ h2{
     height: auto;
 }
 
+.bg-custom{
+    background-color:#41005faf;
+}
+
+.button-fixed{
+    bottom: 0;
+    position: fixed;
+    right: 0;
+    border-radius: 4px;
+}
+
+.fas{
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.cookie--text{
+    font-size: 14px;
+}
+
 @media only screen and (max-width: 1800px) {
     
     h3{

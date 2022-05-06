@@ -128,8 +128,46 @@
         </span></i>
   </ng-go-top-button>
 
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ COOKIES POPUP ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+
+  <div class="row" *ngIf = "!isShow">
+    <div class="col-md-4 col-sm-12 button-fixed">
+      <div class="p-3 pb-4 bg-custom text-white">
+        <div class="row">
+          <div class="col-10">
+            <h2>Aceptar Cookies</h2>
+          </div>
+        </div>
+        <p class="cookie--text">Las cookies son necesarias para el inicio de sesión y otras funciones de la página, si no las acepta, está denegando el uso fluido de su usuario en nuestra aplicación.</p>
+        <button type="button" class="btn btn-danger w-100" (click)=toggleDisplay()>Accept Cookies</button>
+      </div>
+    </div>
+  </div>
+
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FOOTER ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   
   <app-footer></app-footer>
 
 </body>
+<!-- <script>
+window.setTimeout(function(){ 
+	// First check, if localStorage is supported.
+	if (window.localStorage) {
+		// Get the expiration date of the previous popup.
+		var nextPopup = localStorage.getItem( 'AlertSoundTalk' );
+
+		if (nextPopup > new Date()) {
+			return;
+		}
+
+		// Store the expiration date of the current popup in localStorage.
+		var expires = new Date();
+		expires = expires.setHours(expires.getHours() + 24);
+
+		localStorage.setItem( 'AlertSoundTalk', expires );
+	}
+
+	DiviArea.show('#get-newsletter');
+}, 3000);
+</script> -->

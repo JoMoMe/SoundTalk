@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-landingpage',
@@ -8,6 +8,8 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 })
 export class LandingpageComponent {
 
+  isShow = false;
+  
   images = [
     {src: "assets/img/Foto_Landing_4.png"},
     {src: "assets/img/Foto_Landing_3.png"},
@@ -19,5 +21,11 @@ export class LandingpageComponent {
     config.interval = 5000;
 
   }
+
+  toggleDisplay() {
+    this.isShow = !this.isShow;
+  }
+
+
 
 }
