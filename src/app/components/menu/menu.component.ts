@@ -57,12 +57,12 @@ export class MenuComponent implements OnInit {
       const reader = new FileReader()
       reader.readAsDataURL($event)
       reader.onload = () => {
-        resolve({
+        return resolve({
           base: reader.result
         })
       }
       reader.onerror = error => {
-        resolve({
+        return resolve({
           base: null
         })
       }
@@ -72,30 +72,11 @@ export class MenuComponent implements OnInit {
     }
   })
 
-  uploadFile(): any{
-/*     try{
-      const formulary = new FormData()
-      this.files.forEach(element => {
-        console.log(element)
-        formulary.append('photo', element) 
-      })
-
-      this.http.post('http://localhost:4005/menu', formulary).subscribe(
-        res => {
-          console.log(res)
-        },
-        err => console.error(err)
-      )
-    }
-    catch (err){
-      console.log(err)
-    } */
-  }
-
   createPost(form: NgForm){
-    this.postsService.createPost(form.value, this.cookie.get('cookieSoundTalkSession')).subscribe(
-      res => {console.log(res)
-      },
+    this.postsService.putPhoto(form.value).subscribe(
+      res => {console.log(res),
+              this.postsService.createPost(form.value, this.cookie.get('cookieSoundTalkSession'))
+             },
       err => console.error(err)
     )
   }

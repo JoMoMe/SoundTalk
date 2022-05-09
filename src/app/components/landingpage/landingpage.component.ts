@@ -1,12 +1,20 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
+
 @Component({
   selector: 'app-landingpage',
   templateUrl: './landingpage.component.html',
   styleUrls: ['./landingpage.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class LandingpageComponent {
+export class LandingpageComponent implements OnInit {
+
+  constructor(config: NgbCarouselConfig) {
+    config.interval = 5000;
+   }
+
+  ngOnInit(): void {    
+  }
 
   isShow = false;
   
@@ -16,11 +24,6 @@ export class LandingpageComponent {
     {src: "assets/img/Foto_Landing_2.png"},
     {src: "assets/img/Foto_Landing_1.png"}
   ];
-
-  constructor(config: NgbCarouselConfig) {
-    config.interval = 5000;
-
-  }
 
   toggleDisplay() {
     this.isShow = !this.isShow;

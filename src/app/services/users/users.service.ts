@@ -10,10 +10,10 @@ import { Router } from '@angular/router';
 export class RegisterAndLoginService {
   constructor(private http: HttpClient, public router: Router) {}
 
-  url_backendregister = 'http://localhost:4005/register'
-  url_backendlogin = 'http://localhost:4005/login'
-  url_backendcookie = 'http://localhost:4005/login/cookie/'
-
+  url_backendregister = 'http://localhost:4001/register'
+  url_backendlogin = 'http://localhost:4001/login'
+  url_backendcookie = 'http://localhost:4001/login/cookie/'
+  url_backendphotoprofile = 'http://localhost:4001/menu/profile/profilephoto/'
 
   createdUser: Users =  {
     username: '',
@@ -28,8 +28,8 @@ export class RegisterAndLoginService {
     return this.http.get(this.url_backendcookie + cookie)
   }
 
-  searchUser(users: Users){
-    return this.http.post(this.url_backendlogin, users)
+  findPhoto(idphoto: string){
+    return this.http.get(this.url_backendphotoprofile + idphoto)
   }
 
   createUser(users: Users){
@@ -43,7 +43,7 @@ export class RegisterAndLoginService {
   }
 
   verifyToken(token: string){
-    return this.http.get('http://localhost:4005/validate/' + token)
+    return this.http.get('http://localhost:4001/validate/' + token)
   }
 }
 

@@ -10,24 +10,36 @@ import { Router } from '@angular/router';
 export class PostsService {
   constructor(private http: HttpClient, public router: Router) {}
 
-  url_menu = 'http://localhost:4005/menu'
+  url_menu = 'http://localhost:4001/menu'
+  url_photo = 'http://localhost:4001/menu/photos'
+  url_audio = 'http://localhost:4001/menu/audio'
 
   createdPost: Posts =  {
     title: '',
     content: '',
-    photofile: '',
-    audiofile: '',
+    photoid: JSON.parse(JSON.stringify('b')),
+    audioid: JSON.parse(JSON.stringify('b')),
     userid: JSON.parse(JSON.stringify('a')),
     likes: 0,
     comments: 0,
     commentsid: JSON.parse(JSON.stringify('a')),
   };
   
+  putPhoto(posts: Posts){
+    console.log(posts)
+    console.log(posts.photoid)
+    return this.http.post(this.url_photo, posts.photoid)
+  }
+
+  putAudio(audio: Object){
+    return this.http.post(this.url_audio, audio)
+  }
+
   createPost(posts: Posts, userid: string){
     const idstring = JSON.stringify(userid)
-    const id = JSON.parse(idstring)
-    posts.userid=id
-    console.log(posts)
+    const iduserpost = JSON.parse(idstring)
+    
+    posts.userid=iduserpost
     return this.http.post(this.url_menu, posts)
   }
 }

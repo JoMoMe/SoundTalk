@@ -3,8 +3,8 @@ import { ObjectId } from "mongodb";
 export interface posts {
     title: string
     content?: string
-    photofile?: Object
-    audiofile?: Object
+    photoid?: ObjectId
+    audioid?: ObjectId
     userid: ObjectId
     likes?: number
     comments?: number

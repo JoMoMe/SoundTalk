@@ -32,23 +32,24 @@
 
       <div>
         <div class="form-group my-3">
-          <input type="file" accept="image/*" class="form-control" id="photofile" name="photofile" [(ngModel)]="postsService.createdPost.photofile" (change)="captureFile($event)"/>
+          <input type="file" accept="image/*" class="form-control" id="photoid" name="photoid" [(ngModel)]="postsService.createdPost.photoid" (change)="captureFile($event)"/>
           <button type="button" class="btn btn-success btn-sm mt-2">Crear post</button>
         </div>
       </div>
 
       <!-- Crear post audio -->
 
-      <div hidden>
+      <div>
         <div class="form-group my-3">
-          <input type="file" accept=".mp3,audio/*" class="form-control" id="audiofile" name="audiofile" [(ngModel)]="postsService.createdPost.audiofile"/>
-          <button type="submit" class="btn btn-success btn-sm mt-2" (click)="uploadFile()">Crear post</button>
+          <input type="file" accept="audio/*" class="form-control" id="audioid" name="audioid" [(ngModel)]="postsService.createdPost.audioid"/>
+          <button type="button" class="btn btn-success btn-sm mt-2">Crear post</button>
         </div>
       </div>
+
       <div *ngIf="previsualize">
           <img width="200px" [src]="previsualize" alt="">
       </div>
-      
+
     </div>
 
   </form>
