@@ -14,6 +14,8 @@ export class RegisterAndLoginService {
   url_backendlogin = 'http://localhost:4001/login'
   url_backendcookie = 'http://localhost:4001/login/cookie/'
   url_backendphotoprofile = 'http://localhost:4001/menu/profile/profilephoto/'
+  url_backendmenu = 'http://localhost:4001/menu/posts'
+
 
   createdUser: Users =  {
     username: '',
@@ -22,6 +24,7 @@ export class RegisterAndLoginService {
     role: 'User',
     rememberme: '',
     accountactive: 0,
+    photoid: JSON.parse(JSON.stringify('a')),
   };
   
   findUserByID(cookie: string){
@@ -32,9 +35,15 @@ export class RegisterAndLoginService {
     return this.http.get(this.url_backendphotoprofile + idphoto)
   }
 
+  getRandomPosts(){
+    return this.http.get(this.url_backendmenu+'/allpost')
+  }
+
+
   createUser(users: Users){
     users.role='User';
     users.accountactive=0;
+    users.photoid=JSON.parse(JSON.stringify('62791b990376f22fba505184'));
     return this.http.post(this.url_backendregister, users)
   }
 

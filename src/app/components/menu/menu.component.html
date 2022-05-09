@@ -57,6 +57,15 @@
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ POST IMAGE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <!-- routerLink="/" routerLinkActive="active" -->
 
+  <div *ngFor="let post of posts">
+    <p>{{post.userid}}</p>
+    <p>{{post.title}}</p>
+    <p>{{post.content}}</p>
+    <p>{{post.likes}}</p>
+    <p>{{post.comments}}</p>
+    <p>{{post.type}}</p>
+  </div>
+
   <div class="card rounded-3">
     <a href="#" class="text-decoration-none text-dark">
 

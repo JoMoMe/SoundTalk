@@ -20,6 +20,8 @@ export class MenuComponent implements OnInit {
 
   constructor(private http: HttpClient, public registerandloginService: RegisterAndLoginService, public postsService: PostsService, public router: Router, public cookie: CookieService, public sanitizer: DomSanitizer) { }
 
+  public posts: any
+
   ngOnInit(): void {
     var cookiefound = this.cookie.get('cookieSoundTalkSession')
     if (cookiefound){
@@ -28,6 +30,12 @@ export class MenuComponent implements OnInit {
           console.log(res)
           console.log("tienes la cookie, bienvenido!")
           this.router.navigate(['/menu'])
+          this.registerandloginService.getRandomPosts().subscribe(
+            res => {
+              this.posts = res
+            },
+            err => console.error(err)
+          )
         },
         err => console.error(err),
       )
