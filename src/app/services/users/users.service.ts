@@ -35,7 +35,7 @@ export class RegisterAndLoginService {
     return this.http.get(this.url_backendphotoprofile + idphoto)
   }
 
-  getRandomPosts(){
+  getAllposts(){
     return this.http.get(this.url_backendmenu+'/allpost')
   }
 

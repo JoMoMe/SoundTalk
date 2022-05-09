@@ -30,9 +30,12 @@ export class MenuComponent implements OnInit {
           console.log(res)
           console.log("tienes la cookie, bienvenido!")
           this.router.navigate(['/menu'])
-          this.registerandloginService.getRandomPosts().subscribe(
+          this.registerandloginService.getAllposts().subscribe(
             res => {
               this.posts = res
+              this.posts.forEach((i: number) => {
+                //console.log(this.posts[2].userid)
+              });
             },
             err => console.error(err)
           )
@@ -53,7 +56,6 @@ export class MenuComponent implements OnInit {
     var file = event.target.files[0]
     this.converttoBase64(file).then((image: any) => {
       this.previsualize = image.base;
-      console.log(image)
     })
     this.files.push(file)
   }
@@ -80,11 +82,31 @@ export class MenuComponent implements OnInit {
     }
   })
 
+  public selectedFile: any
+  public selectedAudio: any
+  public audioid: any
+  public photoid: any
+
+
+  onFileChanged(event: any): any{
+    this.selectedFile = event.target.files[0]
+    this.postsService.putPhoto(this.selectedFile).subscribe(
+      res => this.photoid = res,
+      err => console.error(err)
+    )  
+  }
+
+  onAudioUpload(event: any): any{
+    this.selectedAudio = event.target.files[0]
+    this.postsService.putAudio(this.selectedAudio).subscribe(
+      res => this.audioid = res,
+      err => console.error(err)
+    )  
+  }
+
   createPost(form: NgForm){
-    this.postsService.putPhoto(form.value).subscribe(
-      res => {console.log(res),
-              this.postsService.createPost(form.value, this.cookie.get('cookieSoundTalkSession'))
-             },
+    this.postsService.createPost(form.value, this.cookie.get('cookieSoundTalkSession'),this.audioid, this.photoid).subscribe(
+      res => {console.log(res)},
       err => console.error(err)
     )
   }
