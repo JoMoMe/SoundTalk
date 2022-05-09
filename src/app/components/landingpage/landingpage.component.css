@@ -53,6 +53,13 @@ h2{
     background-size: cover;
 }
 
+.div--meet{
+    background-image: url("/assets/img/Bckgd5.jpg");
+    background-repeat: no-repeat;
+    background-color: rgb(201, 0, 191);
+    background-size: cover;
+}
+
 .foto--landing{
     width: 23vw;
     height: auto;
@@ -76,6 +83,15 @@ h2{
 
 .cookie--text{
     font-size: 14px;
+}
+
+.card{
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.card--text{
+    font-weight: bold;
+    font-size: ;
 }
 
 @media only screen and (max-width: 1800px) {

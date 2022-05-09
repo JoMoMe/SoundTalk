@@ -9,3 +9,9 @@
 .button--register{
     margin-right: 1vw;
 }
+
+@media only screen and (max-width: 990px) {
+    .user{
+        margin-top: 0.5vw;
+    }
+}
