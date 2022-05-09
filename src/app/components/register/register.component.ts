@@ -26,8 +26,8 @@ export class RegisterComponent implements OnInit {
       )
     } 
     else{
-      console.log("Logueate porfavor!")
-      this.router.navigate(['/login'])   
+      console.log("Registrate porfavor!")
+      this.router.navigate(['/register'])   
     }      
   }
 
