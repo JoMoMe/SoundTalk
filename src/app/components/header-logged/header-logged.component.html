@@ -9,13 +9,16 @@
       <form class="nav col-12 col-lg-6 me-lg-auto mb-2 justify-content-center mb-md-0">
         <input type="search" class="form-control" placeholder="Buscar..." aria-label="Search">
       </form>
-      
+
+      <a href="" class="exits">
+        <i class="exit--closed fa-solid fa-door-closed fa-2xl"></i>
+      </a>
       <div class="user row">
         <div class="col-6">
           <div ngbDropdown class="d.inline.block dropdown text-end" placement="bottom-right" style="cursor: pointer;">
-              <a class="d-flex link-dark text-decoration-none dropdown-toggle" ngbDropdownToggle id="midrop1">
+              <a class="user--content d-flex link-dark text-decoration-none dropdown-toggle" ngbDropdownToggle id="midrop1">
                 <img [src]="'assets/' + myPhoto.filepath" alt="User Icon" width="45" height="45" class="rounded-circle">
-                <p class="align-self-center">{{ myUser.username }}</p>
+                <p class="user--name mt-2">{{ myUser.username }}</p>
               </a>
               <div ngbDropdownMenu aria-labelledby="midrop1">
                   <a routerLink="/profile" routerLinkActive="active"><button ngbDropdownItem>Perfil</button></a>

@@ -10,8 +10,31 @@
     margin-right: 1vw;
 }
 
+.exit--closed, .exit--open{
+    margin-right: 10px;
+}
+
+.user--content{
+    position: relative;
+    font-weight: bold;
+}
+
+.exits:hover .exit--closed:before{
+    content: "\f52b";
+}
+
+.user--content:hover{
+    color: 	rgb(3, 46, 109);
+    filter: opacity(0.5) drop-shadow(0 0 0 rgb(17, 112, 255)); 
+    transition: 0.3s;
+}
+
 @media only screen and (max-width: 990px) {
     .user{
+        margin-top: 0.5vw;
+    }
+
+    .exit--closed, .exit--open{
         margin-top: 0.5vw;
     }
 }
