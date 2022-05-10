@@ -1,0 +1,18 @@
+body {
+    margin: 0;
+    margin-bottom: 7%;
+}
+
+.profile--header{
+    background-color: rgb(237, 206, 255);
+    height:200px;
+}
+
+.profile--info{
+    margin-top: 130px;
+}
+
+.profile--image{
+    width: 150px; 
+    z-index: 1;
+}

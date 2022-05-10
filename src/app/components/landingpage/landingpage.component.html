@@ -64,7 +64,7 @@
   <ngb-carousel class="h-100 w-100">
     <ng-template ngbSlide *ngFor="let image of images">
       <div>
-        <img class="images--carousel h-100 d-block mx-auto" [src]="image.src" alt="Carrousel photos">
+        <img class="images--carousel d-block mx-auto" [src]="image.src" alt="Carrousel photos">
       </div>
     </ng-template>
   </ngb-carousel>
@@ -126,10 +126,14 @@
 
   <div class="div--meet text-white text-center">
     <div class="container row h-75 d-flex align-items-center justify-content-between mx-auto">
-      <div class="all">
-        <div class="card border-0" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width: 330px; height: 400px;" id="card">
+      <div class="all d-flex justify-content-center">
+        <div class="card border-0 mx-3" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width: 330px; height: 400px;" id="card">
           <img class="JMM mx-card-img-top" alt="JMM" src="/assets/img/JMM.jpg">
           <h3 class="card--text mt-2">Joan Molina</h3>
+        </div>
+        <div class="card border-0 mx-3" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width: 330px; height: 400px;" id="card">
+          <img class="JMM mx-card-img-top" alt="JMM" src="/assets/img/NFT.jpg">
+          <h3 class="card--text mt-2">Oliver Bocanegra</h3>
         </div>
       </div>
     </div>

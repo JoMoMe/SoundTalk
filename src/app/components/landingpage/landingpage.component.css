@@ -87,10 +87,16 @@ h2{
 
 .card{
     background-color: rgba(0, 0, 0, 0);
+    
 }
 
 .card--text{
     font-weight: bold;
+}
+
+.images--carousel{
+    height: 100%;
+        
 }
 
 @media only screen and (max-width: 1800px) {
@@ -143,6 +149,48 @@ h2{
 
     h2{
         font-size: 2.65vw;
+    }
+
+}
+
+@media only screen and (max-width: 768px) {
+    
+    .all{
+        margin-top: 13vw;
+    }
+
+}
+
+@media only screen and (max-width: 680px) {
+
+    .images--carousel{
+        height: 75%;
+        margin-top: 13vw;
+        
+    }
+
+}
+
+@media only screen and (max-width: 530px) {
+
+    .images--carousel{
+        height: 63%;
+        margin-top: 13vw;
+        
+    }
+
+}
+
+@media only screen and (max-width: 450px) {
+    
+    .all{
+        margin-top: 40vw;
+    }
+
+    .images--carousel{
+        height: 50%;
+        margin-top: 35vw;
+        
     }
 
 }

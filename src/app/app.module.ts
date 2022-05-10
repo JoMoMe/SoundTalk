@@ -25,6 +25,7 @@ import { HeaderLoggedComponent } from './components/header-logged/header-logged.
 import { ValidateComponent } from './components/validate/validate.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { CreatepostComponent } from './components/createpost/createpost.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { CreatepostComponent } from './components/createpost/createpost.componen
     ValidateComponent,
     NotfoundComponent,
     CreatepostComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
