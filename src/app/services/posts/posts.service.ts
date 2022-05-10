@@ -39,6 +39,14 @@ export class PostsService {
     return this.http.post(this.url_audio, audioForm)
   }
 
+  getPhoto(id: string){
+    return this.http.get('http://localhost:4001/menu/photos/'+id)
+  }
+
+  getAudio(id: string){
+    return this.http.get('http://localhost:4001/menu/audio/'+id)
+  }
+
   createPost(posts: Posts, userid: string, audioid: string, photoid: string){
     const idstring = JSON.stringify(userid)
     const iduserpost = JSON.parse(idstring)

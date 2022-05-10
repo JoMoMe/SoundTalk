@@ -53,6 +53,10 @@
         </div>
         
         <div class="card-body">
+          <img [src]="'assets/photo/' + posts.photoid" alt="User Icon">
+          <audio class="w-100" controls src={{posts.audioid}} type="audio/mp3">
+            Your browser does not support the <code>audio</code> element.
+          </audio>
           <h5 class="post--text">{{post.content}}</h5>
         </div>
         <div class="card-footer text-muted d-flex align-items-center justify-content-between">

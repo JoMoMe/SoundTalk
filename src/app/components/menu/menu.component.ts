@@ -33,9 +33,28 @@ export class MenuComponent implements OnInit {
           this.registerandloginService.getAllposts().subscribe(
             res => {
               this.posts = res
-              this.posts.forEach((i: number) => {
-                //console.log(this.posts[2].userid)
-              });
+              for (let i = 0; i < this.posts.length; i++) {
+                this.registerandloginService.getUsersofPosts(this.posts[i].userid).subscribe(
+                  res=> {const a = JSON.stringify(res)
+                        const b = JSON.parse(a)
+                        this.posts.userid = b.username
+                        console.log(this.posts)
+                        this.postsService.getPhoto(this.posts[i].photoid).subscribe(
+                          res=> {const restring = JSON.stringify(res)
+                                const res2 = restring.slice(50)
+                                const route = res2.slice(0, res2.length - 1);
+                                this.posts.photoid = route                      
+                                this.postsService.getAudio(this.posts[i].audioid).subscribe(
+                                  res => this.posts.audioid = res,
+                                  err => {this.posts.audioid = err, console.log(err)}
+                                )
+                          },
+                          err => console.error(err)
+                        )
+                      },
+                  err=> console.error(err) 
+                )
+              }
             },
             err => console.error(err)
           )
