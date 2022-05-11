@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { posts as Posts } from 'src/app/models/posts';
+import { comments as Comments } from 'src/app/models/comments';
 import { Form, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ObjectId } from 'mongodb';
@@ -26,6 +27,11 @@ export class PostsService {
     commentsid: JSON.parse(JSON.stringify('a')),
     type: '',
   };
+
+  createdComment: Comments =  {
+    text: '',
+    userid: JSON.parse(JSON.stringify('a')),
+  };
   
   putPhoto(photo: any){
     const PhotoForm = new FormData();
@@ -44,7 +50,7 @@ export class PostsService {
   }
 
   getAudio(id: string){
-    return this.http.get('http://localhost:4001/menu/audio/'+id)
+    return this.http.get('http://localhost:4001/menu/audio/'+id, {responseType: 'blob'})
   }
 
   createPost(posts: Posts, userid: string, audioid: string, photoid: string){
@@ -62,5 +68,24 @@ export class PostsService {
     posts.audioid=idaudio
     posts.photoid=idphoto
     return this.http.post(this.url_menu, posts)
+  }
+
+  createComment(comments: Comments, userid: string){
+    const idstring = JSON.stringify(userid)
+    const idusercomment = JSON.parse(idstring)
+
+    comments.userid=idusercomment
+    return this.http.post('http://localhost:4001/menu/comment', comments)
+  }
+
+  putCommentinPost(postid: string, commentid: Object){
+    const commenttostring = JSON.stringify(commentid)
+    const idofcomment = JSON.parse(commenttostring)
+    
+    console.log(idofcomment)
+    const commentForm = new FormData();
+    commentForm.append('commentsid', idofcomment)
+
+    return this.http.put('http://localhost:4001/menu/comment/'+postid, commentForm)
   }
 }
