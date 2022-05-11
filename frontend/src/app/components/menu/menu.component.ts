@@ -37,16 +37,15 @@ export class MenuComponent implements OnInit {
                 this.registerandloginService.getUsersofPosts(this.posts[i].userid).subscribe(
                   res=> {const a = JSON.stringify(res)
                         const b = JSON.parse(a)
-                        this.posts.userid = b.username
-                        console.log(this.posts)
+                        this.posts[i].userid = b.username
                         this.postsService.getPhoto(this.posts[i].photoid).subscribe(
                           res=> {const restring = JSON.stringify(res)
                                 const res2 = restring.slice(50)
                                 const route = res2.slice(0, res2.length - 1);
-                                this.posts.photoid = route                      
+                                this.posts[i].photoid = route
                                 this.postsService.getAudio(this.posts[i].audioid).subscribe(
-                                  res => this.posts.audioid = res,
-                                  err => {this.posts.audioid = err, console.log(err)}
+                                  res => {this.posts[i].audioid =res},
+                                  err => this.posts[i].audioid = err
                                 )
                           },
                           err => console.error(err)
@@ -55,6 +54,8 @@ export class MenuComponent implements OnInit {
                   err=> console.error(err) 
                 )
               }
+              this.posts = this.posts.reverse()
+              console.log("EL RESULTAO",this.posts)
             },
             err => console.error(err)
           )
@@ -125,8 +126,21 @@ export class MenuComponent implements OnInit {
 
   createPost(form: NgForm){
     this.postsService.createPost(form.value, this.cookie.get('cookieSoundTalkSession'),this.audioid, this.photoid).subscribe(
-      res => {console.log(res)},
+      res => {console.log(res)
+        location.reload()   
+      },
       err => console.error(err)
     )
+  }
+
+  addComment(form: NgForm, postid: string){
+    this.postsService.createComment(form.value, this.cookie.get('cookieSoundTalkSession')).subscribe(
+      res => {this.postsService.putCommentinPost(postid, res).subscribe(
+        res => console.log(res),
+        err => console.error(err)
+        )
+      },
+      err => console.error(err)
+    ) 
   }
 }

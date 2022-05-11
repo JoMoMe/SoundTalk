@@ -44,7 +44,7 @@
 
   <div *ngFor="let post of posts">
     <div class="card rounded-3">
-      <a href="#" class="text-decoration-none text-dark">
+      <a class="text-decoration-none text-dark">
   
         <div class="card-header">
           <a routerLink="/" routerLinkActive="active"><p class="username"><img src="assets/img/icon_user.png" alt="User Icon" width="20" height="20" class="user--photo rounded-circle">{{post.userid}}</p></a>
@@ -53,8 +53,8 @@
         </div>
         
         <div class="card-body">
-          <img [src]="'assets/photo/' + posts.photoid" alt="User Icon">
-          <audio class="w-100" controls src={{posts.audioid}} type="audio/mp3">
+          <img [src]="'assets/photo/' + post.photoid" alt="User Icon">
+          <audio class="w-100" controls [src]=post.audioid type="audio/mp3">
             Your browser does not support the <code>audio</code> element.
           </audio>
           <h5 class="post--text">{{post.content}}</h5>
@@ -62,7 +62,10 @@
         <div class="card-footer text-muted d-flex align-items-center justify-content-between">
           <h6 class="comments mt-1">Comentarios ({{post.comments}})</h6><a href="/#/terms"><i class="post--up fa-solid fa-circle-up"> {{post.likes}}</i></a>
         </div>
-  
+        <form #commentForm="ngForm" (ngSubmit)="addComment(commentForm,post._id)">
+          <textarea class="form-control mt-1" id="text" name="text" placeholder="Escribe tu comentario a {{post.userid}} aquí..." [(ngModel)]="postsService.createdComment.text"></textarea>
+          <button type="submit" class="btn btn-success btn-sm mt-3">Subir comentario</button>
+        </form>
       </a>
     </div>
   </div>

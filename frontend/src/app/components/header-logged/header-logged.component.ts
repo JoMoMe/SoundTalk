@@ -4,6 +4,8 @@ import { RegisterAndLoginService } from '../../services/users/users.service'
 import { CookieService } from 'ngx-cookie-service';
 import { json } from 'express';
 import { users as Users } from 'src/app/models/users';
+import { Event, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-header-logged',
@@ -12,13 +14,23 @@ import { users as Users } from 'src/app/models/users';
 })
 export class HeaderLoggedComponent implements OnInit {
 
-  constructor(public registerandloginService: RegisterAndLoginService, private http: HttpClient, public cookie: CookieService) { }
+  constructor(public registerandloginService: RegisterAndLoginService, private http: HttpClient, public cookie: CookieService, public router: Router) { }
   
   public myUser: any
   public myPhoto: any
 
   ngOnInit(): void {
     this.getUser()
+  }
+
+  userOut() {
+    console.log("Hasta otra! gracias por usar Soundtalk")
+    this.cookie.delete('cookieSoundTalkSession');
+    this.goodBye()
+  }
+
+  goodBye(){
+    this.router.navigate(['/login'])
   }
 
   getUser(){
