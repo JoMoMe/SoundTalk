@@ -10,7 +10,7 @@ const promoCtrl = require('../controllers/promo.controller.js')
 
 //TRATAMIENTO DE IMAGENES
 const storage = multer.diskStorage({
-    destination: '/home/tarda/Documents/SoundTalk/src/assets/photo',
+    destination: '../../../frontend/src/assets/photo',
     filename: (req, file, cb) => {
         cb(null, uuidv4() + path.extname(file.originalname))
     }

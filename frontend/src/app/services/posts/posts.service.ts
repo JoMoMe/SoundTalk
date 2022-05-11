@@ -11,9 +11,9 @@ import { ObjectId } from 'mongodb';
 export class PostsService {
   constructor(private http: HttpClient, public router: Router) {}
 
-  url_menu = 'http://localhost:4001/menu'
-  url_photo = 'http://localhost:4001/menu/photos'
-  url_audio = 'http://localhost:4001/menu/audio'
+  url_menu = 'http://localhost:4000/menu'
+  url_photo = 'http://localhost:4000/menu/photos'
+  url_audio = 'http://localhost:4000/menu/audio'
 
   createdPost: Posts =  {
     title: '',
@@ -40,11 +40,11 @@ export class PostsService {
   }
 
   getPhoto(id: string){
-    return this.http.get('http://localhost:4001/menu/photos/'+id)
+    return this.http.get('http://localhost:4000/menu/photos/'+id)
   }
 
   getAudio(id: string){
-    return this.http.get('http://localhost:4001/menu/audio/'+id)
+    return this.http.get('http://localhost:4000/menu/audio/'+id)
   }
 
   createPost(posts: Posts, userid: string, audioid: string, photoid: string){
