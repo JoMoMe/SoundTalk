@@ -210,19 +210,37 @@ exports.getPost = async (req, res) => {
 
 exports.commentPost = async (req, res) => {
     try {
-        const comments = new Comments(req.body)
-        await comments.save()
-        res.send(comments._id)
+        const post = await Posts.findOne({_id: req.params.id})
+        if (post){
+            const comments = new Comments(req.body)
+            await comments.save()
+            if(comments){
+                post.commentsid.push(comments._id)
+                post.save()
+                res.json("MENSAJE SUBIDO")
+            }
+            else{
+                res.send("Error al subir el comentario")
+            }
+        }
+        else{
+            res.send("La ID del post no existe, lo siento")
+        }
     }
     catch (error){
         console.log(error)
     }
 }
 
-exports.commentIDInPost = async (req, res) => {
+exports.getCommentsOfPost = async (req, res) => {
     try {
-        await Posts.findByIdAndUpdate(req.params.id, req.body)
-        res.send('Comentario creado en post')
+        const comments = await Comments.findOne({_id: req.params.idcomment})
+        if (comments){
+            res.json(comments)
+        }
+        else{
+            res.json("La ID del comentario no existe, lo siento")
+        }
     }
     catch (error){
         console.log(error)

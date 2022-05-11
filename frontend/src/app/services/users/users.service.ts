@@ -10,12 +10,12 @@ import { Router } from '@angular/router';
 export class RegisterAndLoginService {
   constructor(private http: HttpClient, public router: Router) {}
 
-  url_backendregister = 'http://localhost:4005/register'
-  url_backendlogin = 'http://localhost:4005/login'
-  url_backendcookie = 'http://localhost:4005/login/cookie/'
-  url_backendphotoprofile = 'http://localhost:4005/menu/profile/profilephoto/'
-  url_backendmenu = 'http://localhost:4005/menu/posts'
-  url_backendprofile = 'http://localhost:4005/menu/profile/user/'
+  url_backendregister = 'http://localhost:4000/register'
+  url_backendlogin = 'http://localhost:4000/login'
+  url_backendcookie = 'http://localhost:4000/login/cookie/'
+  url_backendphotoprofile = 'http://localhost:4000/menu/profile/profilephoto/'
+  url_backendmenu = 'http://localhost:4000/menu/posts'
+  url_backendprofile = 'http://localhost:4000/menu/profile/user/'
 
 
   createdUser: Users =  {
@@ -44,6 +44,10 @@ export class RegisterAndLoginService {
     return this.http.get(this.url_backendmenu+'/allpost')
   }
 
+  getAllComments(idcomment: string){
+    return this.http.get(this.url_backendmenu+'/allcomments/'+idcomment)
+  }
+
   createUser(users: Users){
     users.role='User';
     users.accountactive=0;
@@ -56,7 +60,7 @@ export class RegisterAndLoginService {
   }
 
   verifyToken(token: string){
-    return this.http.get('http://localhost:4005/validate/' + token)
+    return this.http.get('http://localhost:4000/validate/' + token)
   }
 }
 

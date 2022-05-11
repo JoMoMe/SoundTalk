@@ -62,6 +62,11 @@
         <div class="card-footer text-muted d-flex align-items-center justify-content-between">
           <h6 class="comments mt-1">Comentarios ({{post.comments}})</h6><a href="/#/terms"><i class="post--up fa-solid fa-circle-up"> {{post.likes}}</i></a>
         </div>
+        <div *ngFor="let comment of post.commentsid" class="my-3">
+          <h5 class="card-title">{{comment.userid}}</h5>
+          <h5 class="post--text">{{comment.text}}</h5>
+        </div>
+
         <form #commentForm="ngForm" (ngSubmit)="addComment(commentForm,post._id)">
           <textarea class="form-control mt-1" id="text" name="text" placeholder="Escribe tu comentario a {{post.userid}} aquí..." [(ngModel)]="postsService.createdComment.text"></textarea>
           <button type="submit" class="btn btn-success btn-sm mt-3">Subir comentario</button>
@@ -80,50 +85,6 @@
       
       <div class="card-body">
         <a href="assets/img/Bckgd2.jpg"><img class="post--image" src="assets/img/Bckgd2.jpg" alt="Post Image"></a>
-      </div>
-      <div class="card-footer text-muted d-flex align-items-center justify-content-between">
-        <h6>Comentarios</h6><i class="post--up fa-solid fa-circle-up"> 58</i>
-      </div>
-
-    </a>
-  </div>
-
-  
-
-  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ POST AUDIO ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-
-  <div class="card rounded-3">
-    <a href="#" class="text-decoration-none text-dark">
-
-      <div class="card-header">
-        <p class="username"><img src="assets/img/icon_user.png" alt="User Icon" width="20" height="20" class="user--photo rounded-circle">username</p>
-        <h5 class="card-title">Un titulo increíble del post</h5>
-      </div>
-      
-      <div class="card-body">
-        <audio class="w-100" controls src='assets/audio/RickRoll.mp3' type="audio/mp3">
-          Your browser does not support the <code>audio</code> element.
-        </audio>
-      </div>
-      <div class="card-footer text-muted d-flex align-items-center justify-content-between">
-        <h6>Comentarios</h6><i class="post--up fa-solid fa-circle-up"> 58</i>
-      </div>
-
-    </a>
-  </div>
-
-  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ POST TEXTO ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-
-  <div class="card rounded-3">
-    <a href="#" class="text-decoration-none text-dark">
-
-      <div class="card-header">
-        <p class="username"><img src="assets/img/icon_user.png" alt="User Icon" width="20" height="20" class="user--photo rounded-circle">username</p>
-        <h5 class="card-title">Un titulo increíble del post</h5>
-      </div>
-      
-      <div class="card-body">
-        <h5 class="post--text">Lorem ipsum dolor sit amet consectetur adipiscing elit congue eros, euismod tincidunt donec aptent est in neque varius, turpis pellentesque accumsan cum ultricies viverra molestie vulputate. Ac orci egestas tincidunt dictumst ornare morbi ante, ultricies eros fames nascetur facilisi dictum arcu, sollicitudin gravida conubia nostra nibh mattis. Parturient consequat luctus nascetur quis interdum primis ad senectus turpis, varius dis integer magnis ullamcorper ligula nisi suscipit massa, mollis etiam dapibus sociosqu duis neque vehicula vestibulum.</h5>
       </div>
       <div class="card-footer text-muted d-flex align-items-center justify-content-between">
         <h6>Comentarios</h6><i class="post--up fa-solid fa-circle-up"> 58</i>

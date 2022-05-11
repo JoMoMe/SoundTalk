@@ -12,9 +12,9 @@ import { ObjectId } from 'mongodb';
 export class PostsService {
   constructor(private http: HttpClient, public router: Router) {}
 
-  url_menu = 'http://localhost:4005/menu'
-  url_photo = 'http://localhost:4005/menu/photos'
-  url_audio = 'http://localhost:4005/menu/audio'
+  url_menu = 'http://localhost:4000/menu'
+  url_photo = 'http://localhost:4000/menu/photos'
+  url_audio = 'http://localhost:4000/menu/audio'
 
   createdPost: Posts =  {
     title: '',
@@ -46,11 +46,11 @@ export class PostsService {
   }
 
   getPhoto(id: string){
-    return this.http.get('http://localhost:4005/menu/photos/'+id)
+    return this.http.get('http://localhost:4000/menu/photos/'+id)
   }
 
   getAudio(id: string){
-    return this.http.get('http://localhost:4005/menu/audio/'+id, {responseType: 'blob'})
+    return this.http.get('http://localhost:4000/menu/audio/'+id, {responseType: 'blob'})
   }
 
   createPost(posts: Posts, userid: string, audioid: string, photoid: string){
@@ -70,23 +70,19 @@ export class PostsService {
     return this.http.post(this.url_menu, posts)
   }
 
-  createComment(comments: Comments, userid: string){
+  putCommentinPost(comments: Comments, userid: string, postid: string){
     const idstring = JSON.stringify(userid)
     const idusercomment = JSON.parse(idstring)
 
     comments.userid=idusercomment
-    return this.http.post('http://localhost:4005/menu/comment', comments)
+    return this.http.post('http://localhost:4000/menu/posts/'+postid+'/comment', comments)
   }
 
-  putCommentinPost(postid: string, commentid: Object){
-    const commenttostring = JSON.stringify(commentid)
-    const idofcomment = JSON.parse(commenttostring)
-    
-    const commentForm = new FormData();
-    commentForm.append('commentsid', idofcomment)
-    console.log("LA ID CON LA QUE BUSCAMOS EL POST", postid)
-    console.log("EL COMENTARIO QUE VAMOS A ACTUALIZAR EN EL PUT",commentForm)
+ getCommentsOfThePost(comments: Comments, userid: string, postid: string){
+    const idstring = JSON.stringify(userid)
+    const idusercomment = JSON.parse(idstring)
 
-    return this.http.put('http://localhost:4005/menu/comment/'+postid, commentForm)
+    comments.userid=idusercomment
+    return this.http.post('http://localhost:4000/menu/posts/'+postid+'/comment', comments)
   }
 }

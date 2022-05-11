@@ -9,8 +9,7 @@ const postSchema = new Schema(
     audioid: {type: String, required: false},
     userid: {type: ObjectId, required: true},
     likes: {type: Number, required: false},
-    comments: {type: Number, required: false},
-    commentsid: {type: ObjectId, required: false},
+    commentsid: [{type: ObjectId, required: false}],
     type: {type: String, required: true},
     },
     {

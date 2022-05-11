@@ -29,12 +29,12 @@ router.get('/:id', postCtrl.searchCommentsOfPosts);
 //TENIM DOS SISTEMES D'OBTENCIÓ DE POSTS QUE NO SIGUIN ELS NOSTRES CONTACTES, UN ALEATORI QUE ENS TROBA 10 POSTS DEL TOTAL EXISTENTS (getRandomPosts)
 //(AQUEST SISTEMA NOMÉS LI FEM ÚS SI L'USUARI NO TÉ CONTACTES AGENDATS) 
 //EL SEGON SISTEMA FUNCIONA TENINT AMICS O NO, ES BUSCA A LA TAULA "promo" EL TOTAL DE POSTS QUE HAN PAGAT UNA PROMOCIÓ I ESTARÁN MOSTRATS A SOBRE DE TOTS ELS POSTS
-router.get('/posts/allpost', postCtrl.getallPosts);
-router.get('/', promoCtrl.getPromoPost);
-
-//QUAN FEM CLICK A UN POST, PUJEM EL COMENTARI/LIKE/COMPARTIT
 router.post('/', postCtrl.createPost);
+router.get('/posts/allpost', postCtrl.getallPosts);
+router.get('/posts/allcomments/:idcomment', postCtrl.getCommentsOfPost);
+router.post('/posts/:id/comment', postCtrl.commentPost);
 router.delete('/posts/:id', postCtrl.deletePosts);
+router.get('/', promoCtrl.getPromoPost);
 
 router.post('/audio', postCtrl.createAudio);
 router.get('/audio/:id', postCtrl.getAudio);
@@ -43,8 +43,5 @@ router.get('/audio/:id', postCtrl.getAudio);
 router.post('/photos', upload.single('image') ,postCtrl.createPhoto);
 router.get('/photos/:id', postCtrl.getPhoto);
 router.delete('/photos/:id', postCtrl.deletePhoto);
-
-router.post('/comment', postCtrl.commentPost);
-router.put('/comment/:id', postCtrl.commentIDInPost);
 
 module.exports = router;
