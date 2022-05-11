@@ -53,7 +53,7 @@
         </div>
         
         <div class="card-body">
-          <img [src]="'assets/photo/' + post.photoid" alt="User Icon">
+          <a [href]="'assets/photo/' + post.photoid" target="_blank"><img class="post--image" [src]="'assets/photo/' + post.photoid" alt="Post Image"></a>
           <audio class="w-100" controls [src]=post.audioid type="audio/mp3">
             Your browser does not support the <code>audio</code> element.
           </audio>
