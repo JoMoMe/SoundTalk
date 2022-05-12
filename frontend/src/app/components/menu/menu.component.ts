@@ -23,10 +23,12 @@ export class MenuComponent implements OnInit {
 
   public posts: any
   public comments: any;
+  public mycookie: any
 
   ngOnInit(): void {
     var cookiefound = this.cookie.get('cookieSoundTalkSession')
     if (cookiefound){
+      this.mycookie = JSON.stringify(cookiefound)
       this.downloadPostsWithComments(cookiefound)
     } 
     else{
@@ -148,7 +150,7 @@ export class MenuComponent implements OnInit {
                                       this.registerandloginService.getUsersofPosts(b.userid).subscribe(
                                       res=>{const a = JSON.stringify(res)
                                         const b = JSON.parse(a)
-                                        this.posts[i].commentsid[x].userid = b.username
+                                        this.posts[i].commentsid[x].username = b.username
                                       },
                                       err=>console.error(err))
                                     },

@@ -54,7 +54,7 @@
         
         <div class="card-body">
           <img [src]="'assets/photo/' + post.photoid" alt="User Icon" height="345">
-          <audio controls [src]="post.audioid" type="audio/*"style="width:300">
+          <audio controls [src]="post.audioid" type="audio/*">
           </audio>
           <h5 class="post--text">{{post.content}}</h5>
         </div>
@@ -64,7 +64,10 @@
         </div>
 
         <div *ngFor="let comment of post.commentsid" class="my-3">
-          <h5 class="card-title">{{comment.userid}}</h5>
+          <div *ngIf="comment.userid == mycookie">
+            SE LOGRÓ PAPAAAA
+          </div>
+          <h5 class="card-title">{{comment.username}}</h5>
           <h5 class="post--text">{{comment.text}}</h5>
         </div>
 

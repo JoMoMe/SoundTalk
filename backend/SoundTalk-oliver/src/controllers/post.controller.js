@@ -244,7 +244,9 @@ exports.likePost = async (req, res) => {
             }
         }
         if (coincidence>0){
-            res.status(401).json("Ya habias likeado esto!")
+            post.likes.remove(req.body.id)
+            post.save()
+            res.json("Ya habias likeado esto!")
         }
         else{
             post.likes.push(req.body.id)
