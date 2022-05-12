@@ -12,7 +12,7 @@ Content-Type: application/json
 
 #####
 
-GET http://localhost:4001/menu/audio/627a823846f2f2d3837e2ec4 HTTP/1.1
+DELETE http://localhost:4000/menu/posts/627af1ecb85560ee3d04af82 HTTP/1.1
 
 #####
 

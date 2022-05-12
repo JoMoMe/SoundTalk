@@ -4,6 +4,7 @@ const { GridFSBucket } = require('mongodb')
 const Posts = require('../models/posts');
 const Comments = require('../models/comments');
 const Photos = require('../models/photos');
+const Likes = require('../models/likes');
 const path = require('path')
 const fs = require('fs-extra')
 const multer = require('multer');
@@ -229,6 +230,30 @@ exports.commentPost = async (req, res) => {
     }
     catch (error){
         console.log(error)
+    }
+}
+
+
+exports.likePost = async (req, res) => {
+    const post = await Posts.findOne({_id: req.params.id})
+    if (post){
+        var coincidence=0
+        for (let x = 0; x < post.likes.length; x++){
+            if (req.body.id == post.likes[x]){
+                coincidence+=1
+            }
+        }
+        if (coincidence>0){
+            res.status(401).json("Ya habias likeado esto!")
+        }
+        else{
+            post.likes.push(req.body.id)
+            post.save()
+            res.json("Like subido!")
+        }
+    }
+    else{
+        console.log("La ID del post no existe, lo siento")
     }
 }
 

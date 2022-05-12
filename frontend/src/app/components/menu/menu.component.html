@@ -53,15 +53,16 @@
         </div>
         
         <div class="card-body">
-          <img [src]="'assets/photo/' + post.photoid" alt="User Icon">
-          <audio class="w-100" controls [src]=post.audioid type="audio/mp3">
-            Your browser does not support the <code>audio</code> element.
+          <img [src]="'assets/photo/' + post.photoid" alt="User Icon" height="345">
+          <audio controls [src]="post.audioid" type="audio/*"style="width:300">
           </audio>
           <h5 class="post--text">{{post.content}}</h5>
         </div>
+
         <div class="card-footer text-muted d-flex align-items-center justify-content-between">
-          <h6 class="comments mt-1">Comentarios ({{post.comments}})</h6><a href="/#/terms"><i class="post--up fa-solid fa-circle-up"> {{post.likes}}</i></a>
+          <h6 class="comments mt-1">Comentarios ({{post.commentsid.length}})</h6><a type="button" (click)="putLike(post._id)"><i class="post--up fa-solid fa-circle-up">{{post.likes.length}}</i></a>
         </div>
+
         <div *ngFor="let comment of post.commentsid" class="my-3">
           <h5 class="card-title">{{comment.userid}}</h5>
           <h5 class="post--text">{{comment.text}}</h5>

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { posts as Posts } from 'src/app/models/posts';
 import { comments as Comments } from 'src/app/models/comments';
+import { likes as Likes } from 'src/app/models/likes';
 import { Form, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ObjectId } from 'mongodb';
@@ -32,7 +33,7 @@ export class PostsService {
     text: '',
     userid: JSON.parse(JSON.stringify('a')),
   };
-  
+ 
   putPhoto(photo: any){
     const PhotoForm = new FormData();
     PhotoForm.append('image', photo)
@@ -78,7 +79,12 @@ export class PostsService {
     return this.http.post('http://localhost:4000/menu/posts/'+postid+'/comment', comments)
   }
 
- getCommentsOfThePost(comments: Comments, userid: string, postid: string){
+  putLikeinPost(userid: string, postid: string){
+    const iduser = {'id': userid};
+    return this.http.post('http://localhost:4000/menu/posts/'+postid+'/like', iduser)
+  }
+
+  getCommentsOfThePost(comments: Comments, userid: string, postid: string){
     const idstring = JSON.stringify(userid)
     const idusercomment = JSON.parse(idstring)
 

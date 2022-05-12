@@ -17,6 +17,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
+  sanitization: any;
 
   constructor(private http: HttpClient, public registerandloginService: RegisterAndLoginService, public postsService: PostsService, public router: Router, public cookie: CookieService, public sanitizer: DomSanitizer) { }
 
@@ -26,61 +27,7 @@ export class MenuComponent implements OnInit {
   ngOnInit(): void {
     var cookiefound = this.cookie.get('cookieSoundTalkSession')
     if (cookiefound){
-      this.registerandloginService.findUserByID(cookiefound).subscribe(
-        res => {
-          console.log(res)
-          console.log("tienes la cookie, bienvenido!")
-          this.router.navigate(['/menu'])
-          this.registerandloginService.getAllposts().subscribe(
-            res => {
-              this.posts = res
-              for (let i = 0; i < this.posts.length; i++) {
-                this.registerandloginService.getUsersofPosts(this.posts[i].userid).subscribe(
-                  res=> {const a = JSON.stringify(res)
-                        const b = JSON.parse(a)
-                        this.posts[i].userid = b.username
-                        this.postsService.getPhoto(this.posts[i].photoid).subscribe(
-                          res=> {const restring = JSON.stringify(res)
-                                const res2 = restring.slice(50)
-                                const route = res2.slice(0, res2.length - 1);
-                                this.posts[i].photoid = route
-                                this.postsService.getAudio(this.posts[i].audioid).subscribe(
-                                  res => {this.posts[i].audioid =res
-                                    for (let x = 0; x < this.posts[i].commentsid.length; x++){
-                                      this.registerandloginService.getAllComments(this.posts[i].commentsid[x]).subscribe(
-                                        res=>{
-                                        const a = JSON.stringify(res)
-                                        const b = JSON.parse(a)
-                                        this.posts[i].commentsid[x] = b
-                                        this.registerandloginService.getUsersofPosts(b.userid).subscribe(
-                                        res=>{const a = JSON.stringify(res)
-                                          const b = JSON.parse(a)
-                                          this.posts[i].commentsid[x].userid = b.username},
-                                        err=>console.error(err))
-                                      },
-                                        err=>console.error(err)
-                                      )
-
-                                    }
-                                  },
-                                  err => this.posts[i].audioid = err
-                                )
-                          },
-                          err => console.error(err)
-                        )
-                      },
-                  err=> console.error(err) 
-                )
-              }
-              this.posts = this.posts.reverse()
-              console.log("EL RESULTAO",this.posts)
-              console.log("LOS COMENTARIOS",this.comments)
-            },
-            err => console.error(err)
-          )
-        },
-        err => console.error(err),
-      )
+      this.downloadPostsWithComments(cookiefound)
     } 
     else{
       console.log("Logueate porfavor!")
@@ -159,5 +106,73 @@ export class MenuComponent implements OnInit {
       },
       err => console.error(err)
     ) 
+  }
+
+  putLike(postid: string){
+    this.postsService.putLikeinPost(this.cookie.get('cookieSoundTalkSession'), postid).subscribe(
+      res => {console.log(res)
+        location.reload()   
+      },
+      err => console.error(err)
+    ) 
+  }
+
+  downloadPostsWithComments(cookiefound: string){
+    this.registerandloginService.findUserByID(cookiefound).subscribe(
+      res => {
+        console.log(res)
+        console.log("tienes la cookie, bienvenido!")
+        this.router.navigate(['/menu'])
+        this.registerandloginService.getAllposts().subscribe(
+          res => {
+            this.posts = res
+            for (let i = 0; i < this.posts.length; i++) {
+              this.registerandloginService.getUsersofPosts(this.posts[i].userid).subscribe(
+                res=> {const a = JSON.stringify(res)
+                      const b = JSON.parse(a)
+                      this.posts[i].userid = b.username
+                      this.postsService.getPhoto(this.posts[i].photoid).subscribe(
+                        res=> {const restring = JSON.stringify(res)
+                              const res2 = restring.slice(43)
+                              const route = res2.slice(0, res2.length - 1);
+                              this.posts[i].photoid = route
+                              this.postsService.getAudio(this.posts[i].audioid).subscribe(
+                                res => {
+                                  this.posts[i].audioid = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(res))
+                                  for (let x = 0; x < this.posts[i].commentsid.length; x++){
+                                    this.registerandloginService.getAllComments(this.posts[i].commentsid[x]).subscribe(
+                                      res=>{
+                                      const a = JSON.stringify(res)
+                                      const b = JSON.parse(a)
+                                      this.posts[i].commentsid[x] = b
+                                      this.registerandloginService.getUsersofPosts(b.userid).subscribe(
+                                      res=>{const a = JSON.stringify(res)
+                                        const b = JSON.parse(a)
+                                        this.posts[i].commentsid[x].userid = b.username
+                                      },
+                                      err=>console.error(err))
+                                    },
+                                      err=>console.error(err)
+                                    )
+
+                                  }
+                                },
+                                err => this.posts[i].audioid = err
+                              )
+                        },
+                        err => console.error(err)
+                      )
+                    },
+                err=> console.error(err) 
+              )
+            }
+            this.posts = this.posts.reverse()
+            console.log("EL RESULTAO",this.posts)
+          },
+          err => console.error(err)
+        )
+      },
+      err => console.error(err),
+    )
   }
 }

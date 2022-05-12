@@ -8,7 +8,7 @@ const postSchema = new Schema(
     photoid: {type: String, required: false},
     audioid: {type: String, required: false},
     userid: {type: ObjectId, required: true},
-    likes: {type: Number, required: false},
+    likes: [{type: ObjectId, required: false}],
     commentsid: [{type: ObjectId, required: false}],
     type: {type: String, required: true},
     },
