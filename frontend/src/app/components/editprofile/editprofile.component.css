@@ -59,38 +59,6 @@ body {
     margin-right: 2px;
 }
 
-.card-title{
-    margin-top: -0.8%;
-    font-weight: bold;
-}
-
-.post--image{
-    height: auto;
-    width: 100%;
-    max-height: 1000px;
-}
-
-.comments:hover{
-    color: rgb(255, 82, 82);
-    transition: 0.5s;
-}
-
-.post--up:hover{
-    color: rgb(255, 82, 82);
-    transition: 0.5s;
-}
-
-.category{
-    position: absolute;
-    top: 9px;
-    right: 12px;
-    background-color: rgb(255, 176, 251);
-}
-
-.post--text{
-    font-size: 18px;
-}
-
 @media only screen and (max-width: 1000px) {
 
     .info--mail{
