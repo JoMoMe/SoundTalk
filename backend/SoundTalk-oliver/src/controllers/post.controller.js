@@ -164,6 +164,11 @@ exports.getallPosts = async (req, res) => {
     res.json(allposts)
 }
 
+exports.getPostsbyFilter = async (req, res) => {
+    const allposts = await Posts.find({type: req.params.idfilter})
+    res.json(allposts)
+}
+
 exports.getRandomPosts = async (req, res) => {
     const allposts = await Posts.find()
     console.log(allposts)

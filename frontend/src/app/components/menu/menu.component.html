@@ -6,6 +6,7 @@
 
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CREAR POST ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
+
   <form class="create card rounded-3" #postForm="ngForm" (ngSubmit)="createPost(postForm)">
 
     <div class="card-header">
@@ -47,7 +48,7 @@
       <a class="text-decoration-none text-dark">
   
         <div class="card-header">
-          <a routerLink="/" routerLinkActive="active"><p class="username"><img src="assets/img/icon_user.png" alt="User Icon" width="20" height="20" class="user--photo rounded-circle">{{post.userid}}</p></a>
+          <a routerLink="/" routerLinkActive="active"><p class="username"><img src="assets/img/icon_user.png" alt="User Icon" width="20" height="20" class="user--photo rounded-circle">{{post.username}}</p></a>
           <p class="category btn btn-sm">{{post.type}}</p>
           <h5 class="card-title">{{post.title}}</h5>
         </div>
@@ -62,9 +63,7 @@
         <div class="card-footer text-muted d-flex align-items-center justify-content-between">
           <h6 class="comments mt-1">Comentarios ({{post.commentsid.length}})</h6><a type="button" (click)="putLike(post._id)"><i class="post--up fa-solid fa-circle-up">{{post.likes.length}}</i></a>
           <div *ngFor="let like of post.likes" class="my-3">
-            <div *ngIf="like == mycookie">
-              <button type="submit" class="btn btn-success btn-sm mt-3">ESTO ESTABA LIKEADO</button>
-            </div>
+            <button type="submit" class="btn btn-success btn-sm mt-3" *ngIf="like == mycookie">TE GUSTA ESTE POST</button>
           </div>
         </div>
 
@@ -77,11 +76,18 @@
         </div>
 
         <form #commentForm="ngForm" (ngSubmit)="addComment(commentForm,post._id)">
-          <textarea class="form-control mt-1" id="text" name="text" placeholder="Escribe tu comentario a {{post.userid}} aquí..." [(ngModel)]="postsService.createdComment.text"></textarea>
+          <textarea class="form-control mt-1" id="text" name="text" placeholder="Escribe tu comentario a {{post.username}} aquí..." [(ngModel)]="postsService.createdComment.text"></textarea>
           <button type="submit" class="btn btn-success btn-sm mt-3">Subir comentario</button>
         </form>
       </a>
     </div>
+  </div>
+
+  <div>
+    <p type="button" (click)="filterbyNews()">NOVEDADES</p>
+    <p type="button" (click)="filterbyGossips()">COTILLEOS</p>
+    <p type="button" (click)="filterbyQAndA()">Q&A</p>
+    <p type="button" (click)="filterbyMemes()">MEMES</p>
   </div>
 
   <div class="card rounded-3">

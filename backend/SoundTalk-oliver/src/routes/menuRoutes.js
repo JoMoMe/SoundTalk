@@ -31,6 +31,7 @@ router.get('/:id', postCtrl.searchCommentsOfPosts);
 //EL SEGON SISTEMA FUNCIONA TENINT AMICS O NO, ES BUSCA A LA TAULA "promo" EL TOTAL DE POSTS QUE HAN PAGAT UNA PROMOCIÓ I ESTARÁN MOSTRATS A SOBRE DE TOTS ELS POSTS
 router.post('/', postCtrl.createPost);
 router.get('/posts/allpost', postCtrl.getallPosts);
+router.get('/posts/allpost/:idfilter', postCtrl.getPostsbyFilter);
 router.get('/posts/allcomments/:idcomment', postCtrl.getCommentsOfPost);
 router.post('/posts/:id/comment', postCtrl.commentPost);
 router.delete('/posts/:id/comment/:idcomment', postCtrl.deleteComment);

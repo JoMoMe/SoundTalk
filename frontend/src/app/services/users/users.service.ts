@@ -44,6 +44,22 @@ export class RegisterAndLoginService {
     return this.http.get(this.url_backendmenu+'/allpost')
   }
 
+  getpostsbyNews(){
+    return this.http.get(this.url_backendmenu+'/allpost/news')
+  }
+
+  getpostsbyGossips(){
+    return this.http.get(this.url_backendmenu+'/allpost/gossip')
+  }
+
+  getpostsbyQAndA(){
+    return this.http.get(this.url_backendmenu+'/allpost/Q&A')
+  }
+
+  getpostsbyMemes(){
+    return this.http.get(this.url_backendmenu+'/allpost/meme')
+  }
+
   getAllComments(idcomment: string){
     return this.http.get(this.url_backendmenu+'/allcomments/'+idcomment)
   }
@@ -62,5 +78,6 @@ export class RegisterAndLoginService {
   verifyToken(token: string){
     return this.http.get('http://localhost:4000/validate/' + token)
   }
+
 }
 

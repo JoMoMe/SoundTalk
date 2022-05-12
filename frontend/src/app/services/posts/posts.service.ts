@@ -65,7 +65,7 @@ export class PostsService {
     const idphoto = JSON.parse(photostring)
     
     posts.userid=iduserpost
-    posts.type="meme"
+    posts.type="news"
     posts.audioid=idaudio
     posts.photoid=idphoto
     return this.http.post(this.url_menu, posts)
