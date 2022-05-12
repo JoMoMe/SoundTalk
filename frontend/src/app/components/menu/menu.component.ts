@@ -1,13 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 /* import {SidebarModule } from 'cdbangular'; */
-import { Event, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { RegisterAndLoginService } from '../../services/users/users.service'
 import { PostsService } from '../../services/posts/posts.service'
 import { CookieService } from 'ngx-cookie-service';
 import { NgForm } from '@angular/forms';
-import { ObjectId } from 'mongodb';
-import { NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
-import { ReadVarExpr } from '@angular/compiler';
 import { DomSanitizer } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
 

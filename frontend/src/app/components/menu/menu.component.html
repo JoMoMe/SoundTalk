@@ -2,7 +2,7 @@
 
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ HEADER ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-  <app-header-logged></app-header-logged>
+ <!--  <app-header-logged></app-header-logged> -->
 
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CREAR POST ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
@@ -40,7 +40,7 @@
 
   </form>
 
-  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ POST IMAGE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ POST ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <!-- routerLink="/" routerLinkActive="active" -->
 
   <div *ngFor="let post of posts">
@@ -54,8 +54,9 @@
         </div>
         
         <div class="card-body">
-          <img [src]="'assets/photo/' + post.photoid" alt="User Icon" height="345">
-          <audio controls [src]="post.audioid" type="audio/*">
+          <a [href]="'assets/photo/' + post.photoid" target="_blank"><img class="post--image mb-3" [src]="'assets/photo/' + post.photoid" alt="Post Image"></a>
+          <audio class="w-100 mb-3" controls [src]="post.audioid" type="audio/*">
+            Your browser does not support the <code>audio</code> element.
           </audio>
           <h5 class="post--text">{{post.content}}</h5>
         </div>
@@ -68,14 +69,15 @@
         </div>
 
         <div *ngFor="let comment of post.commentsid" class="my-3">
-          <div *ngIf="comment.userid == mycookie">
-            <button type="submit" class="btn btn-success btn-sm mt-3" (click)="deleteComment(comment._id, post._id)">Eliminar</button>
+          <div class="coment--costum" *ngIf="comment.userid == mycookie">
+            <i class="fa-solid fa-star"></i>
+            <i type="submit" class="fa-solid fa-trash" (click)="deleteComment(comment._id, post._id)"></i>
           </div>
           <h5 class="card-title">{{comment.username}}</h5>
           <h5 class="post--text">{{comment.text}}</h5>
         </div>
 
-        <form #commentForm="ngForm" (ngSubmit)="addComment(commentForm,post._id)">
+        <form class="mx-3 mt-3" #commentForm="ngForm" (ngSubmit)="addComment(commentForm,post._id)">
           <textarea class="form-control mt-1" id="text" name="text" placeholder="Escribe tu comentario a {{post.username}} aquí..." [(ngModel)]="postsService.createdComment.text"></textarea>
           <button type="submit" class="btn btn-success btn-sm mt-3">Subir comentario</button>
         </form>

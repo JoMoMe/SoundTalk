@@ -8,6 +8,7 @@ import { SoundguardGuard } from './guard/soundguard.guard';
 // ~~~~~~~~~~~~~~~~~~~~ Components ~~~~~~~~~~~~~~~~~~~~ //
 
 import { CreatepostComponent } from './components/createpost/createpost.component';
+import { EditprofileComponent } from './components/editprofile/editprofile.component';
 import { LandingpageComponent } from './components/landingpage/landingpage.component';
 import { LoginComponent } from './components/login/login.component';
 import { MenuComponent } from './components/menu/menu.component';
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path : 'validate/:token', component : ValidateComponent},
   {path : 'createpost', component : CreatepostComponent},
   {path : 'profile', component : ProfileComponent},
+  {path : 'editprofile', component : EditprofileComponent},
   {path : '**', component : NotfoundComponent}
 ];
 
