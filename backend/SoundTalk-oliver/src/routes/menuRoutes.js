@@ -33,6 +33,7 @@ router.post('/', postCtrl.createPost);
 router.get('/posts/allpost', postCtrl.getallPosts);
 router.get('/posts/allcomments/:idcomment', postCtrl.getCommentsOfPost);
 router.post('/posts/:id/comment', postCtrl.commentPost);
+router.delete('/posts/:id/comment/:idcomment', postCtrl.deleteComment);
 router.post('/posts/:id/like', postCtrl.likePost);
 router.delete('/posts/:id', postCtrl.deletePosts);
 router.get('/', promoCtrl.getPromoPost);

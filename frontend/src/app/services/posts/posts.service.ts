@@ -84,6 +84,10 @@ export class PostsService {
     return this.http.post('http://localhost:4000/menu/posts/'+postid+'/like', iduser)
   }
 
+  deleteComment(commentid: string, postid: string){
+    return this.http.delete('http://localhost:4000/menu/posts/'+postid+'/comment/'+commentid)
+  }
+
   getCommentsOfThePost(comments: Comments, userid: string, postid: string){
     const idstring = JSON.stringify(userid)
     const idusercomment = JSON.parse(idstring)

@@ -37,7 +37,10 @@ export class HeaderLoggedComponent implements OnInit {
     this.registerandloginService.findUserByID(this.cookie.get('cookieSoundTalkSession')).subscribe(
       res => {this.myUser = res,
         this.registerandloginService.findPhoto(this.myUser.photoid).subscribe(
-          resp => {this.myPhoto = resp
+          resp => {const restring = JSON.stringify(resp)
+            const res2 = restring.slice(36)
+            const route = res2.slice(0, res2.length - 1);
+            this.myPhoto = route
           },
           err => console.error(err)
         )

@@ -28,7 +28,7 @@ export class MenuComponent implements OnInit {
   ngOnInit(): void {
     var cookiefound = this.cookie.get('cookieSoundTalkSession')
     if (cookiefound){
-      this.mycookie = JSON.stringify(cookiefound)
+      this.mycookie = cookiefound
       this.downloadPostsWithComments(cookiefound)
     } 
     else{
@@ -176,5 +176,14 @@ export class MenuComponent implements OnInit {
       },
       err => console.error(err),
     )
+  }
+
+  deleteComment(commentid: string, postid: string){
+    this.postsService.deleteComment(commentid, postid).subscribe(
+      res => {console.log(res)
+        location.reload()   
+      },
+      err => console.error(err)
+    ) 
   }
 }

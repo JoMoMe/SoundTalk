@@ -61,11 +61,16 @@
 
         <div class="card-footer text-muted d-flex align-items-center justify-content-between">
           <h6 class="comments mt-1">Comentarios ({{post.commentsid.length}})</h6><a type="button" (click)="putLike(post._id)"><i class="post--up fa-solid fa-circle-up">{{post.likes.length}}</i></a>
+          <div *ngFor="let like of post.likes" class="my-3">
+            <div *ngIf="like == mycookie">
+              <button type="submit" class="btn btn-success btn-sm mt-3">ESTO ESTABA LIKEADO</button>
+            </div>
+          </div>
         </div>
 
         <div *ngFor="let comment of post.commentsid" class="my-3">
           <div *ngIf="comment.userid == mycookie">
-            SE LOGRÓ PAPAAAA
+            <button type="submit" class="btn btn-success btn-sm mt-3" (click)="deleteComment(comment._id, post._id)">Eliminar</button>
           </div>
           <h5 class="card-title">{{comment.username}}</h5>
           <h5 class="post--text">{{comment.text}}</h5>

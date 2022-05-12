@@ -287,3 +287,22 @@ exports.searchCommentsOfPosts = async (req, res) => {
         console.log(error)
     }
 }
+
+exports.deleteComment = async (req, res) => {
+    const post = await Posts.findOne({_id: req.params.id})
+    if (post){
+        var find=0
+        for (let x = 0; x < post.commentsid.length; x++){
+            if (req.params.idcomment == post.commentsid[x]._id){
+                find+=1
+            }
+        }
+        if (find>0){
+            post.commentsid.remove(req.params.idcomment)
+            post.save()
+            const comment = await Comments.findByIdAndRemove({_id: req.params.idcomment})
+
+            res.json("Comentario eliminado!")
+        }
+    }
+}
