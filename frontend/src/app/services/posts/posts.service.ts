@@ -64,6 +64,8 @@ export class PostsService {
     const photostring = JSON.stringify(photoid)
     const idphoto = JSON.parse(photostring)
     
+    console.log(posts)
+
     posts.userid=iduserpost
     posts.type="meme"
     posts.audioid=idaudio
