@@ -15,4 +15,98 @@ body {
 .profile--image{
     width: 150px; 
     z-index: 1;
+    background: rgb(18,219,255);
+    background: linear-gradient(125deg, rgba(18,219,255,1) 16%, rgba(218,0,212,1) 88%);
+}
+
+.posts{
+    margin-left: -5px;
+    margin-right: -5px;
+    border-color: rgb(237, 206, 255);
+}
+
+.posts--title{
+    font-family: 'Fredoka One', cursive;
+}
+
+.post{
+    background-color: white;
+    transition: 0.5s;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 2%;
+}
+
+.post:hover{
+    background-color: rgb(240, 240, 240);
+}
+
+.tipo{
+    background-color: rgb(204, 115, 255);
+    border: none;
+    color: white;
+    font-weight: bold;
+}
+
+.username{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 160px;
+}
+
+.user--photo{
+    margin-right: 2px;
+}
+
+.card-title{
+    margin-top: -0.8%;
+    font-weight: bold;
+}
+
+.post--image{
+    height: auto;
+    width: 100%;
+    max-height: 1000px;
+}
+
+.comments:hover{
+    color: rgb(255, 82, 82);
+    transition: 0.5s;
+}
+
+.post--up:hover{
+    color: rgb(255, 82, 82);
+    transition: 0.5s;
+}
+
+.category{
+    position: absolute;
+    top: 9px;
+    right: 12px;
+    background-color: rgb(255, 176, 251);
+}
+
+.post--text{
+    font-size: 18px;
+}
+
+@media only screen and (max-width: 1000px) {
+
+    .info--mail{
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+
+    .card{
+        margin-left: 0%;
+        margin-right: 0%;
+    }
+
+    .posts{
+        margin-left: -5px;
+        margin-right: -5px;
+    }
+
 }
