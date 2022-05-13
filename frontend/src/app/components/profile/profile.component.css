@@ -19,6 +19,10 @@ body {
     background: linear-gradient(125deg, rgba(18,219,255,1) 16%, rgba(218,0,212,1) 88%);
 }
 
+.info{
+    margin-top: -28px;
+}
+
 .posts{
     margin-left: -5px;
     margin-right: -5px;

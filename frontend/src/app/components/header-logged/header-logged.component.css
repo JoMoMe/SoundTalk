@@ -28,6 +28,12 @@
     transition: 0.3s;
 }
 
+.user--image:hover{
+    height: 50px;
+    width: 50px;
+    transition: 0.3s;
+}
+
 @media only screen and (max-width: 990px) {
     .user{
         margin-top: 0.5vw;
