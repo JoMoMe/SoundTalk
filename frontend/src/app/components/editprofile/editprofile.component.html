@@ -5,37 +5,63 @@
       <div class="row d-flex justify-content-center align-items-center">
         <div class="col">
           <div class="card border-0">
-            <div class="profile--header text-black d-flex">
-              <div class="ms-4 mt-5 d-flex flex-column">
+            <div class="profile--header text-black d-flex justify-content-center">
+              <div class="d-flex mt-5">
                 <a href="assets/img/NFT.jpg" target="_blank"><img src="assets/img/NFT.jpg" alt="User Image" class="profile--image img-fluid img-thumbnail mt-4 mb-2 border-0"></a>
-                <a routerLink="/editprofile" routerLinkActive="active" type="button" class="btn btn-outline-dark" style="z-index: 1;">
-                  Editar perfil
-                </a>
-              </div>
-              <div class="profile--info ms-3">
-                <h5 class="fw-bold">Oliver Bocanegra</h5>
-                <p>Barsalona</p>
               </div>
             </div>
-            <hr class="mx-3"/>
+            <div class="logo">
+              <a routerLink="/menu" routerLinkActive="active" class="d-flex align-items-center mb-2 mb-lg-0 me-lg-3">
+                <img src="assets/img/firstLogo.png" alt="Page Logo" width="128" height="128" class="rounded-circle">
+              </a>
+            </div>
+            <div class="profile--image_input mx-auto">
+              <input type="file" accept="image/*" class="" id="photoid" name="photoid"/>
+            </div>
+            <div class="profile--personal mx-4 mt-4">
+              <label class="form-label fw-bold">Nombre</label><br>
+              <input class="mb-2" type="text" value="NOMBRE"><br>
+              <label class="form-label fw-bold">Ciudad</label><br>
+              <input class="mb-2" type="text" value="CIUDAD">
+            </div>
             <div class="info">
+              <hr class="mx-3"/>
               <div class="mx-4">
                 <h5 class="fw-bolder">Biografía</h5>
-                <p class="bio--text mx-2 my-2" data-placeholder="Biografía aún por rellenar.">Lorem ipsum dolor sit amet consectetur adipisicing elit. A omnis modi culpa aperiam ab ullam eos dolorem alias debitis accusamus beatae, dolorum labore, provident aliquid animi ratione tempora quas sunt! ¡Hola! Soy Oliver y este es mi perfil.</p>
+                <textarea class="form-control mt-1" rows="3" id="content" name="content" placeholder="Biografía aún por rellenar.">Su bio</textarea>
               </div>
-              <div class="col text-center mx-4 my-4 d-flex justify-content-between">
-                <div class="col-3">
+              <div class="info--details col text-center my-4">
+                <div class="info--details_mail col-xs-3">
                   <h5 class="fw-bold">Mail</h5>
-                  <h6 class="info--mail">jomome@fp.insoaquimmir.cat</h6>
+                  <input class="info--details_input form-control mb-3 text-center" type="text" value="EL MAIL" readonly>
                 </div>
                 <div class="col-3">
                   <h5 class="fw-bold">Género</h5>
-                  <h6>Tractor</h6>
+                  <div class="d-inline-block mb-3" ngbDropdown #myDrop="ngbDropdown">
+                    <button type="button" class="tipo btn btn-outline-primary btn-sm me-2" id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()" value="GENERO">Género</button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownManual">
+                      <button ngbDropdownItem>Hombre</button>
+                      <button ngbDropdownItem>Mujer</button>
+                      <button ngbDropdownItem>Otro</button>
+                    </div>
+                  </div>
                 </div>
                 <div class="col-3">
                   <h5 class="fw-bold">Estado</h5>
-                  <h6>Vida de artista</h6>
+                  <div class="d-inline-block" ngbDropdown #myDropState="ngbDropdown">
+                    <button type="button" class="tipo btn btn-outline-primary btn-sm me-2" id="dropdownState" ngbDropdownAnchor (focus)="myDropState.open()" value="ESTADO">Estado</button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownState">
+                      <button ngbDropdownItem>Artista</button>
+                      <button ngbDropdownItem>Público</button>
+                      <button ngbDropdownItem>Productor</button>
+                      <button ngbDropdownItem>Otro</button>
+                    </div>
+                  </div>
                 </div>
+              </div>
+              <div class="d-inline-flex p-4 bd-highlight ">
+                <button type="button" class="btn btn-success btn-lg btn-block">Edita</button>
+                <a routerLink="/profile" routerLinkActive="active"><i class="fa-solid fa-right-from-bracket fa-3x mx-4"></i></a>
               </div>
             </div>
           </div>

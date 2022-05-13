@@ -1,4 +1,4 @@
-body {
+body{
     margin: 0;
     margin-bottom: 7%;
 }
@@ -19,62 +19,75 @@ body {
     background: linear-gradient(125deg, rgba(18,219,255,1) 16%, rgba(218,0,212,1) 88%);
 }
 
-.posts{
-    margin-left: -5px;
-    margin-right: -5px;
-    border-color: rgb(237, 206, 255);
+.logo{
+    position: absolute;
+    right: 0;
+    margin-top: 137px;
 }
 
-.posts--title{
-    font-family: 'Fredoka One', cursive;
+.info{
+    margin-top: 30px;
 }
 
-.post{
-    background-color: white;
-    transition: 0.5s;
-    margin-left: 20%;
-    margin-right: 20%;
-    margin-top: 2%;
+.profile--image_input{
+    margin-top: 30px;
+
 }
 
-.post:hover{
-    background-color: rgb(240, 240, 240);
+.info--details{
+    display: flex;
+    justify-content: space-between;
 }
 
-.tipo{
-    background-color: rgb(204, 115, 255);
-    border: none;
-    color: white;
-    font-weight: bold;
+.info--details_input{
+    background-color: rgb(235, 235, 235);
 }
 
-.username{
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    max-width: 160px;
+.info--details_mail{
+    margin-left: 6%;
 }
 
-.user--photo{
-    margin-right: 2px;
+.info--exit{
+    height: 100px;
 }
 
-@media only screen and (max-width: 1000px) {
+.profile--personal{
+    margin-bottom: -2.3%;
+}
 
-    .info--mail{
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        overflow: hidden;
+@media only screen and (max-width: 990px) {
+    
+    .info--details{
+        display: block;
+        margin-left: 45%;
     }
 
-    .card{
-        margin-left: 0%;
-        margin-right: 0%;
+    .info--details_mail{
+        margin-left: -82%;
+    }
+    
+}
+
+@media only screen and (max-width: 507px) {
+
+    .info--details{
+        display: contents;
     }
 
-    .posts{
-        margin-left: -5px;
-        margin-right: -5px;
+    .info--details_input{
+        margin-left: 50%;
+    }
+
+    .form-control{
+        margin-bottom: 10px;
+    }
+
+    .info--details_mail{
+        display: none;
+    }
+
+    .logo{
+        display: none;
     }
 
 }
