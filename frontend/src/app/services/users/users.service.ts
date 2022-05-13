@@ -53,7 +53,7 @@ export class RegisterAndLoginService {
   }
 
   getpostsbyQAndA(){
-    return this.http.get(this.url_backendmenu+'/allpost/Q&A')
+    return this.http.get(this.url_backendmenu+'/allpost/QAndA')
   }
 
   getpostsbyMemes(){
@@ -67,6 +67,10 @@ export class RegisterAndLoginService {
   createUser(users: Users){
     users.role='User';
     users.accountactive=0;
+    users.biography='Biografía vacía';
+    users.ubication='Ubicación vacía';
+    users.gender='Género vacío';
+    users.status='Estado vacío';
     users.photoid=JSON.parse(JSON.stringify('627d2042064ed238caba3bd6'));
     return this.http.post(this.url_backendregister, users)
   }
@@ -79,5 +83,17 @@ export class RegisterAndLoginService {
     return this.http.get('http://localhost:4000/validate/' + token)
   }
 
+  getUserInfo(userid: string){
+    return this.http.get(this.url_backendprofile + userid)
+  }
+
+  findLikes(iduser: string){
+    return this.http.get(this.url_backendprofile + iduser+'/mylikes')
+  }
+
+  findmyPosts(iduser: string){
+    return this.http.get(this.url_backendprofile + iduser+'/myposts')
+  }
+  
 }
 

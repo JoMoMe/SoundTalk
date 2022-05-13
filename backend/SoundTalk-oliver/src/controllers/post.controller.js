@@ -160,12 +160,12 @@ exports.createPost = async (req, res) => {
 }
 
 exports.getallPosts = async (req, res) => {
-    const allposts = await Posts.find()
+    const allposts = await Posts.find().sort({createdAt: 'descending'})
     res.json(allposts)
 }
 
 exports.getPostsbyFilter = async (req, res) => {
-    const allposts = await Posts.find({type: req.params.idfilter})
+    const allposts = await Posts.find({type: req.params.idfilter}).sort({createdAt: 'descending'})
     res.json(allposts)
 }
 
@@ -196,8 +196,19 @@ exports.editPosts = async (req, res) => {
 }
 
 exports.deletePosts = async (req, res) => {
-    await Posts.findByIdAndDelete(req.params.id)
-    res.json({status: 'Post eliminado'})
+    const post = await Posts.findOne({_id: req.params.idpost})
+    if (post){
+        if (post.commentsid !== null){
+            for (let x = 0; x < post.commentsid.length; x++){
+                const comments = await Comments.findByIdAndRemove({_id: post.commentsid[x]})
+            }
+        }
+        if (post.photoid !== null){
+            const photo = await Photos.findByIdAndRemove({_id: post.photoid})
+        }
+        post.remove()
+        res.json({status: 'Post eliminado'})
+    }
 }
 
 exports.getPost = async (req, res) => {
@@ -309,5 +320,47 @@ exports.deleteComment = async (req, res) => {
 
             res.json("Comentario eliminado!")
         }
+    }
+}
+
+exports.getMyLikes = async (req, res) => {
+    try {
+        const likes = await Posts.find(
+            {likes: req.params.id}
+        )
+        if (likes){
+            res.send(likes)
+        }
+    }
+    catch (error){
+        console.log(error)
+    }
+}
+
+exports.getMyComments = async (req, res) => {
+    try {
+        const comments = await Comments.find(
+            {userid: req.params.id}
+        )
+        if (comments){
+            res.send(comments)
+        }
+    }
+    catch (error){
+        console.log(error)
+    }
+}
+
+exports.getMyPosts = async (req, res) => {
+    try {
+        const posts = await Posts.find(
+            {userid: req.params.id}
+        )
+        if (posts){
+            res.send(posts)
+        }
+    }
+    catch (error){
+        console.log(error)
     }
 }

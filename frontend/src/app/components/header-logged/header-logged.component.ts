@@ -37,13 +37,21 @@ export class HeaderLoggedComponent implements OnInit {
     this.registerandloginService.findUserByID(this.cookie.get('cookieSoundTalkSession')).subscribe(
       res => {this.myUser = res,
         this.registerandloginService.findPhoto(this.myUser.photoid).subscribe(
-          resp => {const restring = JSON.stringify(resp)
-            const res2 = restring.slice(36)
-            const route = res2.slice(0, res2.length - 1);
-            this.myPhoto = route
-          },
-          err => console.error(err)
-        )
+          res=> {const restring = JSON.stringify(res)
+            if (restring.includes("/")){
+              const res2 = restring.split('/')
+              const route = res2[7].slice(0, res2[7].length - 1);
+              this.myPhoto = route
+              console.log(this.myPhoto)
+            }
+            else{
+              const res2 = restring.split('\\')
+              const route = res2[14].slice(0, res2[14].length - 1);
+              this.myPhoto = route
+            }
+      },
+      err => console.error(err)
+    )
       },
       err => console.error(err)
     )

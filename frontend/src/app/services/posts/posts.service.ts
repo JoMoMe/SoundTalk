@@ -16,6 +16,7 @@ export class PostsService {
   url_menu = 'http://localhost:4000/menu'
   url_photo = 'http://localhost:4000/menu/photos'
   url_audio = 'http://localhost:4000/menu/audio'
+  url_myposts = 'http://localhost:4000/menu/profile/user/'
 
   createdPost: Posts =  {
     title: '',
@@ -54,7 +55,7 @@ export class PostsService {
     return this.http.get('http://localhost:4000/menu/audio/'+id, {responseType: 'blob'})
   }
 
-  createPost(posts: Posts, userid: string, audioid: string, photoid: string){
+  createPost(posts: Posts, userid: string, audioid: string, photoid: string, posttype: string){
     const idstring = JSON.stringify(userid)
     const iduserpost = JSON.parse(idstring)
 
@@ -63,13 +64,17 @@ export class PostsService {
 
     const photostring = JSON.stringify(photoid)
     const idphoto = JSON.parse(photostring)
+
+    const typestring = JSON.stringify(posttype)
+    const typeofpost = JSON.parse(typestring)
     
     console.log(posts)
 
     posts.userid=iduserpost
-    posts.type="news"
     posts.audioid=idaudio
     posts.photoid=idphoto
+    posts.type=typeofpost
+
     return this.http.post(this.url_menu, posts)
   }
 
@@ -88,6 +93,10 @@ export class PostsService {
 
   deleteComment(commentid: string, postid: string){
     return this.http.delete('http://localhost:4000/menu/posts/'+postid+'/comment/'+commentid)
+  }
+
+  deleteAPost(userid: string, postid: string){
+    return this.http.delete(this.url_myposts + userid + '/deleteposts/'+postid)
   }
 
   getCommentsOfThePost(comments: Comments, userid: string, postid: string){

@@ -26,7 +26,7 @@ export class MenuComponent implements OnInit {
     var cookiefound = this.cookie.get('cookieSoundTalkSession')
     if (cookiefound){
       this.mycookie = cookiefound
-      this.downloadPostsWithComments(cookiefound)
+      this.downloadPosts(cookiefound)
     } 
     else{
       console.log("Logueate porfavor!")
@@ -71,7 +71,7 @@ export class MenuComponent implements OnInit {
   public selectedAudio: any
   public audioid: any
   public photoid: any
-
+  public typepost: any
 
   onFileChanged(event: any): any{
     this.selectedFile = event.target.files[0]
@@ -89,13 +89,28 @@ export class MenuComponent implements OnInit {
     )  
   }
 
+  changeFilter(value: string){
+    this.typepost = value
+  }
+
   createPost(form: NgForm){
-    this.postsService.createPost(form.value, this.cookie.get('cookieSoundTalkSession'),this.audioid, this.photoid).subscribe(
+    this.postsService.createPost(form.value, this.cookie.get('cookieSoundTalkSession'),this.audioid, this.photoid, this.typepost).subscribe(
       res => {console.log(res)
         location.reload()   
       },
       err => console.error(err)
     )
+  }
+
+  seeProfile(userid: string){
+    this.registerandloginService.getUserInfo(userid).subscribe(
+      res => {console.log(res)
+              const a = JSON.stringify(res)
+              const b = JSON.parse(a)
+        this.router.navigate(['/profile'], {queryParams: {id: b._id}})   
+      },
+      err => console.error(err)
+    ) 
   }
 
   addComment(form: NgForm, postid: string){
@@ -116,7 +131,7 @@ export class MenuComponent implements OnInit {
     ) 
   }
 
-  downloadPostsWithComments(cookiefound: string){
+  downloadPosts(cookiefound: string){
     this.registerandloginService.findUserByID(cookiefound).subscribe(
       res => {
         console.log(res)
@@ -146,23 +161,6 @@ export class MenuComponent implements OnInit {
                               this.postsService.getAudio(this.posts[i].audioid).subscribe(
                                 res => {
                                   this.posts[i].audioid = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(res))
-                                  for (let x = 0; x < this.posts[i].commentsid.length; x++){
-                                    this.registerandloginService.getAllComments(this.posts[i].commentsid[x]).subscribe(
-                                      res=>{
-                                      const a = JSON.stringify(res)
-                                      const b = JSON.parse(a)
-                                      this.posts[i].commentsid[x] = b
-                                      this.registerandloginService.getUsersofPosts(b.userid).subscribe(
-                                      res=>{const a = JSON.stringify(res)
-                                        const b = JSON.parse(a)
-                                        this.posts[i].commentsid[x].username = b.username
-                                      },
-                                      err=>console.error(err))
-                                    },
-                                      err=>console.error(err)
-                                    )
-
-                                  }
                                 },
                                 err => this.posts[i].audioid = err
                               )
@@ -173,6 +171,7 @@ export class MenuComponent implements OnInit {
                 err=> console.error(err) 
               )
             }
+            console.log("RESULTAO", this.posts)
           },
           err => console.error(err)
         )
@@ -181,8 +180,24 @@ export class MenuComponent implements OnInit {
     )
   }
 
-  reversed(){
-    this.posts = this.posts.reverse()
+  downloadComments(comments: any){
+    for (let x = 0; x < comments.length; x++){
+      this.registerandloginService.getAllComments(comments[x]).subscribe(
+        res=>{
+        const a = JSON.stringify(res)
+        const b = JSON.parse(a)
+        comments[x] = b
+        this.registerandloginService.getUsersofPosts(b.userid).subscribe(
+        res=>{const a = JSON.stringify(res)
+          const b = JSON.parse(a)
+          comments[x].username = b.username
+        },
+        err=>console.error(err))
+      },
+        err=>console.error(err)
+      )
+
+    }
   }
 
   deleteComment(commentid: string, postid: string){
@@ -223,22 +238,6 @@ export class MenuComponent implements OnInit {
                           this.postsService.getAudio(this.posts[i].audioid).subscribe(
                             res => {
                               this.posts[i].audioid = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(res))
-                              for (let x = 0; x < this.posts[i].commentsid.length; x++){
-                                this.registerandloginService.getAllComments(this.posts[i].commentsid[x]).subscribe(
-                                  res=>{
-                                  const a = JSON.stringify(res)
-                                  const b = JSON.parse(a)
-                                  this.posts[i].commentsid[x] = b
-                                  this.registerandloginService.getUsersofPosts(b.userid).subscribe(
-                                  res=>{const a = JSON.stringify(res)
-                                    const b = JSON.parse(a)
-                                    this.posts[i].commentsid[x].username = b.username
-                                  },
-                                  err=>console.error(err))
-                                },
-                                  err=>console.error(err)
-                                )
-                              }
                             },
                             err => this.posts[i].audioid = err
                           )
@@ -286,22 +285,6 @@ export class MenuComponent implements OnInit {
                           this.postsService.getAudio(this.posts[i].audioid).subscribe(
                             res => {
                               this.posts[i].audioid = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(res))
-                              for (let x = 0; x < this.posts[i].commentsid.length; x++){
-                                this.registerandloginService.getAllComments(this.posts[i].commentsid[x]).subscribe(
-                                  res=>{
-                                  const a = JSON.stringify(res)
-                                  const b = JSON.parse(a)
-                                  this.posts[i].commentsid[x] = b
-                                  this.registerandloginService.getUsersofPosts(b.userid).subscribe(
-                                  res=>{const a = JSON.stringify(res)
-                                    const b = JSON.parse(a)
-                                    this.posts[i].commentsid[x].username = b.username
-                                  },
-                                  err=>console.error(err))
-                                },
-                                  err=>console.error(err)
-                                )
-                              }
                             },
                             err => this.posts[i].audioid = err
                           )
@@ -349,22 +332,6 @@ export class MenuComponent implements OnInit {
                           this.postsService.getAudio(this.posts[i].audioid).subscribe(
                             res => {
                               this.posts[i].audioid = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(res))
-                              for (let x = 0; x < this.posts[i].commentsid.length; x++){
-                                this.registerandloginService.getAllComments(this.posts[i].commentsid[x]).subscribe(
-                                  res=>{
-                                  const a = JSON.stringify(res)
-                                  const b = JSON.parse(a)
-                                  this.posts[i].commentsid[x] = b
-                                  this.registerandloginService.getUsersofPosts(b.userid).subscribe(
-                                  res=>{const a = JSON.stringify(res)
-                                    const b = JSON.parse(a)
-                                    this.posts[i].commentsid[x].username = b.username
-                                  },
-                                  err=>console.error(err))
-                                },
-                                  err=>console.error(err)
-                                )
-                              }
                             },
                             err => this.posts[i].audioid = err
                           )
@@ -412,22 +379,6 @@ export class MenuComponent implements OnInit {
                           this.postsService.getAudio(this.posts[i].audioid).subscribe(
                             res => {
                               this.posts[i].audioid = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(res))
-                              for (let x = 0; x < this.posts[i].commentsid.length; x++){
-                                this.registerandloginService.getAllComments(this.posts[i].commentsid[x]).subscribe(
-                                  res=>{
-                                  const a = JSON.stringify(res)
-                                  const b = JSON.parse(a)
-                                  this.posts[i].commentsid[x] = b
-                                  this.registerandloginService.getUsersofPosts(b.userid).subscribe(
-                                  res=>{const a = JSON.stringify(res)
-                                    const b = JSON.parse(a)
-                                    this.posts[i].commentsid[x].username = b.username
-                                  },
-                                  err=>console.error(err))
-                                },
-                                  err=>console.error(err)
-                                )
-                              }
                             },
                             err => this.posts[i].audioid = err
                           )

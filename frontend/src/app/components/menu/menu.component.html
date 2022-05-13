@@ -2,7 +2,7 @@
 
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ HEADER ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
- <!--  <app-header-logged></app-header-logged> -->
+  <app-header-logged></app-header-logged>
 
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CREAR POST ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
@@ -18,8 +18,15 @@
         <label>Titulo</label>
         <input class="form-control mt-1" placeholder="Escribe un titulo..." id="title" name="title" [(ngModel)]="postsService.createdPost.title">
       </div>
-
-
+      <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+        <button type="button" class="tipo btn btn-outline-primary btn-sm me-2" id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">Tipo de post</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownManual">
+          <button ngbDropdownItem [(ngModel)]="postsService.createdPost.type" (click)="changeFilter('news')">Novedades</button>
+          <button ngbDropdownItem [(ngModel)]="postsService.createdPost.type" (click)="changeFilter('gossip')">Cotilleos</button>
+          <button ngbDropdownItem [(ngModel)]="postsService.createdPost.type" (click)="changeFilter('QAndA')">Q & A</button>
+          <button ngbDropdownItem [(ngModel)]="postsService.createdPost.type" (click)="changeFilter('meme')">Memes</button>
+        </div>
+      </div>
       <div>
         <div class="form-group my-2">
           <label class="mb-1">Imatge</label>
@@ -62,7 +69,7 @@
         </div>
 
         <div class="card-footer text-muted d-flex align-items-center justify-content-between">
-          <h6 class="comments mt-1">Comentarios ({{post.commentsid.length}})</h6><a type="button" (click)="putLike(post._id)"><i class="post--up fa-solid fa-circle-up">{{post.likes.length}}</i></a>
+          <h6 class="comments mt-1" type="button" (click)="downloadComments(post.commentsid)">Ver comentarios ({{post.commentsid.length}})</h6><a type="button" (click)="putLike(post._id)"><i class="post--up fa-solid fa-circle-up">{{post.likes.length}}</i></a>
           <div *ngFor="let like of post.likes" class="my-3">
             <button type="submit" class="btn btn-success btn-sm mt-3" *ngIf="like == mycookie">TE GUSTA ESTE POST</button>
           </div>
@@ -72,6 +79,9 @@
           <div class="coment--costum" *ngIf="comment.userid == mycookie">
             <i class="fa-solid fa-star"></i>
             <i type="submit" class="fa-solid fa-trash" (click)="deleteComment(comment._id, post._id)"></i>
+          </div>
+          <div class="coment--costum" *ngIf="comment.userid !== mycookie">
+            <i class="fa-solid fa-user" (click)="seeProfile(comment.userid)"></i>         
           </div>
           <h5 class="card-title">{{comment.username}}</h5>
           <h5 class="post--text">{{comment.text}}</h5>

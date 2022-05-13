@@ -20,9 +20,12 @@ const upload = multer({storage})
 router.get('/user/:id', userCtrl.getUsersofPosts);
 router.put('/edit/:id', userCtrl.editUser);
 router.delete('/:id', userCtrl.deleteUser);
+router.get('/user/:id/mylikes', postCtrl.getMyLikes);
+router.get('/user/:id/mycomments', postCtrl.getMyComments);
+router.get('/user/:id/myposts', postCtrl.getMyPosts);
 //router.get('/', postCtrl.getPost);
 router.put('/:id', postCtrl.editPosts);
-router.delete('/:id', postCtrl.deletePosts);
+router.delete('/user/:id/deleteposts/:idpost', postCtrl.deletePosts);
 router.post('/profilephoto', upload.single('image') ,postCtrl.createPhoto);
 router.get('/profilephoto/:id', postCtrl.getPhoto);
 
