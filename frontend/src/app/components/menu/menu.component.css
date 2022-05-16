@@ -73,7 +73,11 @@
 }
 
 .categoryfilter .btn{
-    background-color: rgb(253, 148, 248);
+    background-color: rgb(204, 115, 255);
+}
+
+.categoryfilter .btn:hover{
+    background-color: rgb(189, 74, 255);
 }
 
 @media only screen and (max-width: 1400px) {

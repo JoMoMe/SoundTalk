@@ -1,0 +1,34 @@
+<body>
+  <section class="vh-100">
+    <div class="container py-2 h-100">
+      <div class="row d-flex align-items-center justify-content-center h-100">
+        
+        <div class="image col-md-8 col-lg-7 col-xl-6">
+          <a routerLink="/" routerLinkActive="active"><img src="assets/img/secondLogo.png" class="rounded-circle" alt="Second page logo"></a>
+        </div>
+        
+        <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+          
+          <form #loginUserForm="ngForm">
+
+            <!-- Input del Mail -->
+            <div class="form-outline mb-3">
+              <input type="email" id="mail" name="mail" class="form-control form-control-lg" required/>
+              <label class="form-label" for="mail">Correo electrónico</label>
+            </div>
+
+            <!-- Botones -->
+            <div class="text-center mb-3">
+              <button type="submit" class="btn btn-primary btn-lg btn-block w-100">Recordar contraseña</button>
+            </div>
+            <div class="d-flex justify-content-between">
+              <a routerLink="/register" routerLinkActive="active" class="align-self-center">Registrarse</a>
+              <a routerLink="/login" routerLinkActive="active" class="align-self-center">¿Tienes ya una cuenta?</a>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>

@@ -19,10 +19,10 @@ export class LandingpageComponent implements OnInit {
   isShow = false;
   
   images = [
-    {src: "assets/img/Foto_Landing_4.png"},
-    {src: "assets/img/Foto_Landing_3.png"},
-    {src: "assets/img/Foto_Landing_2.png"},
-    {src: "assets/img/Foto_Landing_1.png"}
+    {src: "assets/img/Foto_Landing_carousel_4.png"},
+    {src: "assets/img/Foto_Landing_carousel_3.png"},
+    {src: "assets/img/Foto_Landing_carousel_2.png"},
+    {src: "assets/img/Foto_Landing_carousel_1.png"}
   ];
 
   toggleDisplay() {

@@ -1,0 +1,111 @@
+.card{
+    border-radius: 15px;
+}
+
+.contacts{
+    position: relative;
+    height: 600px;
+    overflow-x: hidden;
+}
+
+.contact:hover{
+    background-color: #f5f6f7;
+    transition: 0.3s;
+}
+
+.contacts--lastmessage{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 220px;
+}
+
+.contacts--name{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 220px;
+}
+
+.chat{
+    position: relative; 
+    height: 590px; 
+    overflow-x: auto;
+}
+
+.chat--image{
+    width: 45px;
+    height: 100%;
+}
+
+.chat--contact{
+    background-color: #f5f6f7;
+    max-width: 75%;
+}
+
+.chat--user{
+    max-width: 75%;
+    margin-left: auto;
+}
+
+@media only screen and (max-height: 920px) {
+    
+    .contacts{
+        height: 500px;
+    }
+
+    .chat{
+        height: 490px; 
+    }
+
+}
+
+@media only screen and (max-width: 1400px) {
+    
+    .contacts--lastmessage{
+        max-width: 150px;
+    }
+
+    .contacts--name{
+        max-width: 160px;
+    }
+
+}
+
+@media only screen and (max-width: 991px) {
+    
+    .contacts--lastmessage{
+        max-width: 130px;
+    }
+
+    .contacts--name{
+        max-width: 130px;
+    }
+
+}
+
+@media only screen and (max-width: 767px) {
+    
+    .contacts--lastmessage{
+        max-width: 290px;
+    }
+
+    .contacts--name{
+        max-width: 290px;
+    }
+
+}
+
+@media only screen and (max-width: 575px) {
+    
+    .contacts--lastmessage{
+        display: none;
+    }
+
+    .contacts--name{
+        overflow: visible;
+        white-space: normal;
+        text-overflow: clip;
+    }
+
+}

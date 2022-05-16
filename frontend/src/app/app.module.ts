@@ -27,6 +27,8 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
 import { CreatepostComponent } from './components/createpost/createpost.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { EditprofileComponent } from './components/editprofile/editprofile.component';
+import { MessagesComponent } from './components/messages/messages.component';
+import { ForgotComponent } from './components/forgot/forgot.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { EditprofileComponent } from './components/editprofile/editprofile.compo
     CreatepostComponent,
     ProfileComponent,
     EditprofileComponent,
+    MessagesComponent,
+    ForgotComponent,
   ],
   imports: [
     BrowserModule,

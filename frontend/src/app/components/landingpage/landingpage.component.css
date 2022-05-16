@@ -5,7 +5,6 @@ body {
 
 .title{
     font-family: 'Fredoka One', cursive;
-    
 }
 
 .soundtalk{
@@ -14,7 +13,6 @@ body {
 
 .text{
     font-family: 'Questrial', sans-serif;
-    
 }
 
 h3{
@@ -87,7 +85,6 @@ h2{
 
 .card{
     background-color: rgba(0, 0, 0, 0);
-    
 }
 
 .card--text{
@@ -96,7 +93,11 @@ h2{
 
 .images--carousel{
     height: 100%;
-        
+}
+
+.div--meet_img{
+    width: 330px; 
+    height: 400px;
 }
 
 @media only screen and (max-width: 1800px) {
