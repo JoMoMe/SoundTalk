@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { users as Users } from 'src/app/models/users';
+import { updatedusers as Updatedusers } from 'src/app/models/updatedusers';
 import { Form, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -27,6 +28,16 @@ export class RegisterAndLoginService {
     accountactive: 0,
     photoid: JSON.parse(JSON.stringify('a')),
   };
+
+  updatedUser: Updatedusers =  {
+    username: '',
+    ubication: '',
+    biography: '',
+    gender: '',
+    status: '',
+    photoid: JSON.parse(JSON.stringify('')),
+  };
+  
   
   findUserByID(cookie: string){
     return this.http.get(this.url_backendcookie + cookie)
@@ -94,6 +105,9 @@ export class RegisterAndLoginService {
   findmyPosts(iduser: string){
     return this.http.get(this.url_backendprofile + iduser+'/myposts')
   }
+
+  updatemyUser(updatedUser: Updatedusers){
+    return this.http.put('http://localhost:4000/menu/profile/edit/'+updatedUser._id, updatedUser)
+  }
   
 }
-

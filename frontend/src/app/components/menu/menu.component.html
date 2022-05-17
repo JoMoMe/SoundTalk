@@ -45,8 +45,8 @@
 
       <div class="categoryfilter d-flex justify-content-between mt-3">
         <button type="button" class="btn btn-primary fw-bold border-0" (click)="filterbyNews()">NOVEDADES</button>
-        <button type="button" class="btn btn-primary fw-bold border-0" (click)="filterbyQAndA()">Q&A</button>
-        <button type="button" class="btn btn-primary fw-bold border-0" (click)="filterbyGossips()">COTILLEOS</button>
+        <button type="button" class="btn btn-primary fw-bold border-0" (click)="filterbyGossips()">Q&A</button>
+        <button type="button" class="btn btn-primary fw-bold border-0" (click)="filterbyQAndA()">COTILLEOS</button>
         <button type="button" class="btn btn-primary fw-bold border-0" (click)="filterbyMemes()">MEMES</button>
       </div>
 
@@ -62,7 +62,7 @@
       <a class="text-decoration-none text-dark">
   
         <div class="card-header">
-          <a routerLink="/" routerLinkActive="active"><p class="username"><img src="assets/img/icon_user.png" alt="User Icon" width="20" height="20" class="user--photo rounded-circle">{{post.username}}</p></a>
+          <p class="username" type="button" (click)="seeProfile(post.userid)"><img src="assets/img/icon_user.png" type="button" alt="User Icon" width="20" height="20" class="user--photo rounded-circle" (click)="seeProfile(post.userid)">{{post.username}}</p>
           <p class="category btn btn-sm">{{post.type}}</p>
           <h5 class="card-title">{{post.title}}</h5>
         </div>
@@ -90,7 +90,7 @@
             <div class="card-body">
               <div class="d-flex justify-content-between">
                 <div class="d-flex flex-row align-items-center">
-                  <a routerLink="/" routerLinkActive="active"><img src="assets/img/NFT.jpg" alt="User Image" width="25" height="25" /></a>
+                  <img src="assets/img/NFT.jpg" alt="User Image" width="25" height="25" (click)="seeProfile(comment.userid)"/>
                   <p class="small mb-0 ms-2 fw-bold" (click)="seeProfile(comment.userid)">{{comment.username}}</p>
                   <div *ngIf="comment.userid == mycookie">
                     <i class="fa-solid fa-star text-warning"></i>
