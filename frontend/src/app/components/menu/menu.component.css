@@ -7,11 +7,6 @@
     margin-top: 2%;
 }
 
-.card:hover{
-    background-color: rgb(240, 240, 240);
-    /* color: black; */
-}
-
 .create{
     background-color: rgb(245, 245, 245);
 }

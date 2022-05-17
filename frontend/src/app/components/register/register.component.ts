@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RegisterAndLoginService } from '../../services/users/users.service'
 import { NgForm } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
-import { Event, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -10,6 +10,9 @@ import { Event, Router } from '@angular/router';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+
+  public STres: boolean = true
+  public STerror: boolean = true
 
   constructor(public registerandloginService: RegisterAndLoginService, public cookie: CookieService, public router: Router,) { }
 
@@ -31,10 +34,18 @@ export class RegisterComponent implements OnInit {
     }      
   }
 
+  created(){
+		this.STres = false
+	}
+
+  error(){
+    this.STerror = false
+  }
+
   searchMailAndCreate(form: NgForm){
     this.registerandloginService.createUser(form.value).subscribe(
-      res => console.log(res),
-      err => console.error(err)
+      res => this.created(),
+      err => this.error()
     )
   }
 }
