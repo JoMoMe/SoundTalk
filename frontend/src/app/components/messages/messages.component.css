@@ -48,18 +48,6 @@
     margin-left: auto;
 }
 
-@media only screen and (max-height: 920px) {
-    
-    .contacts{
-        height: 500px;
-    }
-
-    .chat{
-        height: 490px; 
-    }
-
-}
-
 @media only screen and (max-width: 1400px) {
     
     .contacts--lastmessage{
@@ -80,6 +68,22 @@
 
     .contacts--name{
         max-width: 130px;
+    }
+
+    app-header-logged{
+        display: none;
+    }
+
+}
+
+@media only screen and (max-height: 920px) {
+    
+    .contacts{
+        height: 500px;
+    }
+
+    .chat{
+        height: 490px; 
     }
 
 }

@@ -6,7 +6,7 @@
 
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CREAR POST ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-  <form class="create card rounded-3" #postForm="ngForm" (ngSubmit)="createPost(postForm)">
+  <form class="create card rounded-3 mb-1" #postForm="ngForm" (ngSubmit)="createPost(postForm)">
 
     <div class="card-header">
       <h5 class="card-title mt-2">Crea un post</h5>
@@ -43,16 +43,18 @@
           <img width="200px" [src]="previsualize" alt="">
       </div>
 
-      <div class="categoryfilter d-flex justify-content-between mt-3">
-        <button type="button" class="btn btn-primary fw-bold border-0" (click)="filterbyNews()">NOVEDADES</button>
-        <button type="button" class="btn btn-primary fw-bold border-0" (click)="filterbyQAndA()">Q&A</button>
-        <button type="button" class="btn btn-primary fw-bold border-0" (click)="filterbyGossips()">COTILLEOS</button>
-        <button type="button" class="btn btn-primary fw-bold border-0" (click)="filterbyMemes()">MEMES</button>
-      </div>
-
     </div>
-
   </form>
+
+  <div class="card mt-0">
+    <div class="categoryfilter d-flex justify-content-between my-3 mx-4">
+      <button type="button" class="btn btn-primary fw-bold border-0" (click)="filterbyNews()">NOVEDADES</button>
+      <button type="button" class="btn btn-primary fw-bold border-0" (click)="filterbyQAndA()">Q&A</button>
+      <button type="button" class="btn btn-primary fw-bold border-0" (click)="filterbyGossips()">COTILLEOS</button>
+      <button type="button" class="btn btn-primary fw-bold border-0" (click)="filterbyMemes()">MEMES</button>
+    </div>
+  </div>
+  
 
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ POST ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <!-- routerLink="/" routerLinkActive="active" -->
