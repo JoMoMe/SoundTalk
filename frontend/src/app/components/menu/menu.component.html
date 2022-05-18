@@ -9,7 +9,7 @@
   <form class="create card rounded-3 mb-1" #postForm="ngForm" (ngSubmit)="createPost(postForm)">
 
     <div class="card-header">
-      <h5 class="card-title mt-2">Crea un post</h5>
+      <h5 class="card--title mt-2">Crea un post</h5>
     </div>
     
     <div class="card-body">
@@ -43,13 +43,6 @@
           <img width="200px" [src]="previsualize" alt="">
       </div>
 
-      <div class="categoryfilter d-flex justify-content-between mt-3">
-        <button type="button" class="btn btn-primary fw-bold border-0" (click)="filterbyNews()">NOVEDADES</button>
-        <button type="button" class="btn btn-primary fw-bold border-0" (click)="filterbyGossips()">Q&A</button>
-        <button type="button" class="btn btn-primary fw-bold border-0" (click)="filterbyQAndA()">COTILLEOS</button>
-        <button type="button" class="btn btn-primary fw-bold border-0" (click)="filterbyMemes()">MEMES</button>
-      </div>
-
     </div>
   </form>
 
@@ -73,7 +66,7 @@
         <div class="card-header">
           <p class="username" type="button" (click)="seeProfile(post.userid)"><img src="assets/img/icon_user.png" type="button" alt="User Icon" width="20" height="20" class="user--photo rounded-circle" (click)="seeProfile(post.userid)">{{post.username}}</p>
           <p class="category btn btn-sm">{{post.type}}</p>
-          <h5 class="card-title">{{post.title}}</h5>
+          <h5 class="card--title">{{post.title}}</h5>
         </div>
         
         <div class="card-body">

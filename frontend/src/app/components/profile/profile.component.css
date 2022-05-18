@@ -23,6 +23,8 @@ body {
     margin-top: -28px;
 }
 
+/* POST */
+
 .posts{
     margin-left: -5px;
     margin-right: -5px;
@@ -63,7 +65,7 @@ body {
     margin-right: 2px;
 }
 
-.card-title{
+.card--title{
     margin-top: -0.8%;
     font-weight: bold;
 }
@@ -76,12 +78,35 @@ body {
 
 .comments:hover{
     color: rgb(255, 82, 82);
-    transition: 0.5s;
+    transition: 0.3s;
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+.comments--trash:hover{
+    color: rgb(255, 82, 82);
+    transition: 0.3s;
 }
 
 .post--up:hover{
     color: rgb(255, 82, 82);
-    transition: 0.5s;
+    transition: 0.3s;
+}
+
+.post--like{
+    position: absolute;
+    margin-top: -15.3px;
+}
+
+.post--trash{
+    margin-left: -86;
+}
+
+.post--trash:hover{
+    color: rgb(255, 82, 82);
+    transition: 0.3s;
 }
 
 .category{
@@ -91,8 +116,12 @@ body {
     background-color: rgb(255, 176, 251);
 }
 
-.post--text{
-    font-size: 18px;
+.categoryfilter .btn{
+    background-color: rgb(204, 115, 255);
+}
+
+.categoryfilter .btn:hover{
+    background-color: rgb(189, 74, 255);
 }
 
 @media only screen and (max-width: 1000px) {

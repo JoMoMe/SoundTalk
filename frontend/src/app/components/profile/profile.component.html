@@ -11,7 +11,7 @@
           <div class="card border-0">
             <div class="profile--header text-black d-flex">
               <div class="ms-4 mt-5 d-flex flex-column">
-                <img [src]="'assets/photo/' + u.myphoto" alt="User Image" class="profile--image img-fluid img-thumbnail mt-4 mb-2 border-0">
+                <a [href]="'assets/photo/' + u.myphoto" target="_blank"><img [src]="'assets/photo/' + u.myphoto" alt="User Image" class="profile--image img-fluid img-thumbnail mt-4 mb-2 border-0"></a>
                 <a *ngIf="u._id == mycookie" routerLink="/editprofile" routerLinkActive="active" type="button" class="btn btn-outline-dark" style="z-index: 1;">
                   Editar perfil
                 </a>
@@ -28,7 +28,7 @@
                   <p class="small text-muted mb-0">Posts publicados</p>
                 </div>
                 <div class="px-3">
-                  <p class="mb-1 h5"></p>
+                  <p class="mb-1 h5">0</p>
                   <p class="small text-muted mb-0">Amigos</p>
                 </div>
                 <div class="px-3">
@@ -59,49 +59,66 @@
               </div>
               <div class="posts card border-5">
                 <div class="posts--title text-center mt-4 mb-1">
-                  <h3>Posts</h3>
+                  <h3>Tus posts</h3>
                   <hr class="mx-3"/>
                 </div>
-                <div class="mb-4"*ngFor="let post of u.myposts">
+                <div *ngFor="let post of u.myposts" class="mb-5">
                   <div class="card post rounded-3">
-                    <div class="card-header">
-                      <p class="username"><img src="assets/img/icon_user.png" alt="User Icon" width="20" height="20" class="user--photo rounded-circle ">{{u.username}}</p>
-                      <p class="category btn btn-sm">{{post.type}}</p>
-                      <p *ngIf="u._id == mycookie" class="btn btn-sm" right="20" (click)="deletePost(u._id, post._id)"><i class="fa-solid fa-trash-can"></i></p>
-                      <h5 class="card-title">{{post.title}}</h5>
-                    </div>
-                    
-                    <div class="card-body">
-                      <a href="assets/img/Bckgd2.jpg" target="_blank"><img class="post--image" [src]="'assets/photo/'+ post.photoid" alt="Post Image"></a>
-                      <audio class="w-100 mb-3" controls [src]="post.audioid" type="audio/*">
-                        Your browser does not support the <code>audio</code> element.
-                      </audio>
-                      <h5 class="post--text">{{post.content}}</h5>
-                    </div>
-
-                    <div class="card-footer text-muted d-flex align-items-center justify-content-between">
-                      <h6 class="comments mt-1" type="button" (click)="downloadComments(post.commentsid)">Ver comentarios ({{post.commentsid.length}})</h6><a type="button" (click)="putLike(post._id)"><i class="post--up fa-solid fa-circle-up">{{post.likes.length}}</i></a>
-                      <div *ngFor="let like of post.likes" class="my-3">
-                        <button type="submit" class="btn btn-success btn-sm mt-3" *ngIf="like == mycookie">TE GUSTA ESTE POST</button>
+                    <a class="text-decoration-none text-dark">
+                
+                      <div class="card-header">
+                        <p class="username" type="button" (click)="seeProfile(post.userid)"><img src="assets/img/icon_user.png" type="button" alt="User Icon" width="20" height="20" class="user--photo rounded-circle" (click)="seeProfile(post.userid)">{{post.username}}</p>
+                        <p class="category btn btn-sm">{{post.type}}</p>
+                        <h5 class="card--title">{{post.title}}</h5>
                       </div>
-                    </div>
-
-                    <div *ngFor="let comment of post.commentsid" class="my-3">
-                      <div class="coment--costum" *ngIf="comment.userid == mycookie">
-                        <i class="fa-solid fa-star"></i>
-                        <i type="submit" class="fa-solid fa-trash" (click)="deleteComment(comment._id, post._id)"></i>
+                      
+                      <div class="card-body">
+                        <a [href]="'assets/photo/' + post.photoid" target="_blank"><img class="post--image mb-3" [src]="'assets/photo/' + post.photoid" alt="Post Image"></a>
+                        <audio class="w-100 mb-3" controls [src]="post.audioid" type="audio/*">
+                          Your browser does not support the <code>audio</code> element.
+                        </audio>
+                        <h5 class="post--text">{{post.content}}</h5>
                       </div>
-                      <div class="coment--costum" *ngIf="comment.userid !== mycookie">
-                        <i class="fa-solid fa-user" (click)="seeProfile(comment.userid)"></i>         
+              
+                      <div class="card-footer text-muted d-flex align-items-center justify-content-between">
+                        <h6 class="comments pointer my-1" (click)="downloadComments(post.commentsid)">Comentarios ({{post.commentsid.length}})</h6>
+                        <div *ngIf="u._id == mycookie" class="post--trash pointer" (click)="deletePost(u._id, post._id)">
+                          <i class="fa-solid fa-trash-can"></i>
+                        </div>
+                       
+                        <a type="button" (click)="putLike(post._id)" class="my-1 post--up">
+                          <i class="fa-solid fa-circle-up"> {{post.likes.length}}</i>
+                          <!-- <div ></div> -->
+                          <div *ngFor="let like of post.likes">
+                            <i class="post--like fa-solid fa-heart text-white" type="submit" *ngIf="like == mycookie"></i>
+                          </div>
+                        </a>
                       </div>
-                      <h5 class="card-title">{{comment.username}}</h5>
-                      <h5 class="post--text">{{comment.text}}</h5>
-                    </div>
-
-                    <form class="mx-3 mt-3" #commentForm="ngForm" (ngSubmit)="addComment(commentForm,post._id)">
-                      <textarea class="form-control mt-1" id="text" name="text" placeholder="Escribe tu comentario a {{u.username}} aquí..." [(ngModel)]="postsService.createdComment.text"></textarea>
-                      <button type="submit" class="btn btn-success btn-sm mt-3">Subir comentario</button>
-                    </form>
+              
+                      <div *ngFor="let comment of post.commentsid" class="my-3">
+                        <div class="card mb-3 mx-2">
+                          <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                              <div class="d-flex flex-row align-items-center">
+                                <img src="assets/img/NFT.jpg" class="pointer" alt="User Image" width="25" height="25" (click)="seeProfile(comment.userid)"/>
+                                <p class="pointer small mb-0 ms-2 fw-bold" (click)="seeProfile(comment.userid)">{{comment.username}}</p>
+                                <div *ngIf="comment.userid == mycookie">
+                                  <i class="fa-solid fa-star text-warning"></i>
+                                  <i type="submit" class="comments--trash fa-solid fa-trash float-right" (click)="deleteComment(comment._id, post._id)"></i>
+                                </div>
+                              </div>
+                            </div>
+                            <p class="mt-2 my-auto">{{comment.text}}</p>
+                          </div>
+                        </div>
+              
+                      </div>
+              
+                      <form class="mx-3 mt-3" #commentForm="ngForm" (ngSubmit)="addComment(commentForm,post._id)">
+                        <textarea class="form-control mt-1" id="text" name="text" placeholder="Escribe tu comentario a {{post.username}} aquí..." [(ngModel)]="postsService.createdComment.text"></textarea>
+                        <button type="submit" class="btn btn-success btn-sm mt-3">Subir comentario</button>
+                      </form>
+                    </a>
                   </div>
                 </div>
               </div>
