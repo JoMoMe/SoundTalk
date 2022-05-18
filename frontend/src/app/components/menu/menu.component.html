@@ -9,7 +9,7 @@
   <form class="create card rounded-3 mb-1" #postForm="ngForm" (ngSubmit)="createPost(postForm)">
 
     <div class="card-header">
-      <h5 class="card-title mt-2">Crea un post</h5>
+      <h5 class="card--title mt-2">Crea un post</h5>
     </div>
     
     <div class="card-body">
@@ -43,13 +43,6 @@
           <img width="200px" [src]="previsualize" alt="">
       </div>
 
-      <div class="categoryfilter d-flex justify-content-between mt-3">
-        <button type="button" class="btn btn-primary fw-bold border-0" (click)="filterbyNews()">NOVEDADES</button>
-        <button type="button" class="btn btn-primary fw-bold border-0" (click)="filterbyGossips()">Q&A</button>
-        <button type="button" class="btn btn-primary fw-bold border-0" (click)="filterbyQAndA()">COTILLEOS</button>
-        <button type="button" class="btn btn-primary fw-bold border-0" (click)="filterbyMemes()">MEMES</button>
-      </div>
-
     </div>
   </form>
 
@@ -73,7 +66,7 @@
         <div class="card-header">
           <p class="username" type="button" (click)="seeProfile(post.userid)"><img src="assets/img/icon_user.png" type="button" alt="User Icon" width="20" height="20" class="user--photo rounded-circle" (click)="seeProfile(post.userid)">{{post.username}}</p>
           <p class="category btn btn-sm">{{post.type}}</p>
-          <h5 class="card-title">{{post.title}}</h5>
+          <h5 class="card--title">{{post.title}}</h5>
         </div>
         
         <div class="card-body">
@@ -85,7 +78,7 @@
         </div>
 
         <div class="card-footer text-muted d-flex align-items-center justify-content-between">
-          <h6 class="comments my-1" (click)="downloadComments(post.commentsid)">Comentarios ({{post.commentsid.length}})</h6>
+          <h6 class="comments pointer my-1" (click)="downloadComments(post.commentsid)">Comentarios ({{post.commentsid.length}})</h6>
           <a type="button" (click)="putLike(post._id)" class="my-1 post--up">
             <i class="fa-solid fa-circle-up"> {{post.likes.length}}</i>
             <div *ngFor="let like of post.likes" >
@@ -99,11 +92,11 @@
             <div class="card-body">
               <div class="d-flex justify-content-between">
                 <div class="d-flex flex-row align-items-center">
-                  <img src="assets/img/NFT.jpg" alt="User Image" width="25" height="25" (click)="seeProfile(comment.userid)"/>
-                  <p class="small mb-0 ms-2 fw-bold" (click)="seeProfile(comment.userid)">{{comment.username}}</p>
+                  <img src="assets/img/NFT.jpg" class="pointer" alt="User Image" width="25" height="25" (click)="seeProfile(comment.userid)"/>
+                  <p class="pointer small mb-0 ms-2 fw-bold" (click)="seeProfile(comment.userid)">{{comment.username}}</p>
                   <div *ngIf="comment.userid == mycookie">
                     <i class="fa-solid fa-star text-warning"></i>
-                    <i type="submit" class="fa-solid fa-trash float-right" (click)="deleteComment(comment._id, post._id)"></i>
+                    <i type="submit" class="comments--trash fa-solid fa-trash float-right" (click)="deleteComment(comment._id, post._id)"></i>
                   </div>
                 </div>
               </div>

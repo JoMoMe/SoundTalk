@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GoTopButtonModule } from 'ng-go-top-button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -58,6 +58,7 @@ import { ForgotComponent } from './components/forgot/forgot.component';
     HttpClientModule,
     FormsModule,
     FontAwesomeModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

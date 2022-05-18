@@ -34,7 +34,7 @@
     margin-right: 2px;
 }
 
-.card-title{
+.card--title{
     margin-top: -0.8%;
     font-weight: bold;
 }
@@ -47,12 +47,21 @@
 
 .comments:hover{
     color: rgb(255, 82, 82);
-    transition: 0.5s;
+    transition: 0.3s;
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+.comments--trash:hover{
+    color: rgb(255, 82, 82);
+    transition: 0.3s;
 }
 
 .post--up:hover{
     color: rgb(255, 82, 82);
-    transition: 0.5s;
+    transition: 0.3s;
 }
 
 .post--like{

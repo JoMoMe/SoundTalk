@@ -1,5 +1,6 @@
 <body><!-- *ngIf="show" -->
-  <ngb-alert type="danger" id="STAlert">El pana Olivier</ngb-alert>
+  <ngb-alert class="text-center" type="info" [hidden]="STres">Usuario logueado!</ngb-alert>
+  <ngb-alert class="text-center" type="danger" [hidden]="STerror">El usuario no ha podido ser verificado, por favor, revise el usuario y contraseña o verifica el correo del mismo.</ngb-alert>
   <section class="vh-100">
     <div class="container py-2 h-100">
       <div class="row d-flex align-items-center justify-content-center h-100">

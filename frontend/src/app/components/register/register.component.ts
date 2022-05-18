@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RegisterAndLoginService } from '../../services/users/users.service'
-import { NgForm } from '@angular/forms';
+import { FormGroup, FormControl, NgForm } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 
@@ -17,6 +17,7 @@ export class RegisterComponent implements OnInit {
   constructor(public registerandloginService: RegisterAndLoginService, public cookie: CookieService, public router: Router,) { }
 
   ngOnInit(): void {
+
     var cookiefound = this.cookie.get('cookieSoundTalkSession')
     if (cookiefound){
       this.registerandloginService.findUserByID(cookiefound).subscribe(
@@ -35,11 +36,17 @@ export class RegisterComponent implements OnInit {
   }
 
   created(){
+    this.STerror = true
 		this.STres = false
+    console.log("Created")
 	}
 
   error(){
+    this.STres = true
     this.STerror = false
+    console.log("Error")
+    
+     
   }
 
   searchMailAndCreate(form: NgForm){
