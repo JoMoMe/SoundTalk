@@ -57,4 +57,8 @@ export class HeaderLoggedComponent implements OnInit {
     )
   }
 
+  seeProfile(userid: string){
+    this.router.navigate(['/profile'], {queryParams: {id: userid}})
+  }
+
 }

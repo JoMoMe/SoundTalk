@@ -1,13 +1,14 @@
 <body>
 
-  <section class="">
+  <form #editUserForm="ngForm" (ngSubmit)="updateUser(editUserForm)" *ngFor="let u of user">
     <div class="container">
       <div class="row d-flex justify-content-center align-items-center">
         <div class="col">
           <div class="card border-0">
             <div class="profile--header text-black d-flex justify-content-center">
               <div class="d-flex mt-5">
-                <a href="assets/img/NFT.jpg" target="_blank"><img src="assets/img/NFT.jpg" alt="User Image" class="profile--image img-fluid img-thumbnail mt-4 mb-2 border-0"></a>
+                <img *ngIf="previsualize" class="profile--image img-fluid img-thumbnail mt-4 mb-2 border-0" [src]="previsualize">
+                <img [src]="'assets/photo/' + u.myphoto" alt="User Image" class="profile--image img-fluid img-thumbnail mt-4 mb-2 border-0">
               </div>
             </div>
             <div class="logo">
@@ -16,57 +17,59 @@
               </a>
             </div>
             <div class="profile--image_input mx-auto">
-              <input type="file" accept="image/*" class="" id="photoid" name="photoid"/>
+              <input type="file" accept="image/*" class="" id="photoid" name="photoid" [(ngModel)]="u.photoid" (change)="captureFile($event)" (change)="onFileChanged($event)"/>
             </div>
             <div class="profile--personal mx-4 mt-4">
               <label class="form-label fw-bold">Nombre</label><br>
-              <input class="mb-2" type="text" value="NOMBRE"><br>
+              <input class="mb-2" type="text" name="username" placeholder="{{u.username}}" [(ngModel)]="u.username"><br>
               <label class="form-label fw-bold">Ciudad</label><br>
-              <input class="mb-2" type="text" value="CIUDAD">
+              <input class="mb-2" type="text" placeholder="{{u.ubication}}" name="ubication" [(ngModel)]="u.ubication">
             </div>
             <div class="info">
               <hr class="mx-3"/>
               <div class="mx-4">
                 <h5 class="fw-bolder">Biografía</h5>
-                <textarea class="form-control mt-1" rows="3" id="content" name="content" placeholder="Biografía aún por rellenar.">Su bio</textarea>
+                <textarea class="form-control mt-1" rows="3" id="content" name="biography" placeholder="{{u.biography}}" [(ngModel)]="u.biography"></textarea>
               </div>
               <div class="info--details col text-center my-4">
                 <div class="info--details_mail col-xs-3">
                   <h5 class="fw-bold">Mail</h5>
-                  <input class="info--details_input form-control mb-3 text-center" type="text" value="EL MAIL" readonly>
+                  <input class="info--details_input form-control mb-3 text-center" type="text" placeholder="{{u.mail}}" readonly>
                 </div>
                 <div class="col-3">
                   <h5 class="fw-bold">Género</h5>
+                  <input type="hidden" name="gender" [(ngModel)]="u.gender">
                   <div class="d-inline-block mb-3" ngbDropdown #myDrop="ngbDropdown">
-                    <button type="button" class="tipo btn btn-outline-primary btn-sm me-2" id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()" value="GENERO">Género</button>
+                    <button type="button" class="tipo btn btn-outline-primary btn-sm me-2" name="gender" id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()" value="GENERO">Género</button>
                     <div ngbDropdownMenu aria-labelledby="dropdownManual">
-                      <button ngbDropdownItem>Hombre</button>
-                      <button ngbDropdownItem>Mujer</button>
-                      <button ngbDropdownItem>Otro</button>
+                      <button ngbDropdownItem (click)="u.gender='Hombre'">Hombre</button>
+                      <button ngbDropdownItem (click)="u.gender='Mujer'">Mujer</button>
+                      <button ngbDropdownItem (click)="u.gender='Otro'">Otro</button>
                     </div>
                   </div>
                 </div>
                 <div class="col-3">
                   <h5 class="fw-bold">Estado</h5>
+                  <input type="hidden" name="status" [(ngModel)]="u.status">
                   <div class="d-inline-block" ngbDropdown #myDropState="ngbDropdown">
-                    <button type="button" class="tipo btn btn-outline-primary btn-sm me-2" id="dropdownState" ngbDropdownAnchor (focus)="myDropState.open()" value="ESTADO">Estado</button>
+                    <button type="button" class="tipo btn btn-outline-primary btn-sm me-2" name="status" id="dropdownState" ngbDropdownAnchor (focus)="myDropState.open()" value="ESTADO">Estado</button>
                     <div ngbDropdownMenu aria-labelledby="dropdownState">
-                      <button ngbDropdownItem>Artista</button>
-                      <button ngbDropdownItem>Público</button>
-                      <button ngbDropdownItem>Productor</button>
-                      <button ngbDropdownItem>Otro</button>
+                      <button ngbDropdownItem (click)="u.status='Artista'">Artista</button>
+                      <button ngbDropdownItem (click)="u.status='Público'">Público</button>
+                      <button ngbDropdownItem (click)="u.status='Productor'">Productor</button>
+                      <button ngbDropdownItem (click)="u.status='Otro'">Otro</button>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="d-inline-flex p-4 bd-highlight ">
-                <button type="button" class="btn btn-success btn-lg btn-block">Edita</button>
-                <a routerLink="/profile" routerLinkActive="active"><i class="fa-solid fa-right-from-bracket fa-3x mx-4"></i></a>
+                <button type="submit" class="btn btn-success btn-lg btn-block">Edita</button>
+                <i class="fa-solid fa-right-from-bracket fa-3x mx-4" type="button" (click)="seeProfile(u._id)"></i>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </form>
 </body>

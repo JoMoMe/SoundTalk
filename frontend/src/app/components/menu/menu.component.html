@@ -43,6 +43,13 @@
           <img width="200px" [src]="previsualize" alt="">
       </div>
 
+      <div class="categoryfilter d-flex justify-content-between mt-3">
+        <button type="button" class="btn btn-primary fw-bold border-0" (click)="filterbyNews()">NOVEDADES</button>
+        <button type="button" class="btn btn-primary fw-bold border-0" (click)="filterbyGossips()">Q&A</button>
+        <button type="button" class="btn btn-primary fw-bold border-0" (click)="filterbyQAndA()">COTILLEOS</button>
+        <button type="button" class="btn btn-primary fw-bold border-0" (click)="filterbyMemes()">MEMES</button>
+      </div>
+
     </div>
   </form>
 
@@ -64,7 +71,7 @@
       <a class="text-decoration-none text-dark">
   
         <div class="card-header">
-          <a routerLink="/" routerLinkActive="active"><p class="username"><img src="assets/img/icon_user.png" alt="User Icon" width="20" height="20" class="user--photo rounded-circle">{{post.username}}</p></a>
+          <p class="username" type="button" (click)="seeProfile(post.userid)"><img src="assets/img/icon_user.png" type="button" alt="User Icon" width="20" height="20" class="user--photo rounded-circle" (click)="seeProfile(post.userid)">{{post.username}}</p>
           <p class="category btn btn-sm">{{post.type}}</p>
           <h5 class="card-title">{{post.title}}</h5>
         </div>

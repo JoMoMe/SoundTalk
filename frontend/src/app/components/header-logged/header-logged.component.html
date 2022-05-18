@@ -21,9 +21,9 @@
                 <p class="user--name mt-2">{{ myUser.username }}</p>
               </a>
               <div ngbDropdownMenu aria-labelledby="midrop1">
-                  <a routerLink="/profile" routerLinkActive="active"><button ngbDropdownItem>Perfil</button></a>
+                  <button ngbDropdownItem (click)="seeProfile(myUser._id)">Perfil</button>
                   <a routerLink="/contacts" routerLinkActive="active"><button ngbDropdownItem>Contactos</button></a>
-                  <a routerLink="/messages" routerLinkActive="active"><button ngbDropdownItem>Mensajes</button></a>
+                  <a routerLink="/mesages" routerLinkActive="active"><button ngbDropdownItem>Mensajes</button></a>
               </div>
           </div>
         </div>

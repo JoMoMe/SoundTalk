@@ -12,7 +12,7 @@
             <div class="profile--header text-black d-flex">
               <div class="ms-4 mt-5 d-flex flex-column">
                 <img [src]="'assets/photo/' + u.myphoto" alt="User Image" class="profile--image img-fluid img-thumbnail mt-4 mb-2 border-0">
-                <a routerLink="/editprofile" routerLinkActive="active" type="button" class="btn btn-outline-dark" style="z-index: 1;">
+                <a *ngIf="u._id == mycookie" routerLink="/editprofile" routerLinkActive="active" type="button" class="btn btn-outline-dark" style="z-index: 1;">
                   Editar perfil
                 </a>
               </div>
@@ -67,7 +67,7 @@
                     <div class="card-header">
                       <p class="username"><img src="assets/img/icon_user.png" alt="User Icon" width="20" height="20" class="user--photo rounded-circle ">{{u.username}}</p>
                       <p class="category btn btn-sm">{{post.type}}</p>
-                      <p class="btn btn-sm" right="20" (click)="deletePost(u._id, post._id)"><i class="fa-solid fa-trash-can"></i></p>
+                      <p *ngIf="u._id == mycookie" class="btn btn-sm" right="20" (click)="deletePost(u._id, post._id)"><i class="fa-solid fa-trash-can"></i></p>
                       <h5 class="card-title">{{post.title}}</h5>
                     </div>
                     

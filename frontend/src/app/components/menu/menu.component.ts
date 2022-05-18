@@ -36,16 +36,8 @@ export class MenuComponent implements OnInit {
 
   public files: any = []
   public previsualize: any
-  isShown: boolean = false ; // hidden by default
 
-
-  toggleShow() {
   
-  this.isShown = ! this.isShown;
-  
-  }
-
-
   captureFile(event: any): any{
     var file = event.target.files[0]
     this.converttoBase64(file).then((image: any) => {
