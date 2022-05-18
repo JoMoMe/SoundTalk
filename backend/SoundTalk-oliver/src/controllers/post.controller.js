@@ -5,6 +5,7 @@ const Posts = require('../models/posts');
 const Comments = require('../models/comments');
 const Photos = require('../models/photos');
 const Likes = require('../models/likes');
+const Contacts = require('../models/contacts');
 const path = require('path')
 const fs = require('fs-extra')
 const multer = require('multer');

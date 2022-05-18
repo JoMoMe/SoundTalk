@@ -8,6 +8,7 @@ import { NgForm } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
 import { Pipe, PipeTransform } from '@angular/core';
+import { contacts as Contacts } from 'src/app/models/contacts';
 
 @Component({
   selector: 'app-profile',
@@ -166,6 +167,27 @@ export class ProfileComponent implements OnInit {
 
   deletePost(userid: string, postid: string){
     this.postsService.deleteAPost(userid, postid).subscribe(
+      res => {console.log(res)
+        location.reload()   
+      },
+      err => console.error(err)
+    ) 
+  }
+
+  sendFriendRequest(myuserid: string, userrequestid: string){
+    const myuserstring = JSON.stringify(myuserid)
+    const myuser = JSON.parse(myuserstring)
+
+    const requeststring = JSON.stringify(userrequestid)
+    const userrequest = JSON.parse(requeststring)
+
+    let contacts: Contacts = {
+      myuserid: myuser,
+      userrequestid: userrequest,
+      status: 0,
+    }
+
+    this.registerandloginService.addFriendRequest(contacts).subscribe(
       res => {console.log(res)
         location.reload()   
       },

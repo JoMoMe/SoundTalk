@@ -22,8 +22,6 @@ export class EditprofileComponent implements OnInit {
   public mycookie: any
   public user: any
   public profileuser: any
-  public status: any
-  public gender: any
 
   ngOnInit(): void {
     var cookiefound = this.cookie.get('cookieSoundTalkSession')
@@ -76,15 +74,13 @@ export class EditprofileComponent implements OnInit {
   }
 
   updateUser(form: NgForm){
-    console.log(form.value)
-
     let user : Updatedusers = {
       _id: this.mycookie,
       username: form.value.username,
       biography: form.value.biography,
       ubication: form.value.ubication,
       gender: form.value.gender,
-      photoid: form.value.photoid,
+      photoid: this.photoid,
     }
       
     if (form.value.gender) {
@@ -98,29 +94,11 @@ export class EditprofileComponent implements OnInit {
       const mystatus = JSON.parse(statusstring)
       user.status = mystatus
     }
-
-    if (form.value.photoid) {
-      const photostring = JSON.stringify(form.value.photoid)
-      const myphoto = JSON.parse(photostring)
-      user.photoid = myphoto
-    }
-
-    console.log("a ver que pasa", user )
-
     
-    //this.registerandloginService.updatemyUser(user).subscribe(
-      //res => {console.log(res)
-      //},
-      //err => console.error(err)
-    //)
-  }
-
-  changeFilterStatus(value: string, form: NgForm){
-    form.value.gender = value
-  }
-
-  changeFilterGender(value: string){
-    this.status = value
+    this.registerandloginService.updatemyUser(user).subscribe(
+      res => {console.log(res)},
+      err => console.error(err)
+    )
   }
 
   public files: any = []
@@ -165,6 +143,16 @@ export class EditprofileComponent implements OnInit {
       res => this.photoid = res,
       err => console.error(err)
     )  
+  }
+
+  deleteAccount(id: string){
+    this.registerandloginService.deleteUser(id).subscribe(
+      res => {console.log(res)
+              this.cookie.delete('cookieSoundTalkSession')
+              this.router.navigate(['/login'])
+            },
+      err => console.error(err)
+    )
   }
 
 }

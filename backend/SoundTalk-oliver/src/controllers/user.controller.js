@@ -3,9 +3,14 @@ const router = express.Router()
 const Users = require('../models/users');
 const Tokens = require('../models/tokens');
 const Photo = require('../models/photos');
+const Contacts = require('../models/contacts');
 const jwt = require('jsonwebtoken')
 const nodemailer = require('nodemailer');
-var cookieSession = require('cookie-session')
+var cookieSession = require('cookie-session');
+const Posts = require('../models/posts');
+const Comments = require('../models/comments');
+const postCtrl = require('../controllers/post.controller.js');
+const { request } = require('http');
 
 function SendMail(usertosend, title, message, link){
     var transport = nodemailer.createTransport({
@@ -78,8 +83,62 @@ exports.editUser = async (req, res) => {
 }
 
 exports.deleteUser = async (req, res) => {
-    await Users.findByIdAndDelete(req.params.id)
-    res.json({status: 'User eliminado'})
+    const user = await Users.findOne({_id: req.params.id})
+    if (user){
+        const userstring = JSON.stringify(user)
+        const myuser = JSON.parse(userstring)
+
+        const userposts = await Posts.find({userid: myuser._id})
+        if (userposts){
+            const upostsstring = JSON.stringify(userposts)
+            const posts = JSON.parse(upostsstring)
+            
+            for (let x = 0; x < userposts.length; x++){
+                const req = {params: {idpost: posts[x]._id}};
+                await postCtrl.deletePosts(req,res)
+            }
+        }
+
+        const usercomments = await Comments.find({userid: myuser._id})
+        if (usercomments){
+            const ucommentstring = JSON.stringify(usercomments)
+            const comments = JSON.parse(ucommentstring)
+
+            for (let x = 0; x < usercomments.length; x++){
+                const postwithcomment = await Posts.findOne({commentsid: comments[x]._id})
+                if (postwithcomment){
+                    const pstring = JSON.stringify(postwithcomment)
+                    const post = JSON.parse(pstring)
+
+                    const req = {params: {id: post._id, idcomment: comments[x]._id }};
+                    await postCtrl.deleteComment(req,res)
+                }
+            }
+        }
+
+        const userlikes = await Posts.find({likes: myuser._id})
+        if(userlikes){
+            var coincidence=0
+            for (let x = 0; x < userlikes.length; x++){
+                for (let y = 0; y < userlikes[x].likes.length; y++){
+                    if (myuser._id == userlikes[x].likes[y]){
+                        coincidence+=1
+                    }
+                    if (coincidence>0){
+                        userlikes[x].likes.remove(userlikes[x].likes[y])
+                        userlikes[x].save()
+                    }                   
+                }
+            }
+        }
+        else{
+            console.log("La ID del post no existe, lo siento")
+        }
+
+        await Tokens.findOneAndRemove({user_id: req.params.id})
+        await Users.findOneAndRemove({_id: req.params.id})
+        res.json("usuario eliminado correctamente")
+    }
 }
 
 exports.UserExists = async (req, res) => {
@@ -180,5 +239,26 @@ exports.ResetPassword = async (req, res) => {
     }
     catch (error){
         console.log(error)
+    }
+}
+
+exports.addFriend = async (req, res) => {
+    try {
+        const contacts = new Contacts(req.body)
+        await contacts.save()
+        res.json("Solicitud enviada")
+    }
+    catch (error){
+        console.log(error)
+    }
+}
+
+exports.getMyRequests = async (req, res) => {
+    const requests = await Contacts.findOne({userrequestid: req.params.id, status: 0})
+    if (requests) {
+        res.json(requests)
+    }
+    else{
+        res.status(401).send("No encontramos la ID de este usuario")                
     }
 }

@@ -18,6 +18,7 @@ export class HeaderLoggedComponent implements OnInit {
   
   public myUser: any
   public myPhoto: any
+  public requests: any
 
   ngOnInit(): void {
     this.getUser()
@@ -59,6 +60,14 @@ export class HeaderLoggedComponent implements OnInit {
 
   seeProfile(userid: string){
     this.router.navigate(['/profile'], {queryParams: {id: userid}})
+  }
+
+  myRequests(userid: string){
+    this.registerandloginService.getmyRequests(userid).subscribe(
+      res=> {this.requests = res
+      console.log(this.requests)},
+      err=> console.error(err)
+    )
   }
 
 }

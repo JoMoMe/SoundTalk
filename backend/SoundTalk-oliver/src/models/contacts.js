@@ -3,9 +3,13 @@ const {Schema, model} = require('mongoose')
 
 const contactSchema = new Schema(
     {
-    userid: {type: ObjectId, required: true},
-    userid2: {type: ObjectId, required: true},
-    datetime: {type: Timestamp, required: true}
+    myuserid: {type: ObjectId, required: true},
+    userrequestid: {type: ObjectId, required: true},
+    status: {type: Number, required: true}
+    },
+    {
+        versionKey: false,
+        timestamps: true
     }
 );
 

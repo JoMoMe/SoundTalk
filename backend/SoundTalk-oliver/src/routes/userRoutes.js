@@ -17,12 +17,14 @@ const storage = multer.diskStorage({
 const upload = multer({storage})
 
 // menu/profile
+router.post('/user/add', userCtrl.addFriend);
 router.get('/user/:id', userCtrl.getUsersofPosts);
 router.put('/edit/:id', userCtrl.editUser);
-router.delete('/:id', userCtrl.deleteUser);
+router.delete('/user/:id/delete', userCtrl.deleteUser);
 router.get('/user/:id/mylikes', postCtrl.getMyLikes);
 router.get('/user/:id/mycomments', postCtrl.getMyComments);
 router.get('/user/:id/myposts', postCtrl.getMyPosts);
+router.get('/user/:id/myrequests', userCtrl.getMyRequests);
 //router.get('/', postCtrl.getPost);
 router.put('/:id', postCtrl.editPosts);
 router.delete('/user/:id/deleteposts/:idpost', postCtrl.deletePosts);

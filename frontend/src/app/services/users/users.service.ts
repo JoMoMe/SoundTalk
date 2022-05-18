@@ -4,6 +4,7 @@ import { users as Users } from 'src/app/models/users';
 import { updatedusers as Updatedusers } from 'src/app/models/updatedusers';
 import { Form, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { contacts as Contacts } from 'src/app/models/contacts';
 
 @Injectable({
   providedIn: 'root'
@@ -110,4 +111,15 @@ export class RegisterAndLoginService {
     return this.http.put('http://localhost:4000/menu/profile/edit/'+updatedUser._id, updatedUser)
   }
   
+  addFriendRequest(contacts: Contacts){
+    return this.http.post(this.url_backendprofile+'add', contacts)
+  }
+
+  deleteUser(id: string){
+    return this.http.delete(this.url_backendprofile+id+'/delete')
+  }
+
+  getmyRequests(id: string){
+    return this.http.get(this.url_backendprofile + id + '/myrequests')
+  }
 }

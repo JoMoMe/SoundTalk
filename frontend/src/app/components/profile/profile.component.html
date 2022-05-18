@@ -15,6 +15,9 @@
                 <a *ngIf="u._id == mycookie" routerLink="/editprofile" routerLinkActive="active" type="button" class="btn btn-outline-dark" style="z-index: 1;">
                   Editar perfil
                 </a>
+                <a *ngIf="u._id !== mycookie" type="button" class="btn btn-outline-dark" style="z-index: 1;" (click)="sendFriendRequest(this.cookie.get('cookieSoundTalkSession'),u._id)">
+                  Agregar contacto
+                </a>
               </div>
               <div class="profile--info ms-3">
                 <h5 class="fw-bold" ng-show="user.username">{{u.username}}</h5>
