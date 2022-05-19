@@ -4,11 +4,11 @@
     <div class="container">
       <div class="row d-flex justify-content-center align-items-center">
         <div class="col">
-          <div class="card border-0">
+          <div class="card border-0 rounded-5">
             <div class="profile--header text-black d-flex justify-content-center">
               <div class="d-flex mt-5">
-                <img *ngIf="previsualize" class="profile--image img-fluid img-thumbnail mt-4 mb-2 border-0" [src]="previsualize">
-                <img [src]="'assets/photo/' + u.myphoto" alt="User Image" class="profile--image img-fluid img-thumbnail mt-4 mb-2 border-0">
+                <a [href]="previsualize"><img *ngIf="previsualize" class="profile--image img-fluid img-thumbnail mt-4 mb-2 border-0" [src]="previsualize"></a>
+                <a [href]="'assets/photo/' + u.myphoto" target="_blank"><img [src]="'assets/photo/' + u.myphoto" alt="User Image" class="profile--image img-fluid img-thumbnail mt-4 mb-2 border-0"></a>
               </div>
             </div>
             <div class="logo">
@@ -62,10 +62,10 @@
                   </div>
                 </div>
               </div>
-              <div class="d-inline-flex p-4 bd-highlight ">
+              <div class="d-inline-flex p-4 bd-highlight">
                 <button type="submit" class="btn btn-success btn-lg btn-block">Edita</button>
                 <i class="fa-solid fa-right-from-bracket fa-3x mx-4" type="button" (click)="seeProfile(u._id)"></i>
-                <a type="button" class="btn btn-success btn-lg btn-block" (click)="deleteAccount(u._id)">Eliminar cuenta</a>
+                <a type="button" class="delete btn btn-danger btn-lg btn-block" (click)="deleteAccount(u._id)">Eliminar cuenta</a>
               </div>
             </div>
           </div>

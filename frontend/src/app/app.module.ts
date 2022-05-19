@@ -29,6 +29,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { EditprofileComponent } from './components/editprofile/editprofile.component';
 import { MessagesComponent } from './components/messages/messages.component';
 import { ForgotComponent } from './components/forgot/forgot.component';
+import { ContactsComponent } from './components/contacts/contacts.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { ForgotComponent } from './components/forgot/forgot.component';
     EditprofileComponent,
     MessagesComponent,
     ForgotComponent,
+    ContactsComponent,
   ],
   imports: [
     BrowserModule,

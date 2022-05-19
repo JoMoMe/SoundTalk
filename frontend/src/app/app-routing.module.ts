@@ -7,6 +7,7 @@ import { SoundguardGuard } from './guard/soundguard.guard';
 
 // ~~~~~~~~~~~~~~~~~~~~ Components ~~~~~~~~~~~~~~~~~~~~ //
 
+import { ContactsComponent } from './components/contacts/contacts.component';
 import { CreatepostComponent } from './components/createpost/createpost.component';
 import { EditprofileComponent } from './components/editprofile/editprofile.component';
 import { ForgotComponent } from './components/forgot/forgot.component';
@@ -20,9 +21,11 @@ import { RegisterComponent } from './components/register/register.component';
 import { TermsComponent } from './components/terms/terms.component';
 import { ValidateComponent } from './components/validate/validate.component';
 
+// ~~~~~~~~~~~~~~~~~~~~ Routes ~~~~~~~~~~~~~~~~~~~~ //
 
 const routes: Routes = [
   {path : '', component : LandingpageComponent},
+  {path : 'contacts', component : ContactsComponent},
   {path : 'createpost', component : CreatepostComponent},
   {path : 'editprofile', component : EditprofileComponent},
   {path : 'forgotpassword', component : ForgotComponent},
