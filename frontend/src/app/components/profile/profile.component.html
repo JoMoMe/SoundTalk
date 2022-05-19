@@ -70,7 +70,7 @@
                     <a class="text-decoration-none text-dark">
                 
                       <div class="card-header">
-                        <p class="username" type="button" (click)="seeProfile(post.userid)"><img src="assets/img/icon_user.png" type="button" alt="User Icon" width="20" height="20" class="user--photo rounded-circle" (click)="seeProfile(post.userid)">{{post.username}}</p>
+                        <p class="username" type="button"><img src="assets/img/icon_user.png" type="button" alt="User Icon" width="20" height="20" class="user--photo rounded-circle" hidden>{{post.username}}</p>
                         <p class="category btn btn-sm">{{post.type}}</p>
                         <h5 class="card--title">{{post.title}}</h5>
                       </div>
