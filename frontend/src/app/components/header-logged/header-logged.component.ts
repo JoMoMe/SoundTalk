@@ -50,6 +50,7 @@ export class HeaderLoggedComponent implements OnInit {
               const route = res2[14].slice(0, res2[14].length - 1);
               this.myPhoto = route
             }
+            this.myUser = [this.myUser]
       },
       err => console.error(err)
     )
@@ -65,7 +66,30 @@ export class HeaderLoggedComponent implements OnInit {
   myRequests(userid: string){
     this.registerandloginService.getmyRequests(userid).subscribe(
       res=> {this.requests = res
-      console.log(this.requests)},
+      console.log(this.requests)
+    },
+      err=> console.error(err)
+    )
+  }
+
+  denyRequest(iduser: string){
+    this.registerandloginService.deleteUserRequest(iduser, this.myUser[0]._id).subscribe(
+      res=> {console.log(res)
+        location.reload()
+    },
+      err=> console.error(err)
+    )
+  }
+
+  acceptRequest(iduser: string){
+    let request : Object = {
+      status: 1,
+    }
+      
+    this.registerandloginService.acceptUserRequest(iduser, this.myUser[0]._id, request).subscribe(
+      res=> {console.log(res)
+        location.reload()
+    },
       err=> console.error(err)
     )
   }

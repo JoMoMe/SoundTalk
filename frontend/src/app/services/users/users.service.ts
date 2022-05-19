@@ -122,4 +122,16 @@ export class RegisterAndLoginService {
   getmyRequests(id: string){
     return this.http.get(this.url_backendprofile + id + '/myrequests')
   }
+
+  deleteUserRequest(iduser: string, myid: string){
+    return this.http.delete(this.url_backendprofile+myid+'/myrequests/deleteone/'+iduser)
+  }
+
+  acceptUserRequest(iduser: string, myid: string, body: Object){
+    return this.http.post(this.url_backendprofile+myid+'/myrequests/acceptone/'+iduser, body)
+  }
+
+  checkRequests(iduser: string, myid: string){
+    return this.http.get(this.url_backendprofile+myid+'/myrequests/checkone/'+iduser)
+  }
 }

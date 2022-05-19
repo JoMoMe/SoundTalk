@@ -11,13 +11,24 @@
           <div class="card border-0">
             <div class="profile--header text-black d-flex">
               <div class="ms-4 mt-5 d-flex flex-column">
-                <a [href]="'assets/photo/' + u.myphoto" target="_blank"><img [src]="'assets/photo/' + u.myphoto" alt="User Image" class="profile--image img-fluid img-thumbnail mt-4 mb-2 border-0"></a>
-                <a *ngIf="u._id == mycookie" routerLink="/editprofile" routerLinkActive="active" type="button" class="btn btn-outline-dark" style="z-index: 1;">
-                  Editar perfil
-                </a>
-                <a *ngIf="u._id !== mycookie" type="button" class="btn btn-outline-dark" style="z-index: 1;" (click)="sendFriendRequest(this.cookie.get('cookieSoundTalkSession'),u._id)">
-                  Agregar contacto
-                </a>
+                  <a [href]="'assets/photo/' + u.myphoto" target="_blank"><img [src]="'assets/photo/' + u.myphoto" alt="User Image" class="profile--image img-fluid img-thumbnail mt-4 mb-2 border-0"></a>
+                  <a *ngIf="u._id == mycookie" routerLink="/editprofile" routerLinkActive="active" type="button" class="btn btn-outline-dark" style="z-index: 1;">
+                    Editar perfil
+                  </a>
+                  <a *ngIf="u._id !== mycookie && !isContact && !isRequested" type="button" class="btn btn-outline-dark" style="z-index: 1;" (click)="sendFriendRequest(this.cookie.get('cookieSoundTalkSession'),u._id)">
+                    Agregar contacto
+                  </a>
+                  <div *ngIf="u._id !== mycookie && !isContact && isRequested">
+                    <a class="btn btn-outline-dark" style="z-index: 1;">
+                      Solicitud enviada
+                    </a>
+                    <a type="button" class="btn btn-outline-dark" style="z-index: 1;"  (click)="denyFriendRequest(this.cookie.get('cookieSoundTalkSession'),u._id)">
+                      Cancelar
+                    </a>
+                  </div>
+                  <a *ngIf="u._id !== mycookie && isContact" class="btn btn-outline-dark" style="z-index: 1;">
+                    Amigos
+                  </a>
               </div>
               <div class="profile--info ms-3">
                 <h5 class="fw-bold" ng-show="user.username">{{u.username}}</h5>
@@ -31,7 +42,7 @@
                   <p class="small text-muted mb-0">Posts publicados</p>
                 </div>
                 <div class="px-3">
-                  <p class="mb-1 h5">0</p>
+                  <p class="mb-1 h5">{{u.contactsid.length}}</p>
                   <p class="small text-muted mb-0">Amigos</p>
                 </div>
                 <div class="px-3">

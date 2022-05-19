@@ -12,7 +12,8 @@ const userSchema = new Schema(
     status: {type: String, required: false},
     biography: {type: String, required: false},
     accountactive: {type: Number, required: true},
-    contactsid: {type: ObjectId, required: false},
+    contactsid: [{type: ObjectId, required: false}],
+    requestsid: [{type: ObjectId, required: false}],
     postsid: {type: ObjectId, required: false},
     role: {type: String, required: true}
     }

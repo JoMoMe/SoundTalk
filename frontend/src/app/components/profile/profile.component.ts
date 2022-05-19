@@ -22,6 +22,9 @@ export class ProfileComponent implements OnInit {
   public mycookie: any
   public user: any
   public profileuser: any
+  public isContact: boolean | undefined
+  public isRequested: boolean | undefined
+
 
   ngOnInit(): void {
     var cookiefound = this.cookie.get('cookieSoundTalkSession')
@@ -94,6 +97,24 @@ export class ProfileComponent implements OnInit {
                                   err => console.error(err)
                                 )
                               }
+                              for (let i = 0; i < this.user.contactsid.length; i++) {
+                                var coincidence=0
+                                if (this.mycookie == this.user.contactsid[i]){
+                                  coincidence+=1
+                                }
+                                if (coincidence>0){
+                                  this.isContact = true
+                                }
+                                else{
+                                  this.isContact = false
+                                }
+                              }
+                              this.registerandloginService.checkRequests(userid, this.mycookie).subscribe(
+                                (res:any) => {
+                                  this.isRequested = res.isRequested
+                                },
+                                err=>console.error(err)
+                              )
                               this.user = [this.user]
                               console.log("userfinal",this.user)
                       },
@@ -188,11 +209,21 @@ export class ProfileComponent implements OnInit {
     }
 
     this.registerandloginService.addFriendRequest(contacts).subscribe(
-      res => {console.log(res)
-        location.reload()   
+      (res:any) => {
+        this.isRequested = res.isRequested
+        location.reload()
       },
       err => console.error(err)
     ) 
+  }
+
+  denyFriendRequest(myid: string, iduser: string){
+    this.registerandloginService.deleteUserRequest(iduser, myid).subscribe(
+      res=> {console.log(res)
+        location.reload()
+    },
+      err=> console.error(err)
+    )
   }
 
 }

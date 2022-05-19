@@ -11,6 +11,8 @@ const Posts = require('../models/posts');
 const Comments = require('../models/comments');
 const postCtrl = require('../controllers/post.controller.js');
 const { request } = require('http');
+var mongoose = require('mongoose');
+
 
 function SendMail(usertosend, title, message, link){
     var transport = nodemailer.createTransport({
@@ -242,11 +244,56 @@ exports.ResetPassword = async (req, res) => {
     }
 }
 
+
+exports.checkRequested = async (req,res) =>{
+    try {
+        const user = await Users.findOne({_id: req.params.id})
+        if (user){
+            var coincidence=0
+
+            for (let x = 0; x < user.requestsid.length; x++){
+                if (user.requestsid[x] == req.params.idrequestuser){
+                    coincidence+=1
+                }
+            }
+            if (coincidence > 0){
+                res.json({isRequested:true})
+            }
+            else{
+                res.json({isRequested:false})
+            }
+        }
+
+    }
+    catch (error){
+        console.log(error)
+    }
+}
+
 exports.addFriend = async (req, res) => {
     try {
-        const contacts = new Contacts(req.body)
-        await contacts.save()
-        res.json("Solicitud enviada")
+        const user = await Users.findOne({_id: req.body.myuserid})
+        if (user){
+            var coincidence=0
+
+            for (let x = 0; x < user.requestsid.length; x++){
+                if (user.requestsid[x] == req.body.userrequestid){
+                    coincidence+=1
+                }
+            }
+            if (coincidence > 0){
+                res.json({isRequested:true})
+            }
+            else{
+                let newarray = [...user.requestsid, req.body.userrequestid]
+                const contacts = new Contacts(req.body)
+                await contacts.save()
+
+                let userupdate = await user.updateOne({requestsid: newarray })
+                res.json({isRequested:false})
+            }
+        }
+
     }
     catch (error){
         console.log(error)
@@ -254,9 +301,44 @@ exports.addFriend = async (req, res) => {
 }
 
 exports.getMyRequests = async (req, res) => {
-    const requests = await Contacts.findOne({userrequestid: req.params.id, status: 0})
+    const requests = await Contacts.find({userrequestid: req.params.id, status: 0})
     if (requests) {
-        res.json(requests)
+        let myusers = []
+        for (let x = 0; x < requests.length; x++){
+            myusers[x] = await Users.findOne({_id: requests[x].myuserid})
+        }
+        res.send(myusers)
+
+    }
+    else{
+        res.status(401).send("No encontramos la ID de este usuario")                
+    }
+}
+
+exports.deleteNewRequest = async (req, res) => {
+    const requests = await Contacts.findOneAndRemove({userrequestid: req.params.id, myuserid: req.params.idrequestuser })
+    if (requests) {
+        res.json("Solicitud eliminada con éxito")
+    }
+    else{
+        res.status(401).send("No encontramos la ID de este usuario")                
+    }
+}
+exports.acceptNewRequest = async (req, res) => {
+    console.log(req.body)
+    const requests = await Contacts.findOneAndUpdate({userrequestid: req.params.id, myuserid: req.params.idrequestuser }, req.body)
+    if (requests) {
+        myuser= await Users.findOne({_id: req.params.id})
+        if (myuser){
+            myuser.contactsid.push(req.params.idrequestuser)
+            myuser.save()
+        }
+        frienduser= await Users.findOne({_id: req.params.idrequestuser})
+        if (frienduser){
+            frienduser.contactsid.push(req.params.id)
+            frienduser.save()
+        }
+        res.json("Usuario agregado con éxito!")        
     }
     else{
         res.status(401).send("No encontramos la ID de este usuario")                

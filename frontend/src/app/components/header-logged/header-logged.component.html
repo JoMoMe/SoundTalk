@@ -1,5 +1,5 @@
 <header class="p-3">
-  <div class="container">
+  <div class="container" *ngFor="let u of myUser">
     <div class="d-flex flex-wrap align-items-center justify-content-center">
       
       <a routerLink="/menu" routerLinkActive="active" class="d-flex align-items-center mb-2 mb-lg-0 me-lg-3">
@@ -18,19 +18,32 @@
           <div ngbDropdown class="d.inline.block dropdown text-end" placement="bottom-right" style="cursor: pointer;">
               <a class="user--content d-flex link-dark text-decoration-none dropdown-toggle" ngbDropdownToggle id="midrop1">
                 <img [src]="'assets/photo/' + myPhoto" alt="User Icon" width="45" height="45" class="user--image rounded-circle">
-                <p class="user--name mt-2">{{ myUser.username }}</p>
+                <p class="user--name mt-2">{{ u.username }}</p>
               </a>
               <div ngbDropdownMenu aria-labelledby="midrop1">
-                  <button ngbDropdownItem (click)="seeProfile(myUser._id)">Perfil</button>
+                  <button ngbDropdownItem (click)="seeProfile(u._id)">Perfil</button>
                   <a routerLink="/contacts" routerLinkActive="active"><button ngbDropdownItem>Contactos</button></a>
                   <a routerLink="/messages" routerLinkActive="active"><button ngbDropdownItem>Mensajes</button></a>
               </div>
           </div>
         </div>
       </div>
-
-      <i type="button" class="fa-solid fa-bell" (click)="myRequests(myUser._id)"></i>
-
+      <i type="button" class="fa-solid fa-bell" (click)="myRequests(u._id)"></i>
+      <div *ngFor="let req of requests" class="my-3">
+        <div class="card mb-3 mx-2">
+          <div class="card-body">
+            <div class="d-flex justify-content-between">
+              <div class="d-flex flex-row align-items-center">
+                <img src="assets/img/NFT.jpg" class="pointer" alt="User Image" width="25" height="25" (click)="seeProfile(req._id)"/>
+                <p class="pointer small mb-0 ms-2 fw-bold" (click)="seeProfile(req._id)">{{req.username}}</p>
+              </div>
+            </div>
+            <p class="mt-2 my-auto">{{req.ubication}}</p>
+            <i type="button" class="fa-thin fa-hexagon-check" (click)="acceptRequest(req._id)">Aceptar</i><br>
+            <i type="button" class="fa-thin fa-circle-trash" (click)="denyRequest(req._id)">Denegar</i>          
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </header>
