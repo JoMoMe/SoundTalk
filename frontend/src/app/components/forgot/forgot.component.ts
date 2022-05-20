@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, NgForm } from '@angular/forms';
+import { RegisterAndLoginService } from '../../services/users/users.service'
 
 @Component({
   selector: 'app-forgot',
@@ -7,9 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ForgotComponent implements OnInit {
 
-  constructor() { }
+  constructor(public registerandloginService: RegisterAndLoginService,) { }
 
   ngOnInit(): void {
+  }
+
+  created(){
+    console.log("Mail enviado")
+	}
+
+  error(){
+    console.log("Error")
+    
+  }
+
+  searchMailAndUpdate(form: NgForm){
+    this.registerandloginService.changePassword(form.value).subscribe(
+      res => this.created(),
+      err => this.error()
+    )
   }
 
 }

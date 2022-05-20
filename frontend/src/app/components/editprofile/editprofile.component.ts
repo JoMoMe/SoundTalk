@@ -134,6 +134,14 @@ export class EditprofileComponent implements OnInit {
     }
   })
 
+  submit(userid: string){
+    setTimeout(() => 
+    {
+      this.router.navigate(['/profile'], {queryParams: {id: userid}})
+    },
+    500);
+  }
+
   public selectedFile: any
   public photoid: any
 

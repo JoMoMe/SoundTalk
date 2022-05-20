@@ -23,6 +23,10 @@ body {
     margin-top: -28px;
 }
 
+app-header-logged .search{
+    display: none;
+}
+
 /* POST */
 
 .posts{

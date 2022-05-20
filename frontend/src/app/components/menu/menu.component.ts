@@ -94,6 +94,10 @@ export class MenuComponent implements OnInit {
     this.typepost = value
   }
 
+  searchFilter(value: string){
+    this.typepost = value
+  }
+
   createPost(form: NgForm){
     this.postsService.createPost(form.value, this.cookie.get('cookieSoundTalkSession'),this.audioid, this.photoid, this.typepost).subscribe(
       res => {console.log(res)

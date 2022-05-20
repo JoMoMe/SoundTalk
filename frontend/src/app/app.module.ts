@@ -30,6 +30,7 @@ import { EditprofileComponent } from './components/editprofile/editprofile.compo
 import { MessagesComponent } from './components/messages/messages.component';
 import { ForgotComponent } from './components/forgot/forgot.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
+import { ChangepassComponent } from './components/changepass/changepass.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { ContactsComponent } from './components/contacts/contacts.component';
     MessagesComponent,
     ForgotComponent,
     ContactsComponent,
+    ChangepassComponent,
   ],
   imports: [
     BrowserModule,

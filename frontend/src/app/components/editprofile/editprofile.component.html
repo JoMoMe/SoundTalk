@@ -63,7 +63,7 @@
                 </div>
               </div>
               <div class="d-inline-flex p-4 bd-highlight">
-                <button type="submit" class="btn btn-success btn-lg btn-block">Edita</button>
+                <button type="submit" class="btn btn-success btn-lg btn-block" (click)="submit(u._id)">Edita</button>
                 <i class="fa-solid fa-right-from-bracket fa-3x mx-4" type="button" (click)="seeProfile(u._id)"></i>
                 <a type="button" class="delete btn btn-danger btn-lg btn-block" (click)="deleteAccount(u._id)">Eliminar cuenta</a>
               </div>
