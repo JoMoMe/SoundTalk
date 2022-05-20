@@ -9,17 +9,25 @@
         
         <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
           
-          <form #loginUserForm="ngForm">
+          <form #updateUserForm="ngForm" (ngSubmit)="searchMailAndUpdate(updateUserForm)">
 
             <!-- Input del Mail -->
             <div class="form-outline mb-3">
-              <input type="email" id="mail" name="mail" class="form-control form-control-lg" required/>
+              <input type="email" id="mail" name="mail" class="form-control form-control-lg" [(ngModel)]="registerandloginService.createdUser.mail" #mail="ngModel" email required/>
               <label class="form-label" for="mail">Correo electrónico</label>
+              <div *ngIf="mail.invalid && (mail.dirty || mail.touched)" class="alert">
+                <div *ngIf="mail.errors?.['required']">
+                  <ngb-alert class="form--alert text-center" [dismissible]="false" type="danger">El correo es necesario.</ngb-alert>
+                </div>
+                <div *ngIf="mail.errors?.['email']">
+                  <ngb-alert class="form--alert text-center" [dismissible]="false" type="danger">Introduzca un correo valido.</ngb-alert>
+                </div>
+              </div>
             </div>
 
             <!-- Botones -->
             <div class="text-center mb-3">
-              <button type="submit" class="btn btn-primary btn-lg btn-block w-100">Recordar contraseña</button>
+              <button type="submit" class="btn btn-primary btn-lg btn-block w-100" [disabled]="updateUserForm.form.invalid">Enviar correo</button>
             </div>
             <div class="d-flex justify-content-between">
               <a routerLink="/register" routerLinkActive="active" class="align-self-center">Registrarse</a>

@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
     else{
       console.log("Logueate porfavor!")
       this.router.navigate(['/login'])   
-    }      
+    }
   }
 
   myDate(){

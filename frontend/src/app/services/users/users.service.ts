@@ -13,6 +13,7 @@ export class RegisterAndLoginService {
   constructor(private http: HttpClient, public router: Router) {}
 
   url_backendregister = 'http://localhost:4000/register'
+  url_backendremember = 'http://localhost:4000/rememberpassword'
   url_backendlogin = 'http://localhost:4000/login'
   url_backendcookie = 'http://localhost:4000/login/cookie/'
   url_backendphotoprofile = 'http://localhost:4000/menu/profile/profilephoto/'
@@ -38,7 +39,8 @@ export class RegisterAndLoginService {
     status: '',
     photoid: JSON.parse(JSON.stringify('')),
   };
-  
+
+    
   
   findUserByID(cookie: string){
     return this.http.get(this.url_backendcookie + cookie)
@@ -85,6 +87,10 @@ export class RegisterAndLoginService {
     users.status='Estado vacío';
     users.photoid=JSON.parse(JSON.stringify('627d2042064ed238caba3bd6'));
     return this.http.post(this.url_backendregister, users)
+  }
+
+  changePassword(users: Users){
+    return this.http.post(this.url_backendremember, users)
   }
 
   loginUser(users: Users){

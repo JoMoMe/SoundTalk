@@ -46,7 +46,6 @@ export class RegisterComponent implements OnInit {
     this.STerror = false
     console.log("Error")
     
-     
   }
 
   searchMailAndCreate(form: NgForm){

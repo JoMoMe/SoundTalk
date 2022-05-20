@@ -7,6 +7,7 @@ import { SoundguardGuard } from './guard/soundguard.guard';
 
 // ~~~~~~~~~~~~~~~~~~~~ Components ~~~~~~~~~~~~~~~~~~~~ //
 
+import { ChangepassComponent } from './components/changepass/changepass.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { CreatepostComponent } from './components/createpost/createpost.component';
 import { EditprofileComponent } from './components/editprofile/editprofile.component';
@@ -25,16 +26,17 @@ import { ValidateComponent } from './components/validate/validate.component';
 
 const routes: Routes = [
   {path : '', component : LandingpageComponent},
+  {path : 'changepassword/:token', component : ChangepassComponent},
   {path : 'contacts', component : ContactsComponent},
   {path : 'createpost', component : CreatepostComponent},
   {path : 'editprofile', component : EditprofileComponent},
-  {path : 'forgotpassword', component : ForgotComponent},
   {path : 'landingpage', component : LandingpageComponent},
   {path : 'login', component : LoginComponent, canActivate: [SoundguardGuard]},
   {path : 'menu', component : MenuComponent},
   {path : 'messages', component : MessagesComponent},
   {path : 'profile', component : ProfileComponent},
   {path : 'register', component : RegisterComponent},
+  {path : 'rememberpassword', component : ForgotComponent},
   {path : 'terms', component : TermsComponent},
   {path : 'validate/:token', component : ValidateComponent},
   {path : '**', component : NotfoundComponent}
