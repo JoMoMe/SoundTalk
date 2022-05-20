@@ -208,7 +208,6 @@ exports.deletePosts = async (req, res) => {
             const photo = await Photos.findByIdAndRemove({_id: post.photoid})
         }
         post.remove()
-        res.json({status: 'Post eliminado'})
     }
 }
 
@@ -318,8 +317,6 @@ exports.deleteComment = async (req, res) => {
             post.commentsid.remove(req.params.idcomment)
             post.save()
             const comment = await Comments.findByIdAndRemove({_id: req.params.idcomment})
-
-            res.json("Comentario eliminado!")
         }
     }
 }

@@ -63,6 +63,10 @@ export class HeaderLoggedComponent implements OnInit {
     this.router.navigate(['/profile'], {queryParams: {id: userid}})
   }
 
+  seeContacts(userid: string){
+    this.router.navigate(['/contacts'], {queryParams: {id: userid}})
+  }
+
   myRequests(userid: string){
     this.registerandloginService.getmyRequests(userid).subscribe(
       res=> {this.requests = res

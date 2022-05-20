@@ -22,7 +22,7 @@
               </a>
               <div ngbDropdownMenu aria-labelledby="midrop1">
                   <button ngbDropdownItem (click)="seeProfile(u._id)">Perfil</button>
-                  <a routerLink="/contacts" routerLinkActive="active"><button ngbDropdownItem>Contactos</button></a>
+                  <button ngbDropdownItem (click)="seeContacts(u._id)">Contactos</button>
                   <a routerLink="/messages" routerLinkActive="active"><button ngbDropdownItem>Mensajes</button></a>
               </div>
           </div>

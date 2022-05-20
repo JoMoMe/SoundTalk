@@ -24,7 +24,8 @@ export class ProfileComponent implements OnInit {
   public profileuser: any
   public isContact: boolean | undefined
   public isRequested: boolean | undefined
-
+  public requests: any
+  public requestedMe: boolean | undefined
 
   ngOnInit(): void {
     var cookiefound = this.cookie.get('cookieSoundTalkSession')
@@ -116,6 +117,7 @@ export class ProfileComponent implements OnInit {
                                 err=>console.error(err)
                               )
                               this.user = [this.user]
+                              this.profileUserRequests(this.mycookie)
                               console.log("userfinal",this.user)
                       },
                       err => console.error(err)
@@ -168,6 +170,10 @@ export class ProfileComponent implements OnInit {
     ) 
   }
 
+  seeContacts(userid: string){
+    this.router.navigate(['/contacts'], {queryParams: {id: userid}})
+  }
+
   putLike(postid: string){
     this.postsService.putLikeinPost(this.cookie.get('cookieSoundTalkSession'), postid).subscribe(
       res => {console.log(res)
@@ -211,16 +217,61 @@ export class ProfileComponent implements OnInit {
     this.registerandloginService.addFriendRequest(contacts).subscribe(
       (res:any) => {
         this.isRequested = res.isRequested
-        location.reload()
       },
       err => console.error(err)
     ) 
   }
 
-  denyFriendRequest(myid: string, iduser: string){
-    this.registerandloginService.deleteUserRequest(iduser, myid).subscribe(
+  profileUserRequests(userid: string){
+    this.registerandloginService.getmyRequests(userid).subscribe(
+      res=> {
+        this.requests = res
+        var coincidence = 0
+        for (let i = 0; i < this.requests.length; i++) {
+          if (this.requests[i]._id == this.user[0]._id){
+            coincidence+=1
+          }
+        }
+        if (coincidence > 0){
+          this.requestedMe = true
+        }
+    },
+      err=> console.error(err)
+    )
+  }
+
+  denyRequest(iduser: string){
+    this.registerandloginService.deleteUserRequest(iduser, this.mycookie).subscribe(
+      res=> {console.log(res)
+        this.isRequested = false
+        this.isContact = false
+        this.requestedMe = false
+        location.reload()
+    },
+      err=> console.error(err)
+    )
+  }
+
+  acceptRequest(iduser: string){
+    let request : Object = {
+      status: 1,
+    }
+      
+    this.registerandloginService.acceptUserRequest(iduser, this.mycookie, request).subscribe(
       res=> {console.log(res)
         location.reload()
+    },
+      err=> console.error(err)
+    )
+  }
+
+  removemyFriend(iduser: string){
+    this.registerandloginService.removeFriendRequest(iduser, this.mycookie).subscribe(
+      res=> {console.log(res)
+          this.isRequested = false
+          this.isContact = false
+          this.requestedMe = false
+          location.reload()
     },
       err=> console.error(err)
     )

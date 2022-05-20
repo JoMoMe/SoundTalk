@@ -28,6 +28,7 @@ router.get('/user/:id/myrequests', userCtrl.getMyRequests);
 router.delete('/user/:id/myrequests/deleteone/:idrequestuser', userCtrl.deleteNewRequest);
 router.post('/user/:id/myrequests/acceptone/:idrequestuser', userCtrl.acceptNewRequest);
 router.get('/user/:id/myrequests/checkone/:idrequestuser', userCtrl.checkRequested);
+router.delete('/user/:id/myfriends/deleteone/:idrequestuser', userCtrl.deleteMyFriend);
 //router.get('/', postCtrl.getPost);
 router.put('/:id', postCtrl.editPosts);
 router.delete('/user/:id/deleteposts/:idpost', postCtrl.deletePosts);

@@ -133,10 +133,40 @@ exports.deleteUser = async (req, res) => {
                 }
             }
         }
-        else{
-            console.log("La ID del post no existe, lo siento")
+
+        for (let x = 0; x < myuser.contactsid.length; x++){
+            let userfriend = Users.findOne({_id: myuser.contactsid[x]})
+            userfriend.contactsid.remove(myuser._id)
+            userfriend.save()
         }
 
+        var contacts1 = await Contacts.find({myuserid: myuser._id})
+        if(contacts1){
+            for (let x = 0; x < contacts1.length; x++){
+                await Contacts.findOneAndRemove({_id: contacts1[x]._id})
+            }
+        }
+
+        var contacts2 = await Contacts.find({userrequestid: myuser._id})
+        if(contacts2){
+            for (let x = 0; x < contacts2.length; x++){
+                await Contacts.findOneAndRemove({_id: contacts2[x]._id})
+            }
+        }
+
+        const users = await Users.find()
+        var coincidence=0
+        for (let y = 0; y < users.length; y++){
+            for (let x = 0; x < users[y].requestsid.length; x++){
+                if (users[y].requestsid[x] == myuser._id){
+                    coincidence+=1
+                }
+                if (coincidence>0){
+                    users[y].requestsid.remove(users[y].requestsid[x])
+                    users[y].save()
+                }
+            }
+        }
         await Tokens.findOneAndRemove({user_id: req.params.id})
         await Users.findOneAndRemove({_id: req.params.id})
         res.json("usuario eliminado correctamente")
@@ -275,14 +305,16 @@ exports.addFriend = async (req, res) => {
         const user = await Users.findOne({_id: req.body.myuserid})
         if (user){
             var coincidence=0
-
             for (let x = 0; x < user.requestsid.length; x++){
                 if (user.requestsid[x] == req.body.userrequestid){
                     coincidence+=1
                 }
             }
             if (coincidence > 0){
-                res.json({isRequested:true})
+                var deletereq = await Contacts.findOneAndRemove({userrequestid: req.body.userrequestid, myuserid: user._id})
+                user.requestsid.remove(req.body.userrequestid)
+                user.save()
+                res.json({isRequested:false})
             }
             else{
                 let newarray = [...user.requestsid, req.body.userrequestid]
@@ -290,7 +322,7 @@ exports.addFriend = async (req, res) => {
                 await contacts.save()
 
                 let userupdate = await user.updateOne({requestsid: newarray })
-                res.json({isRequested:false})
+                res.json({isRequested:true})
             }
         }
 
@@ -318,22 +350,29 @@ exports.getMyRequests = async (req, res) => {
 exports.deleteNewRequest = async (req, res) => {
     const requests = await Contacts.findOneAndRemove({userrequestid: req.params.id, myuserid: req.params.idrequestuser })
     if (requests) {
+        console.log("ENTRÓ")
+        var user= await Users.findOne({_id: req.params.idrequestuser})
+        if (user){
+            user.requestsid.remove(req.params.id)
+            user.save()
+        }
         res.json("Solicitud eliminada con éxito")
     }
     else{
         res.status(401).send("No encontramos la ID de este usuario")                
     }
 }
+
 exports.acceptNewRequest = async (req, res) => {
     console.log(req.body)
     const requests = await Contacts.findOneAndUpdate({userrequestid: req.params.id, myuserid: req.params.idrequestuser }, req.body)
     if (requests) {
-        myuser= await Users.findOne({_id: req.params.id})
+        var myuser= await Users.findOne({_id: req.params.id})
         if (myuser){
             myuser.contactsid.push(req.params.idrequestuser)
             myuser.save()
         }
-        frienduser= await Users.findOne({_id: req.params.idrequestuser})
+        var frienduser= await Users.findOne({_id: req.params.idrequestuser})
         if (frienduser){
             frienduser.contactsid.push(req.params.id)
             frienduser.save()
@@ -342,5 +381,25 @@ exports.acceptNewRequest = async (req, res) => {
     }
     else{
         res.status(401).send("No encontramos la ID de este usuario")                
+    }
+}
+
+exports.deleteMyFriend = async (req, res) => {
+    try{
+        var myuser= await Users.findOne({_id: req.params.id})
+        myuser.contactsid.remove(req.params.idrequestuser)
+        myuser.requestsid.remove(req.params.idrequestuser)
+        myuser.save()
+            
+        var userequest= await Users.findOne({_id: req.params.idrequestuser})
+        userequest.contactsid.remove(req.params.id)
+        userequest.requestsid.remove(req.params.id)
+        userequest.save()
+        res.json("Solicitud eliminada con éxito")
+        const requests = await Contacts.findOneAndRemove({userrequestid: req.params.id, myuserid: req.params.idrequestuser })
+        const requests2 = await Contacts.findOneAndRemove({userrequestid: req.params.idrequestuser, myuserid: req.params.id })
+    }
+    catch{
+        res.status(401).send("No encontramos la ID de este usuario")
     }
 }

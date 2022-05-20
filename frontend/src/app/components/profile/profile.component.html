@@ -15,19 +15,26 @@
                   <a *ngIf="u._id == mycookie" routerLink="/editprofile" routerLinkActive="active" type="button" class="btn btn-outline-dark" style="z-index: 1;">
                     Editar perfil
                   </a>
-                  <a *ngIf="u._id !== mycookie && !isContact && !isRequested" type="button" class="btn btn-outline-dark" style="z-index: 1;" (click)="sendFriendRequest(this.cookie.get('cookieSoundTalkSession'),u._id)">
+                  <a *ngIf="u._id !== mycookie && !isContact && !isRequested && !requestedMe" type="button" class="btn btn-outline-dark" style="z-index: 1;" (click)="sendFriendRequest(this.cookie.get('cookieSoundTalkSession'),u._id)">
                     Agregar contacto
                   </a>
-                  <div *ngIf="u._id !== mycookie && !isContact && isRequested">
-                    <a class="btn btn-outline-dark" style="z-index: 1;">
-                      Solicitud enviada
-                    </a>
-                    <a type="button" class="btn btn-outline-dark" style="z-index: 1;"  (click)="denyFriendRequest(this.cookie.get('cookieSoundTalkSession'),u._id)">
-                      Cancelar
-                    </a>
-                  </div>
+                  <a *ngIf="u._id !== mycookie && !isContact && isRequested && !requestedMe" class="btn btn-outline-dark" style="z-index: 1;">
+                    Solicitud enviada
+                  </a>
+                  <a *ngIf="u._id !== mycookie && !isContact && isRequested && !requestedMe" type="button" class="btn btn-outline-dark" style="z-index: 1;" (click)="sendFriendRequest(this.cookie.get('cookieSoundTalkSession'),u._id)">
+                    Cancelar
+                  </a>
                   <a *ngIf="u._id !== mycookie && isContact" class="btn btn-outline-dark" style="z-index: 1;">
                     Amigos
+                  </a>
+                  <a *ngIf="u._id !== mycookie && isContact" class="btn btn-outline-dark" style="z-index: 1;" (click)="removemyFriend(u._id)">
+                    Eliminar
+                  </a>
+                  <a *ngIf="u._id !== mycookie && !isContact && requestedMe" class="btn btn-outline-dark" style="z-index: 1;" (click)="acceptRequest(u._id)">
+                    Aceptar solicitud
+                  </a>
+                  <a *ngIf="u._id !== mycookie && !isContact && requestedMe" class="btn btn-outline-dark" style="z-index: 1;" (click)="denyRequest(u._id)">
+                    Denegar solicitud
                   </a>
               </div>
               <div class="profile--info ms-3">
@@ -42,8 +49,8 @@
                   <p class="small text-muted mb-0">Posts publicados</p>
                 </div>
                 <div class="px-3">
-                  <p class="mb-1 h5">{{u.contactsid.length}}</p>
-                  <p class="small text-muted mb-0">Amigos</p>
+                  <p type="button" class="mb-1 h5" (click)="seeContacts(u._id)">{{u.contactsid.length}}</p>
+                  <p type="button" class="small text-muted mb-0" (click)="seeContacts(u._id)">Amigos</p>
                 </div>
                 <div class="px-3">
                   <p class="mb-1 h5">{{u.mylikes.length}}</p>
@@ -129,7 +136,7 @@
                       </div>
               
                       <form class="mx-3 mt-3" #commentForm="ngForm" (ngSubmit)="addComment(commentForm,post._id)">
-                        <textarea class="form-control mt-1" id="text" name="text" placeholder="Escribe tu comentario a {{post.username}} aquí..." [(ngModel)]="postsService.createdComment.text"></textarea>
+                        <textarea class="form-control mt-1" id="text" name="text" placeholder="Escribe tu comentario aquí..." [(ngModel)]="postsService.createdComment.text"></textarea>
                         <button type="submit" class="btn btn-success btn-sm mt-3">Subir comentario</button>
                       </form>
                     </a>

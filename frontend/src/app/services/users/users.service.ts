@@ -134,4 +134,8 @@ export class RegisterAndLoginService {
   checkRequests(iduser: string, myid: string){
     return this.http.get(this.url_backendprofile+myid+'/myrequests/checkone/'+iduser)
   }
+
+  removeFriendRequest(iduser: string, myid: string){
+    return this.http.delete(this.url_backendprofile+myid+'/myfriends/deleteone/'+iduser)
+  }
 }

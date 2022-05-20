@@ -29,103 +29,14 @@
                   <div class="petitions">
                     <ul class="list-unstyled mb-0 col-12">
                       <li class="contact p-2">
-                        <a href="" class="d-flex justify-content-between">
-                          <div class="d-flex">
-                            <img src="assets/img/NFT.jpg" alt="avatar" class="d-flex align-self-center me-3 rounded-circle" width="45">
+                        <a class="d-flex justify-content-between">
+                          <div *ngFor="let req of requests" class="d-flex">
+                            <img [src]="'assets/photo/' + req.photoroute" alt="avatar" class="d-flex align-self-center me-3 rounded-circle" width="45" (click)="seeProfile(req._id)">
                             <div class="d-flex pt-1">
-                              <i class="fa-solid fa-user-plus mt-3 mx-2"></i>
-                              <p class="petition--name fw-bold mt-2 border-bottom">Oliveraaaaaaaaaaaaaaaaaa Blackmouth</p>
+                              <p type="button" class="petition--name fw-bold mt-2 border-bottom" (click)="seeProfile(req._id)">{{req.username}}</p>
                             </div>
-                          </div>
-                        </a>
-                      </li><li class="contact p-2">
-                        <a href="" class="d-flex justify-content-between">
-                          <div class="d-flex">
-                            <img src="assets/img/NFT.jpg" alt="avatar" class="d-flex align-self-center me-3 rounded-circle" width="45">
-                            <div class="d-flex pt-1">
-                              <i class="fa-solid fa-user-plus mt-3 mx-2"></i>
-                              <p class="petition--name fw-bold mt-2 border-bottom">Oliver Blackmouth</p>
-                            </div>
-                          </div>
-                        </a>
-                      </li><li class="contact p-2">
-                        <a href="" class="d-flex justify-content-between">
-                          <div class="d-flex">
-                            <img src="assets/img/NFT.jpg" alt="avatar" class="d-flex align-self-center me-3 rounded-circle" width="45">
-                            <div class="d-flex pt-1">
-                              <i class="fa-solid fa-user-plus mt-3 mx-2"></i>
-                              <p class="petition--name fw-bold mt-2 border-bottom">Oliver Blackmouth</p>
-                            </div>
-                          </div>
-                        </a>
-                      </li><li class="contact p-2">
-                        <a href="" class="d-flex justify-content-between">
-                          <div class="d-flex">
-                            <img src="assets/img/NFT.jpg" alt="avatar" class="d-flex align-self-center me-3 rounded-circle" width="45">
-                            <div class="d-flex pt-1">
-                              <i class="fa-solid fa-user-plus mt-3 mx-2"></i>
-                              <p class="petition--name fw-bold mt-2 border-bottom">Oliver Blackmouth</p>
-                            </div>
-                          </div>
-                        </a>
-                      </li><li class="contact p-2">
-                        <a href="" class="d-flex justify-content-between">
-                          <div class="d-flex">
-                            <img src="assets/img/NFT.jpg" alt="avatar" class="d-flex align-self-center me-3 rounded-circle" width="45">
-                            <div class="d-flex pt-1">
-                              <i class="fa-solid fa-user-plus mt-3 mx-2"></i>
-                              <p class="petition--name fw-bold mt-2 border-bottom">Oliver Blackmouth</p>
-                            </div>
-                          </div>
-                        </a>
-                      </li><li class="contact p-2">
-                        <a href="" class="d-flex justify-content-between">
-                          <div class="d-flex">
-                            <img src="assets/img/NFT.jpg" alt="avatar" class="d-flex align-self-center me-3 rounded-circle" width="45">
-                            <div class="d-flex pt-1">
-                              <i class="fa-solid fa-user-plus mt-3 mx-2"></i>
-                              <p class="petition--name fw-bold mt-2 border-bottom">Oliver Blackmouth</p>
-                            </div>
-                          </div>
-                        </a>
-                      </li><li class="contact p-2">
-                        <a href="" class="d-flex justify-content-between">
-                          <div class="d-flex">
-                            <img src="assets/img/NFT.jpg" alt="avatar" class="d-flex align-self-center me-3 rounded-circle" width="45">
-                            <div class="d-flex pt-1">
-                              <i class="fa-solid fa-user-plus mt-3 mx-2"></i>
-                              <p class="petition--name fw-bold mt-2 border-bottom">Oliver Blackmouth</p>
-                            </div>
-                          </div>
-                        </a>
-                      </li><li class="contact p-2">
-                        <a href="" class="d-flex justify-content-between">
-                          <div class="d-flex">
-                            <img src="assets/img/NFT.jpg" alt="avatar" class="d-flex align-self-center me-3 rounded-circle" width="45">
-                            <div class="d-flex pt-1">
-                              <i class="fa-solid fa-user-plus mt-3 mx-2"></i>
-                              <p class="petition--name fw-bold mt-2 border-bottom">Oliver Blackmouth</p>
-                            </div>
-                          </div>
-                        </a>
-                      </li><li class="contact p-2">
-                        <a href="" class="d-flex justify-content-between">
-                          <div class="d-flex">
-                            <img src="assets/img/NFT.jpg" alt="avatar" class="d-flex align-self-center me-3 rounded-circle" width="45">
-                            <div class="d-flex pt-1">
-                              <i class="fa-solid fa-user-plus mt-3 mx-2"></i>
-                              <p class="petition--name fw-bold mt-2 border-bottom">Oliver Blackmouth</p>
-                            </div>
-                          </div>
-                        </a>
-                      </li><li class="contact p-2">
-                        <a href="" class="d-flex justify-content-between">
-                          <div class="d-flex">
-                            <img src="assets/img/NFT.jpg" alt="avatar" class="d-flex align-self-center me-3 rounded-circle" width="45">
-                            <div class="d-flex pt-1">
-                              <i class="fa-solid fa-user-plus mt-3 mx-2"></i>
-                              <p class="petition--name fw-bold mt-2 border-bottom">Oliver Blackmouth</p>
-                            </div>
+                            <p type="button" class="petition--name fw-bold mt-2 border-bottom" (click)="seeProfile(req._id)">Aceptar</p><br>
+                            <p type="button" class="petition--name fw-bold mt-2 border-bottom" (click)="seeProfile(req._id)">Denegar</p>
                           </div>
                         </a>
                       </li>
@@ -134,100 +45,21 @@
                 </div>
               </div>
             
-              <div class="col-md-6 col-lg-7 col-xl-8">
+              <div *ngFor="let contact of contacts" class="col-md-6 col-lg-7 col-xl-8">
                 <h2 class="titles mt-3">Contactos</h2>
                 <div class="contacts">
                   <ul class="list-unstyled mb-0 col-10">
                     <li class="contact p-2 border-bottom">
-                      <a href="#!" class="d-flex justify-content-between">
+                      <a class="d-flex justify-content-between">
                         <div class="d-flex">
-                          <img src="assets/img/NFT.jpg" alt="avatar" class="d-flex align-self-center me-3 rounded-circle" width="60">
+                          <img type="button" [src]="'assets/photo/' + contact.photoroute" alt="avatar" class="d-flex align-self-center me-3 rounded-circle" width="60" (click)="seeProfile(contact._id)">
                           <div class="pt-1">
-                            <p class="contacts--name fw-bold mb-0">Oliver Blackmouth</p>
-                            <p class="contacts--bio small text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt eos eveniet in soluta quam nobis molestiae, cupiditate facere iure sint necessitatibus adipisci perferendis quas quo sapiente? Asperiores ad voluptatem aliquam!</p>
+                            <p type="button" class="contacts--name fw-bold mb-0" (click)="seeProfile(contact._id)">{{contact.username}}</p>
+                            <p class="contacts--bio small text-muted">{{contact.biography}}</p>
                           </div>
-                        </div>
-                      </a>
-                    </li>
-                    <li class="contact p-2 border-bottom">
-                      <a href="#!" class="d-flex justify-content-between">
-                        <div class="d-flex">
-                          <img src="assets/img/NFT.jpg" alt="avatar" class="d-flex align-self-center me-3 rounded-circle" width="60">
-                          <div class="pt-1">
-                            <p class="contacts--name fw-bold mb-0">Oliver Blackmouth</p>
-                            <p class="contacts--bio small text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt eos eveniet in soluta quam nobis molestiae, cupiditate facere iure sint necessitatibus adipisci perferendis quas quo sapiente? Asperiores ad voluptatem aliquam!</p>
-                          </div>
-                        </div>
-                      </a>
-                    </li><li class="contact p-2 border-bottom">
-                      <a href="#!" class="d-flex justify-content-between">
-                        <div class="d-flex">
-                          <img src="assets/img/NFT.jpg" alt="avatar" class="d-flex align-self-center me-3 rounded-circle" width="60">
-                          <div class="pt-1">
-                            <p class="contacts--name fw-bold mb-0">Oliver Blackmouth</p>
-                            <p class="contacts--bio small text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt eos eveniet in soluta quam nobis molestiae, cupiditate facere iure sint necessitatibus adipisci perferendis quas quo sapiente? Asperiores ad voluptatem aliquam!</p>
-                          </div>
-                        </div>
-                      </a>
-                    </li><li class="contact p-2 border-bottom">
-                      <a href="#!" class="d-flex justify-content-between">
-                        <div class="d-flex">
-                          <img src="assets/img/NFT.jpg" alt="avatar" class="d-flex align-self-center me-3 rounded-circle" width="60">
-                          <div class="pt-1">
-                            <p class="contacts--name fw-bold mb-0">Oliver Blackmouth</p>
-                            <p class="contacts--bio small text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt eos eveniet in soluta quam nobis molestiae, cupiditate facere iure sint necessitatibus adipisci perferendis quas quo sapiente? Asperiores ad voluptatem aliquam!</p>
-                          </div>
-                        </div>
-                      </a>
-                    </li><li class="contact p-2 border-bottom">
-                      <a href="#!" class="d-flex justify-content-between">
-                        <div class="d-flex">
-                          <img src="assets/img/NFT.jpg" alt="avatar" class="d-flex align-self-center me-3 rounded-circle" width="60">
-                          <div class="pt-1">
-                            <p class="contacts--name fw-bold mb-0">Oliver Blackmouth</p>
-                            <p class="contacts--bio small text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt eos eveniet in soluta quam nobis molestiae, cupiditate facere iure sint necessitatibus adipisci perferendis quas quo sapiente? Asperiores ad voluptatem aliquam!</p>
-                          </div>
-                        </div>
-                      </a>
-                    </li><li class="contact p-2 border-bottom">
-                      <a href="#!" class="d-flex justify-content-between">
-                        <div class="d-flex">
-                          <img src="assets/img/NFT.jpg" alt="avatar" class="d-flex align-self-center me-3 rounded-circle" width="60">
-                          <div class="pt-1">
-                            <p class="contacts--name fw-bold mb-0">Oliver Blackmouth</p>
-                            <p class="contacts--bio small text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt eos eveniet in soluta quam nobis molestiae, cupiditate facere iure sint necessitatibus adipisci perferendis quas quo sapiente? Asperiores ad voluptatem aliquam!</p>
-                          </div>
-                        </div>
-                      </a>
-                    </li><li class="contact p-2 border-bottom">
-                      <a href="#!" class="d-flex justify-content-between">
-                        <div class="d-flex">
-                          <img src="assets/img/NFT.jpg" alt="avatar" class="d-flex align-self-center me-3 rounded-circle" width="60">
-                          <div class="pt-1">
-                            <p class="contacts--name fw-bold mb-0">Oliver Blackmouth</p>
-                            <p class="contacts--bio small text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt eos eveniet in soluta quam nobis molestiae, cupiditate facere iure sint necessitatibus adipisci perferendis quas quo sapiente? Asperiores ad voluptatem aliquam!</p>
-                          </div>
-                        </div>
-                      </a>
-                    </li><li class="contact p-2 border-bottom">
-                      <a href="#!" class="d-flex justify-content-between">
-                        <div class="d-flex">
-                          <img src="assets/img/NFT.jpg" alt="avatar" class="d-flex align-self-center me-3 rounded-circle" width="60">
-                          <div class="pt-1">
-                            <p class="contacts--name fw-bold mb-0">Oliver Blackmouth</p>
-                            <p class="contacts--bio small text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt eos eveniet in soluta quam nobis molestiae, cupiditate facere iure sint necessitatibus adipisci perferendis quas quo sapiente? Asperiores ad voluptatem aliquam!</p>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                    <li class="contact p-2 border-bottom">
-                      <a href="#!" class="d-flex justify-content-between">
-                        <div class="d-flex">
-                          <img src="assets/img/NFT.jpg" alt="avatar" class="d-flex align-self-center me-3 rounded-circle" width="60">
-                          <div class="pt-1">
-                            <p class="contacts--name fw-bold mb-0">Oliver Blackmouth</p>
-                            <p class="contacts--bio small text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt eos eveniet in soluta quam nobis molestiae, cupiditate facere iure sint necessitatibus adipisci perferendis quas quo sapiente? Asperiores ad voluptatem aliquam!</p>
-                          </div>
+                          <a *ngIf="contact._id !== mycookie" class="btn btn-outline-dark">
+                            Enviar mensaje
+                          </a>
                         </div>
                       </a>
                     </li>
