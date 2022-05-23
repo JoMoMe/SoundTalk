@@ -22,7 +22,7 @@ export class RegisterAndLoginService {
   url_backendphotoprofile = environment.api + '/menu/profile/profilephoto/'
   url_backendmenu = environment.api + '/menu/posts'
   url_backendprofile = environment.api + '/menu/profile/user/'
-
+  url_backendchats = environment.api + '/menu/chats'
 
   createdUser: Users =  {
     username: '',
