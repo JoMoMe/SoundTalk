@@ -14,7 +14,7 @@ export class RegisterAndLoginService {
 
   url_backendregister = '142.132.239.200/register'
   url_backendremember = '142.132.239.200/rememberpassword'
-  url_backendlogin = '142.132.239.200/login'
+  url_backendlogin = '/login'
   url_backendcookie = '142.132.239.200/login/cookie/'
   url_backendphotoprofile = '142.132.239.200/menu/profile/profilephoto/'
   url_backendmenu = '142.132.239.200/menu/posts'
