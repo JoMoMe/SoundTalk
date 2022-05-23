@@ -5,7 +5,6 @@ import { updatedusers as Updatedusers } from 'src/app/models/updatedusers';
 import { Form, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { contacts as Contacts } from 'src/app/models/contacts';
-import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -13,13 +12,13 @@ import { environment } from 'src/environments/environment.prod';
 export class RegisterAndLoginService {
   constructor(private http: HttpClient, public router: Router) {}
 
-  url_backendregister = environment.api + '/register'
-  url_backendremember = environment.api + '/rememberpassword'
-  url_backendlogin = environment.api + '/login'
-  url_backendcookie = environment.api + '/login/cookie/'
-  url_backendphotoprofile = environment.api + '/menu/profile/profilephoto/'
-  url_backendmenu = environment.api + '/menu/posts'
-  url_backendprofile = environment.api + '/menu/profile/user/'
+  url_backendregister = '142.132.239.200/register'
+  url_backendremember = '142.132.239.200/rememberpassword'
+  url_backendlogin = '142.132.239.200/login'
+  url_backendcookie = '142.132.239.200/login/cookie/'
+  url_backendphotoprofile = '142.132.239.200/menu/profile/profilephoto/'
+  url_backendmenu = '142.132.239.200/menu/posts'
+  url_backendprofile = '142.132.239.200/menu/profile/user/'
 
 
   createdUser: Users =  {
@@ -99,7 +98,7 @@ export class RegisterAndLoginService {
   }
 
   verifyToken(token: string){
-    return this.http.get(environment.api + '/validate/' + token)
+    return this.http.get('142.132.239.200/validate/' + token)
   }
 
   getUserInfo(userid: string){
@@ -115,7 +114,7 @@ export class RegisterAndLoginService {
   }
 
   updatemyUser(updatedUser: Updatedusers){
-    return this.http.put(environment.api + '/menu/profile/edit/' +updatedUser._id, updatedUser)
+    return this.http.put('142.132.239.200/menu/profile/edit/'+updatedUser._id, updatedUser)
   }
   
   addFriendRequest(contacts: Contacts){
