@@ -8,7 +8,9 @@ const app = express();
 
 app.use(cookieParser());
 
-app.listen(4000, '142.132.239.200',onServerListening);
+app.listen('4000','142.132.239.200',()=>{
+    console.log("Server working");
+})
 
 
 //PUERTO DE CONEXIÓN DE BACKEND 4001 Y PERMISO DE
