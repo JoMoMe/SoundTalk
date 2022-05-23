@@ -7,6 +7,7 @@ import { messages as Messages } from 'src/app/models/messages';
 import { Form, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { contacts as Contacts } from 'src/app/models/contacts';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -14,14 +15,14 @@ import { contacts as Contacts } from 'src/app/models/contacts';
 export class RegisterAndLoginService {
   constructor(private http: HttpClient, public router: Router) {}
 
-  url_backendregister = 'http://localhost:4000/register'
-  url_backendremember = 'http://localhost:4000/rememberpassword'
-  url_backendlogin = 'http://localhost:4000/login'
-  url_backendcookie = 'http://localhost:4000/login/cookie/'
-  url_backendphotoprofile = 'http://localhost:4000/menu/profile/profilephoto/'
-  url_backendmenu = 'http://localhost:4000/menu/posts'
-  url_backendprofile = 'http://localhost:4000/menu/profile/user/'
-  url_backendchats = 'http://localhost:4000/menu/chats/'
+  url_backendregister = environment.api + '/register'
+  url_backendremember = environment.api + '/rememberpassword'
+  url_backendlogin = environment.api + '/login'
+  url_backendcookie = environment.api + '/login/cookie/'
+  url_backendphotoprofile = environment.api + '/menu/profile/profilephoto/'
+  url_backendmenu = environment.api + '/menu/posts'
+  url_backendprofile = environment.api + '/menu/profile/user/'
+
 
   createdUser: Users =  {
     username: '',
@@ -103,7 +104,7 @@ export class RegisterAndLoginService {
   }
 
   verifyToken(token: string){
-    return this.http.get('142.132.239.200/validate/' + token)
+    return this.http.get(environment.api + '/validate/' + token)
   }
 
   getUserInfo(userid: string){
@@ -119,7 +120,7 @@ export class RegisterAndLoginService {
   }
 
   updatemyUser(updatedUser: Updatedusers){
-    return this.http.put('142.132.239.200/menu/profile/edit/'+updatedUser._id, updatedUser)
+    return this.http.put(environment.api + '/menu/profile/edit/'+updatedUser._id, updatedUser)
   }
   
   addFriendRequest(contacts: Contacts){
