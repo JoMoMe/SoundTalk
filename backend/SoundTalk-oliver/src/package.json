@@ -28,7 +28,6 @@
     "nodemailer": "^6.7.5",
     "nodemon": "^2.0.16",
     "package.json": "^2.0.1",
-    "sharp": "^0.30.4",
     "upload": "^1.1.1",
     "uuid": "^8.3.2",
     "webpack": "^5.72.0"
