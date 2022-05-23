@@ -10,7 +10,7 @@ const promoCtrl = require('../controllers/promo.controller.js')
 
 //TRATAMIENTO DE IMAGENES
 const storage = multer.diskStorage({
-    destination: 'assets/photo',
+    destination: '../../../SoundTalk/sound-talk/assets/photo',
     filename: (req, file, cb) => {
         cb(null, uuidv4() + path.extname(file.originalname))
     }
