@@ -8,13 +8,10 @@ const app = express();
 
 app.use(cookieParser());
 
-app.listen('4000','142.132.239.200',()=>{
-    console.log("Server working");
-})
-
 
 //PUERTO DE CONEXIÓN DE BACKEND 4001 Y PERMISO DE
 //ENTRADA DE PUERTO FRONTEND 3077
+app.set('port', process.env.PORT || 4000);
 app.use(cors({origin: "142.132.239.200"}))
 
 //TRADUCCION DE JSONS, HTMLS Y MORGAN
