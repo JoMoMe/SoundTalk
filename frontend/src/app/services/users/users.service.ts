@@ -15,13 +15,14 @@ import { environment } from 'src/environments/environment.prod';
 export class RegisterAndLoginService {
   constructor(private http: HttpClient, public router: Router) {}
 
-  url_backendregister = environment.api + '/register'
-  url_backendremember = environment.api + '/rememberpassword'
-  url_backendlogin = environment.api + '/login'
-  url_backendcookie = environment.api + '/login/cookie/'
-  url_backendphotoprofile = environment.api + '/menu/profile/profilephoto/'
-  url_backendmenu = environment.api + '/menu/posts'
-  url_backendprofile = environment.api + '/menu/profile/user/'
+  url_backendregister = 'http://localhost:4000/register'
+  url_backendremember = 'http://localhost:4000/rememberpassword'
+  url_backendlogin = 'http://localhost:4000/login'
+  url_backendcookie = 'http://localhost:4000/login/cookie/'
+  url_backendphotoprofile = 'http://localhost:4000/menu/profile/profilephoto/'
+  url_backendmenu = 'http://localhost:4000/menu/posts'
+  url_backendprofile = 'http://localhost:4000/menu/profile/user/'
+  url_backendchats = 'http://localhost:4000/menu/chats/'
 
 
   createdUser: Users =  {

@@ -207,20 +207,16 @@ export class MenuComponent implements OnInit {
     )
   }
 
-  showComments(commentsid: string){
-    this.count+=1
-    if (this.count > 1){
-      if (this.commentsshow == true){
-        this.commentsshow = false
+  showComments(commentsid: string, postid: string){
+      this.count+=1  
+      this.commentsshow = postid
+      if (this.count == 2){
+        this.commentsshow = null
+        this.count=0
       }
       else{
-        this.commentsshow = true
+        this.downloadComments(commentsid)
       }
-    }
-    else{
-      this.downloadComments(commentsid)
-      this.commentsshow = true
-    }
   }
 
   downloadComments(comments: any){
@@ -268,8 +264,6 @@ export class MenuComponent implements OnInit {
   }
 
   filterbyNews(){
-    this.commentsshow = false
-    this.count = 0
     this.registerandloginService.findUserByID(this.cookie.get('cookieSoundTalkSession')).subscribe(
       res => {
         console.log(res)
@@ -339,8 +333,6 @@ export class MenuComponent implements OnInit {
   }
 
   filterbyGossips(){
-    this.commentsshow = false
-    this.count = 0
     this.registerandloginService.findUserByID(this.cookie.get('cookieSoundTalkSession')).subscribe(
       res => {
         console.log(res)
@@ -410,8 +402,6 @@ export class MenuComponent implements OnInit {
   }
 
   filterbyQAndA(){
-    this.commentsshow = false
-    this.count = 0
     this.registerandloginService.findUserByID(this.cookie.get('cookieSoundTalkSession')).subscribe(
       res => {
         console.log(res)
@@ -481,8 +471,6 @@ export class MenuComponent implements OnInit {
   }
 
   filterbyMemes(){
-    this.commentsshow = false
-    this.count = 0
     this.registerandloginService.findUserByID(this.cookie.get('cookieSoundTalkSession')).subscribe(
       res => {
         console.log(res)

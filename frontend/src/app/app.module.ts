@@ -64,6 +64,7 @@ import { ChangepassComponent } from './components/changepass/changepass.componen
     FormsModule,
     FontAwesomeModule,
     ReactiveFormsModule,
+    Ng2SearchPipeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

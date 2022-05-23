@@ -19,6 +19,9 @@ export class HeaderLoggedComponent implements OnInit {
   public myUser: any
   public myPhoto: any
   public requests: any
+  public commentsshow: any
+  public count = 0
+  public searchContact: any
 
   ngOnInit(): void {
     this.getUser()
@@ -96,6 +99,22 @@ export class HeaderLoggedComponent implements OnInit {
     },
       err=> console.error(err)
     )
+  }
+
+  showAllContacts(){
+    this.count+=1  
+    this.commentsshow = true
+    if (this.count == 2){
+      this.commentsshow = false
+      this.count=0
+    }
+    else{
+      this.downloadAllUsers(this.myUser._id)
+    }
+  }
+
+  downloadAllUsers(myid: string){
+
   }
 
 }

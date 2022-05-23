@@ -83,11 +83,8 @@ exports.getOneChat = async (req, res) => {
 
 exports.putMessageInChat = async (req, res) => {
     try {
-        var objectId = mongoose.Types.ObjectId(req.params.id);
-        var objectId2 = mongoose.Types.ObjectId(req.params.userid);
-
-        const mychats = await Chats.findOne({userid1: objectId, userid2: objectId2})
-        const mychats2 = await Chats.findOne({userid2: objectId2, userid2: objectId})
+        const mychats = await Chats.findOne({userid1: req.params.id, userid2: req.params.userid})
+        const mychats2 = await Chats.findOne({userid1: req.params.userid, userid2: req.params.id})
         if (mychats){
             let messages = new Messages(req.body)
             await messages.save()
@@ -104,7 +101,7 @@ exports.putMessageInChat = async (req, res) => {
             mychats2.save()
             res.json("Subido con éxito")
         }
-        if (mychats == null && mychats2 == null){ 
+        if (mychats == null && mychats2 == null){
             let messages = new Messages(req.body)
             await messages.save()
             if (messages){
@@ -129,7 +126,7 @@ exports.deleteMessageInChat = async (req, res) => {
         var objectId2 = mongoose.Types.ObjectId(req.params.userid);
 
         const mychats = await Chats.findOne({userid1: objectId, userid2: objectId2})
-        const mychats2 = await Chats.findOne({userid2: objectId2, userid2: objectId})
+        const mychats2 = await Chats.findOne({userid1: objectId2, userid2: objectId})
         if (mychats){
             await Messages.findByIdAndRemove({_id: req.params.messageid})
 

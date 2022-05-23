@@ -25,6 +25,7 @@ export class ContactsComponent implements OnInit {
   public contacts: any
   public myuserinfo: any
   public requests: any
+  public searchContact: any
 
   ngOnInit(): void {
     var cookiefound = this.cookie.get('cookieSoundTalkSession')

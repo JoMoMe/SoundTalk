@@ -102,7 +102,7 @@
                       </div>
               
                       <div class="card-footer text-muted d-flex align-items-center justify-content-between">
-                        <h6 class="comments pointer my-1" (click)="showComments(post.commentsid)">Comentarios ({{post.commentsid.length}})</h6>
+                        <h6 class="comments pointer my-1" (click)="showComments(post.commentsid, post._id)">Comentarios ({{post.commentsid.length}})</h6>
                         <div *ngIf="u._id == mycookie" class="post--trash pointer" (click)="deletePost(u._id, post._id)">
                           <i class="fa-solid fa-trash-can"></i>
                         </div>

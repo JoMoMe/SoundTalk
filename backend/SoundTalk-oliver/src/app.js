@@ -12,7 +12,7 @@ app.use(cookieParser());
 //PUERTO DE CONEXIÓN DE BACKEND 4001 Y PERMISO DE
 //ENTRADA DE PUERTO FRONTEND 3077
 app.set('port', process.env.PORT || 4000);
-app.use(cors({origin: "142.132.239.200"}))
+app.use(cors({origin: 4002}))
 
 //TRADUCCION DE JSONS, HTMLS Y MORGAN
 app.use(express.json());

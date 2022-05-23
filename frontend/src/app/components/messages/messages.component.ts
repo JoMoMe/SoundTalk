@@ -28,6 +28,7 @@ export class MessagesComponent implements OnInit {
   public showForm: boolean | undefined
   public count = 0
   public idmensactual: any
+  public searchContact: any
 
   ngOnInit(): void {
     var cookiefound = this.cookie.get('cookieSoundTalkSession')

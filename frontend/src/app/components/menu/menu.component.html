@@ -80,7 +80,7 @@
         </div>
 
         <div class="card-footer text-muted d-flex align-items-center justify-content-between">
-          <h6 class="comments pointer my-1" (click)="showComments(post.commentsid)">Comentarios ({{post.commentsid.length}})</h6>
+          <h6 class="comments pointer my-1" (click)="showComments(post.commentsid, post._id)">Comentarios ({{post.commentsid.length}})</h6>
           <a type="button" (click)="putLike(post._id)" class="my-1 post--up">
             <i class="fa-solid fa-circle-up"> {{post.likes.length}}</i>
             <div *ngFor="let like of post.likes" >
@@ -88,7 +88,7 @@
             </div>
           </a>
         </div>
-        <div *ngIf="commentsshow == true"class="my-3">
+        <div *ngIf="commentsshow == post._id"class="my-3">
           <div *ngFor="let comment of post.commentsid" class="card mb-3 mx-2">
             <div class="card-body">
               <div class="d-flex justify-content-between">

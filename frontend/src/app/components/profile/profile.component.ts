@@ -136,21 +136,17 @@ export class ProfileComponent implements OnInit {
     )
   }
 
-  showComments(commentsid: string){
-    this.count+=1
-    if (this.count > 1){
-      if (this.commentsshow == true){
-        this.commentsshow = false
-      }
-      else{
-        this.commentsshow = true
-      }
+  showComments(commentsid: string, postid: string){
+    this.count+=1  
+    this.commentsshow = postid
+    if (this.count == 2){
+      this.commentsshow = null
+      this.count=0
     }
     else{
       this.downloadComments(commentsid)
-      this.commentsshow = true
     }
-  }
+}
 
   downloadComments(comments: any){
     for (let x = 0; x < comments.length; x++){

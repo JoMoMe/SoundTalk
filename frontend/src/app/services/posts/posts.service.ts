@@ -14,10 +14,10 @@ import { environment } from 'src/environments/environment.prod';
 export class PostsService {
   constructor(private http: HttpClient, public router: Router) {}
 
-  url_menu = environment.api + '/menu'
-  url_photo = environment.api + '/menu/photos'
-  url_audio = environment.api + '/menu/audio'
-  url_myposts = environment.api + '/menu/profile/user/'
+  url_menu = 'http://localhost:4000/menu'
+  url_photo = 'http://localhost:4000/menu/photos'
+  url_audio = 'http://localhost:4000/menu/audio'
+  url_myposts = 'http://localhost:4000/menu/profile/user/'
 
   createdPost: Posts =  {
     title: '',
