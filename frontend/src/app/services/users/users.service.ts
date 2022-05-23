@@ -103,7 +103,7 @@ export class RegisterAndLoginService {
   }
 
   verifyToken(token: string){
-    return this.http.get('http://localhost:4000/validate/' + token)
+    return this.http.get('142.132.239.200/validate/' + token)
   }
 
   getUserInfo(userid: string){
@@ -119,7 +119,7 @@ export class RegisterAndLoginService {
   }
 
   updatemyUser(updatedUser: Updatedusers){
-    return this.http.put('http://localhost:4000/menu/profile/edit/'+updatedUser._id, updatedUser)
+    return this.http.put('142.132.239.200/menu/profile/edit/'+updatedUser._id, updatedUser)
   }
   
   addFriendRequest(contacts: Contacts){

@@ -12,7 +12,6 @@ const multer = require('multer');
 const {Readable} = require('stream');
 const audiofiles = require('../models/audio.files');
 const { ObjectID } = require('bson');
-const sharp = require('sharp');
 const { v4: uuidv4 } = require('uuid');
 
 //CREACION DE UN AUDIO EN RUTA menu/audio 
