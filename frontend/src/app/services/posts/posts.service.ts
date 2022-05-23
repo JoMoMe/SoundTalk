@@ -13,10 +13,10 @@ import { ObjectId } from 'mongodb';
 export class PostsService {
   constructor(private http: HttpClient, public router: Router) {}
 
-  url_menu = '142.132.239.200/menu'
-  url_photo = '142.132.239.200/menu/photos'
-  url_audio = '142.132.239.200/menu/audio'
-  url_myposts = '142.132.239.200/menu/profile/user/'
+  url_menu = '/menu'
+  url_photo = '/menu/photos'
+  url_audio = '/menu/audio'
+  url_myposts = '/menu/profile/user/'
 
   createdPost: Posts =  {
     title: '',
@@ -48,11 +48,11 @@ export class PostsService {
   }
 
   getPhoto(id: string){
-    return this.http.get('142.132.239.200/menu/photos/'+id)
+    return this.http.get('/menu/photos/'+id)
   }
 
   getAudio(id: string){
-    return this.http.get('142.132.239.200/menu/audio/'+id, {responseType: 'blob'})
+    return this.http.get('/menu/audio/'+id, {responseType: 'blob'})
   }
 
   createPost(posts: Posts, userid: string, audioid: string, photoid: string, posttype: string){
@@ -83,16 +83,16 @@ export class PostsService {
     const idusercomment = JSON.parse(idstring)
 
     comments.userid=idusercomment
-    return this.http.post('142.132.239.200/menu/posts/'+postid+'/comment', comments)
+    return this.http.post('/menu/posts/'+postid+'/comment', comments)
   }
 
   putLikeinPost(userid: string, postid: string){
     const iduser = {'id': userid};
-    return this.http.post('142.132.239.200/menu/posts/'+postid+'/like', iduser)
+    return this.http.post('/menu/posts/'+postid+'/like', iduser)
   }
 
   deleteComment(commentid: string, postid: string){
-    return this.http.delete('142.132.239.200/menu/posts/'+postid+'/comment/'+commentid)
+    return this.http.delete('/menu/posts/'+postid+'/comment/'+commentid)
   }
 
   deleteAPost(userid: string, postid: string){
@@ -104,6 +104,6 @@ export class PostsService {
     const idusercomment = JSON.parse(idstring)
 
     comments.userid=idusercomment
-    return this.http.post('142.132.239.200/menu/posts/'+postid+'/comment', comments)
+    return this.http.post('/menu/posts/'+postid+'/comment', comments)
   }
 }
