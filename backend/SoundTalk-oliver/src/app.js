@@ -21,13 +21,13 @@ app.use(morgan('dev'));
 
 
 //RUTAS
-app.use("/login",require('./routes/loginRoutes.js'))
-app.use("/login/cookie",require('./routes/cookieRoutes.js'))
-app.use("/register",require('./routes/registerRoutes.js'))
-app.use("/validate",require('./routes/validateRoutes.js'))
-app.use("/rememberpassword",require('./routes/rememberPasswordRoutes.js'))
-app.use("/menu",require('./routes/menuRoutes.js'))
-app.use("/menu/chats",require('./routes/chatRoutes.js'))
-app.use("/menu/profile",require('./routes/userRoutes.js'))
+app.set("/login",require('./routes/loginRoutes.js'))
+app.set("/login/cookie",require('./routes/cookieRoutes.js'))
+app.set("/register",require('./routes/registerRoutes.js'))
+app.set("/validate",require('./routes/validateRoutes.js'))
+app.set("/rememberpassword",require('./routes/rememberPasswordRoutes.js'))
+app.set("/menu",require('./routes/menuRoutes.js'))
+app.set("/menu/chats",require('./routes/chatRoutes.js'))
+app.set("/menu/profile",require('./routes/userRoutes.js'))
 
 module.exports = app;
