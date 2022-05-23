@@ -73,6 +73,10 @@
             },
             "development": {
               "browserTarget": "SoundTalk:build:development"
+            },
+            "options": { 
+              "browserTarget": "SoundTalk:build", 
+              "proxyConfig": "proxy.conf.json" 
             }
           },
           "defaultConfiguration": "development"
