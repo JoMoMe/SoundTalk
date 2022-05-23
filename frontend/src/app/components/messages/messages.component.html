@@ -1,6 +1,6 @@
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ HEADER ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-<app-header-logged></app-header-logged>
+  <app-header-logged></app-header-logged>
 
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Messages ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
@@ -17,7 +17,7 @@
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Search bar ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                   
                   <div class="input-group rounded mb-3">
-                    <input type="search" class="form-control rounded" placeholder="Busca..." aria-label="Search" aria-describedby="search-addon" />
+                    <input type="search" class="form-control rounded" placeholder="Busca un contacto..." aria-label="Search" aria-describedby="search-addon" />
                     <span class="input-group-text border-0" id="search-addon">
                       <i class="fas fa-search"></i>
                     </span>
@@ -27,109 +27,17 @@
                   
                   <div class="contacts">
                     <ul class="list-unstyled mb-0">
-                      <li class="contact p-2 border-bottom">
-                        <a href="#!" class="d-flex justify-content-between">
-                          <div class="d-flex flex-row">
-                            <img src="assets/img/NFT.jpg" alt="avatar" class="d-flex align-self-center me-3 rounded-circle" width="60">
-                            <div class="pt-1">
-                              <p class="contacts--name fw-bold mb-0">Oliver Blackmouth</p>
-                              <p class="contacts--lastmessage small text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt eos eveniet in soluta quam nobis molestiae, cupiditate facere iure sint necessitatibus adipisci perferendis quas quo sapiente? Asperiores ad voluptatem aliquam!</p>
+                      <li *ngFor="let contact of contacts" class="contact p-2 border-bottom">
+                        <a class="d-flex justify-content-between">
+                          <div class="d-flex flex-row" type="button">
+                            <img [src]="'assets/photo/' + contact.photoroute" alt="avatar" class="d-flex align-self-center me-3 rounded-circle" width="60">
+                            <div class="pt-1" (click)="seeProfile(contact._id)">
+                              <p class="contacts--name fw-bold mb-0">{{contact.username}}</p>
+                              <p class="contacts--lastmessage small text-muted">{{contact.biography}}</p>
                             </div>
                           </div>
                           <div class="pt-1">
-                            <span class="badge bg-danger rounded-pill float-end"><i class="circle fa-solid fa-circle"></i></span>
-                          </div>
-                        </a>
-                      </li>
-                      <li class="contact p-2 border-bottom">
-                        <a href="#!" class="d-flex justify-content-between">
-                          <div class="d-flex flex-row">
-                            <img src="assets/img/NFT.jpg" alt="avatar" class="d-flex align-self-center me-3 rounded-circle" width="60">
-                            <div class="pt-1">
-                              <p class="contacts--name fw-bold mb-0">Oliver Blackmouth</p>
-                              <p class="contacts--lastmessage small text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt eos eveniet in soluta quam nobis molestiae, cupiditate facere iure sint necessitatibus adipisci perferendis quas quo sapiente? Asperiores ad voluptatem aliquam!</p>
-                            </div>
-                          </div>
-                          <div class="pt-1">
-                            <span class="badge bg-danger rounded-pill float-end"><i class="circle fa-solid fa-circle"></i></span>
-                          </div>
-                        </a>
-                      </li><li class="contact p-2 border-bottom">
-                        <a href="#!" class="d-flex justify-content-between">
-                          <div class="d-flex flex-row">
-                            <img src="assets/img/NFT.jpg" alt="avatar" class="d-flex align-self-center me-3 rounded-circle" width="60">
-                            <div class="pt-1">
-                              <p class="contacts--name fw-bold mb-0">Oliver Blackmouth</p>
-                              <p class="contacts--lastmessage small text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt eos eveniet in soluta quam nobis molestiae, cupiditate facere iure sint necessitatibus adipisci perferendis quas quo sapiente? Asperiores ad voluptatem aliquam!</p>
-                            </div>
-                          </div>
-                          <div class="pt-1">
-                            <span class="badge bg-danger rounded-pill float-end"><i class="circle fa-solid fa-circle"></i></span>
-                          </div>
-                        </a>
-                      </li><li class="contact p-2 border-bottom">
-                        <a href="#!" class="d-flex justify-content-between">
-                          <div class="d-flex flex-row">
-                            <img src="assets/img/NFT.jpg" alt="avatar" class="d-flex align-self-center me-3 rounded-circle" width="60">
-                            <div class="pt-1">
-                              <p class="contacts--name fw-bold mb-0">Oliver Blackmouth</p>
-                              <p class="contacts--lastmessage small text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt eos eveniet in soluta quam nobis molestiae, cupiditate facere iure sint necessitatibus adipisci perferendis quas quo sapiente? Asperiores ad voluptatem aliquam!</p>
-                            </div>
-                          </div>
-                          <div class="pt-1">
-                            <span class="badge bg-danger rounded-pill float-end"><i class="circle fa-solid fa-circle"></i></span>
-                          </div>
-                        </a>
-                      </li><li class="contact p-2 border-bottom">
-                        <a href="#!" class="d-flex justify-content-between">
-                          <div class="d-flex flex-row">
-                            <img src="assets/img/NFT.jpg" alt="avatar" class="d-flex align-self-center me-3 rounded-circle" width="60">
-                            <div class="pt-1">
-                              <p class="contacts--name fw-bold mb-0">Oliver Blackmouth</p>
-                              <p class="contacts--lastmessage small text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt eos eveniet in soluta quam nobis molestiae, cupiditate facere iure sint necessitatibus adipisci perferendis quas quo sapiente? Asperiores ad voluptatem aliquam!</p>
-                            </div>
-                          </div>
-                          <div class="pt-1">
-                            <span class="badge bg-danger rounded-pill float-end"><i class="circle fa-solid fa-circle"></i></span>
-                          </div>
-                        </a>
-                      </li><li class="contact p-2 border-bottom">
-                        <a href="#!" class="d-flex justify-content-between">
-                          <div class="d-flex flex-row">
-                            <img src="assets/img/NFT.jpg" alt="avatar" class="d-flex align-self-center me-3 rounded-circle" width="60">
-                            <div class="pt-1">
-                              <p class="contacts--name fw-bold mb-0">Oliver Blackmouth</p>
-                              <p class="contacts--lastmessage small text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt eos eveniet in soluta quam nobis molestiae, cupiditate facere iure sint necessitatibus adipisci perferendis quas quo sapiente? Asperiores ad voluptatem aliquam!</p>
-                            </div>
-                          </div>
-                          <div class="pt-1">
-                            <span class="badge bg-danger rounded-pill float-end"><i class="circle fa-solid fa-circle"></i></span>
-                          </div>
-                        </a>
-                      </li><li class="contact p-2 border-bottom">
-                        <a href="#!" class="d-flex justify-content-between">
-                          <div class="d-flex flex-row">
-                            <img src="assets/img/NFT.jpg" alt="avatar" class="d-flex align-self-center me-3 rounded-circle" width="60">
-                            <div class="pt-1">
-                              <p class="contacts--name fw-bold mb-0">Oliver Blackmouth</p>
-                              <p class="contacts--lastmessage small text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt eos eveniet in soluta quam nobis molestiae, cupiditate facere iure sint necessitatibus adipisci perferendis quas quo sapiente? Asperiores ad voluptatem aliquam!</p>
-                            </div>
-                          </div>
-                          <div class="pt-1">
-                            <span class="badge bg-danger rounded-pill float-end"><i class="circle fa-solid fa-circle"></i></span>
-                          </div>
-                        </a>
-                      </li><li class="contact p-2 border-bottom">
-                        <a href="#!" class="d-flex justify-content-between">
-                          <div class="d-flex flex-row">
-                            <img src="assets/img/NFT.jpg" alt="avatar" class="d-flex align-self-center me-3 rounded-circle" width="60">
-                            <div class="pt-1">
-                              <p class="contacts--name fw-bold mb-0">Oliver Blackmouth</p>
-                              <p class="contacts--lastmessage small text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt eos eveniet in soluta quam nobis molestiae, cupiditate facere iure sint necessitatibus adipisci perferendis quas quo sapiente? Asperiores ad voluptatem aliquam!</p>
-                            </div>
-                          </div>
-                          <div class="pt-1">
-                            <span class="badge bg-danger rounded-pill float-end"><i class="circle fa-solid fa-circle"></i></span>
+                            <span type="button" class="badge bg-danger rounded-pill float-end" (click)="openChat(contact._id)"><i class="fa fa-envelope"></i></span>
                           </div>
                         </a>
                       </li>
@@ -140,52 +48,44 @@
 
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Chat ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-              <div class="col-md-6 col-lg-7 col-xl-8">
+              <div *ngFor="let a of actualuser" class="col-md-6 col-lg-7 col-xl-8">
                 <div class="chat pt-3 pe-3">
-                  <div class="d-flex flex-row justify-content-start">
-                    <img src="assets/img/JMM.jpg" class="chat--image rounded-circle mt-2" alt="avatar contact">
-                    <div>
-                      <p class="chat--contact small p-2 ms-3 mb-1 rounded-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                      <p class="small ms-3 mb-3 rounded-3 text-muted">12:00 PM | Aug 13</p>
+                  <div class="d-flex flex-row justify-content-start" (click)="seeProfile(a._id)" type="button">
+                    <img [src]="'assets/photo/' + a.photoroute" class="d-flex align-self-center me-3 rounded-circle" width="60">
+                    <p class="contacts--name fw-bold mb-0">{{a.username}}</p>
+                  </div>
+                  <div *ngFor="let message of messages">
+                    <div *ngFor="let mens of message" class="d-flex flex-row justify-content-start">
+                      <div *ngIf="mens.userid == mycookie">
+                        <div *ngFor="let u of myuser">
+                          <img [src]="'assets/photo/' + u.photoroute" width="20" (click)="seeProfile(u._id)" type="button"><i type="button" class="fa fa-trash" aria-hidden="true" (click)="deleteMessage(a._id, mens._id)"></i><i type="button" class="fas fa-edit" (click)="showEditForm(mens._id)"></i>
+                          <p class="chat--contact small p-2 ms-3 mb-1 rounded-3">{{mens.text}}</p>
+                          <p class="small ms-3 mb-3 rounded-3 text-muted">{{mens.createdAt}}</p>
+                        </div>
+                      </div>
+                      <div *ngIf="mens.userid !== mycookie">
+                        <img [src]="'assets/photo/' + a.photoroute" width="20" (click)="seeProfile(a._id)" type="button">
+                        <p class="chat--contact small p-2 ms-3 mb-1 rounded-3">{{mens.text}}</p>
+                        <p class="small ms-3 mb-3 rounded-3 text-muted">{{mens.createdAt}}</p>
+                      </div>
                     </div>
                   </div>
-                  <div class="d-flex flex-row justify-content-end">
-                    <div>
-                      <p class="chat--user small p-2 me-3 mb-1 text-white rounded-3 bg-primary">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                      <p class="small me-3 mb-3 rounded-3 text-muted float-end">12:00 PM | Aug 13</p>
-                    </div>
-                    <img src="assets/img/NFT.jpg" class="chat--image rounded-circle  mt-2" alt="avatar user">
-                  </div>
-                  <div class="d-flex flex-row justify-content-start">
-                    <img src="assets/img/JMM.jpg" class="chat--image rounded-circle  mt-2" alt="avatar contact">
-                    <div>
-                      <p class="chat--contact small p-2 ms-3 mb-1 rounded-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                      <p class="small ms-3 mb-3 rounded-3 text-muted">12:00 PM | Aug 13</p>
-                    </div>
-                  </div>
-                  <div class="d-flex flex-row justify-content-end">
-                    <div>
-                      <p class="chat--user small p-2 me-3 mb-1 text-white rounded-3 bg-primary">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                      <p class="small me-3 mb-3 rounded-3 text-muted float-end">12:00 PM | Aug 13</p>
-                    </div>
-                    <img src="assets/img/NFT.jpg" class="chat--image rounded-circle  mt-2" alt="avatar user">
-                  </div>
-
                 </div>
-
-  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Send message ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-
-                <div class="text-muted d-flex justify-content-start align-items-center pe-3 pt-3 mt-2">
-                  <img src="assets/img/NFT.jpg" alt="avatar user" class="chat--image rounded-circle">
-                  <input type="text" class="form-control form-control-lg  mx-3" placeholder="Mensaje...">
-                  <a class="ms-1 text-muted"><i class="fas fa-paperclip"></i></a>
-                  <a class="ms-3 text-muted"><i class="fas fa-smile"></i></a>
-                  <a class="ms-3"><i class="fas fa-paper-plane"></i></a>
+                <div *ngIf="showForm == true">
+                  <form class="text-muted d-flex justify-content-start align-items-center pe-3 pt-3 mt-2"  #editForm="ngForm" (ngSubmit)="editMessage(a._id, editForm)">
+                    <input value="text" class="form-control form-control-lg  mx-3" placeholder="Edita el mensaje aquí..." name="text" [(ngModel)]="registerandloginService.createdMessage.text">
+                    <button class="fa fa-paper-plane" aria-hidden="true" type="submit"></button>
+                  </form>
                 </div>
-
+                <div *ngIf="showForm !== true">
+                  <form class="text-muted d-flex justify-content-start align-items-center pe-3 pt-3 mt-2"  #messageForm="ngForm" (ngSubmit)="sendMessage(messageForm, a._id)">
+                    <input type="text" class="form-control form-control-lg  mx-3" placeholder="Mensaje..." name="text" [(ngModel)]="registerandloginService.createdMessage.text">
+                    <button class="fa fa-paper-plane" aria-hidden="true" type="submit"></button>
+                  </form>
+                </div>
               </div>
-            </div>
 
+            </div>
           </div>
         </div>
 

@@ -26,6 +26,8 @@ export class ProfileComponent implements OnInit {
   public isRequested: boolean | undefined
   public requests: any
   public requestedMe: boolean | undefined
+  public count = 0
+  public commentsshow: any
 
   ngOnInit(): void {
     var cookiefound = this.cookie.get('cookieSoundTalkSession')
@@ -74,6 +76,7 @@ export class ProfileComponent implements OnInit {
             res => {this.user.mylikes = res
                     this.registerandloginService.findmyPosts(this.user._id).subscribe(
                       res => {this.user.myposts = res
+                              this.user.myposts = this.user.myposts.reverse()
                               let photocopy = this.user.myposts
                               for (let i = 0; i < this.user.myposts.length; i++) {
                                 this.postsService.getPhoto(this.user.myposts[i].photoid).subscribe(
@@ -133,6 +136,22 @@ export class ProfileComponent implements OnInit {
     )
   }
 
+  showComments(commentsid: string){
+    this.count+=1
+    if (this.count > 1){
+      if (this.commentsshow == true){
+        this.commentsshow = false
+      }
+      else{
+        this.commentsshow = true
+      }
+    }
+    else{
+      this.downloadComments(commentsid)
+      this.commentsshow = true
+    }
+  }
+
   downloadComments(comments: any){
     for (let x = 0; x < comments.length; x++){
       this.registerandloginService.getAllComments(comments[x]).subscribe(
@@ -144,6 +163,21 @@ export class ProfileComponent implements OnInit {
         res=>{const a = JSON.stringify(res)
           const b = JSON.parse(a)
           comments[x].username = b.username
+          this.registerandloginService.findPhoto(b.photoid).subscribe(
+            res=> {const restring = JSON.stringify(res)
+              if (restring.includes("/")){
+                const res2 = restring.split('/')
+                const route = res2[7].slice(0, res2[7].length - 1);
+                comments[x].photoroute = route
+              }
+              else{
+                const res2 = restring.split('\\')
+                const route = res2[14].slice(0, res2[14].length - 1);
+                comments[x].photoroute = route
+              }
+            },
+            err => console.error(err)
+          )
         },
         err=>console.error(err))
       },

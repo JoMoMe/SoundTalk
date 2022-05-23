@@ -135,9 +135,9 @@ exports.deleteUser = async (req, res) => {
         }
 
         for (let x = 0; x < myuser.contactsid.length; x++){
-            let userfriend = Users.findOne({_id: myuser.contactsid[x]})
-            userfriend.contactsid.remove(myuser._id)
-            userfriend.save()
+            let userfriends = await Users.findOne({_id: myuser.contactsid[x]})
+            userfriends.contactsid.remove(myuser._id)
+            userfriends.save()
         }
 
         var contacts1 = await Contacts.find({myuserid: myuser._id})
@@ -375,6 +375,7 @@ exports.acceptNewRequest = async (req, res) => {
         var frienduser= await Users.findOne({_id: req.params.idrequestuser})
         if (frienduser){
             frienduser.contactsid.push(req.params.id)
+            frienduser.requestsid.remove(req.params.id)
             frienduser.save()
         }
         res.json("Usuario agregado con éxito!")        

@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GoTopButtonModule } from 'ng-go-top-button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { Ng2SearchPipeModule } from 'ng2-search-filter'
 
 // ~~~~~~~~~~~~~~~~~~~~ Component/Modules imports ~~~~~~~~~~~~~~~~~~~~ //
 

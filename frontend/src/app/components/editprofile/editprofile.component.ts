@@ -96,7 +96,7 @@ export class EditprofileComponent implements OnInit {
     }
     
     this.registerandloginService.updatemyUser(user).subscribe(
-      res => {console.log(res)},
+      res => {this.router.navigate(['/profile'], {queryParams: {id: user._id}})},
       err => console.error(err)
     )
   }

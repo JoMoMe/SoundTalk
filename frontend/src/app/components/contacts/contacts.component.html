@@ -15,7 +15,7 @@
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Search bar ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
               <div class="input-group rounded mb-3">
-                <input type="search" class="search form-control rounded" placeholder="Busca..." aria-label="Search" aria-describedby="search-addon"/>
+                <input type="search" class="search form-control rounded" placeholder="Busca un contacte..." aria-label="Search" aria-describedby="search-addon"/>
                 <span class="input-group-text border-0" id="search-addon">
                   <i class="fas fa-search"></i>
                 </span>
@@ -23,20 +23,20 @@
 
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Contacts ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
               
-              <div class="col-md-6 col-lg-5 col-xl-4 mb-1 mb-md-0">
+              <div class="col-md-6 col-lg-5 col-xl-4 mb-1 mb-md-0" *ngIf="profileid == mycookie">
                 <div class="p-3">
-                  <h2 class="titles mx-2">Peticiones</h2>
+                  <h2 class="titles mx-2">Peticiones ({{requests.length}})</h2>
                   <div class="petitions">
                     <ul class="list-unstyled mb-0 col-12">
                       <li class="contact p-2">
-                        <a class="d-flex justify-content-between">
-                          <div *ngFor="let req of requests" class="d-flex">
+                        <a *ngFor="let req of requests" class="d-flex justify-content-between">
+                          <div class="d-flex">
                             <img [src]="'assets/photo/' + req.photoroute" alt="avatar" class="d-flex align-self-center me-3 rounded-circle" width="45" (click)="seeProfile(req._id)">
                             <div class="d-flex pt-1">
                               <p type="button" class="petition--name fw-bold mt-2 border-bottom" (click)="seeProfile(req._id)">{{req.username}}</p>
                             </div>
-                            <p type="button" class="petition--name fw-bold mt-2 border-bottom" (click)="seeProfile(req._id)">Aceptar</p><br>
-                            <p type="button" class="petition--name fw-bold mt-2 border-bottom" (click)="seeProfile(req._id)">Denegar</p>
+                            <p type="button" class="petition--name fw-bold mt-2 border-bottom" (click)="acceptRequest(req._id)">Aceptar</p><br>
+                            <p type="button" class="petition--name fw-bold mt-2 border-bottom"  (click)="denyRequest(req._id)">Denegar</p>
                           </div>
                         </a>
                       </li>
@@ -44,20 +44,20 @@
                   </div>
                 </div>
               </div>
-            
-              <div *ngFor="let contact of contacts" class="col-md-6 col-lg-7 col-xl-8">
+              <div  class="col-md-6 col-lg-7 col-xl-8">
                 <h2 class="titles mt-3">Contactos</h2>
                 <div class="contacts">
                   <ul class="list-unstyled mb-0 col-10">
                     <li class="contact p-2 border-bottom">
-                      <a class="d-flex justify-content-between">
+                      <a *ngFor="let a of contacts" class="d-flex justify-content-between">
                         <div class="d-flex">
-                          <img type="button" [src]="'assets/photo/' + contact.photoroute" alt="avatar" class="d-flex align-self-center me-3 rounded-circle" width="60" (click)="seeProfile(contact._id)">
+                          <img type="button" [src]="'assets/photo/' + a.photoroute" alt="" class="d-flex align-self-center me-3 rounded-circle" width="60" (click)="seeProfile(a._id)">
                           <div class="pt-1">
-                            <p type="button" class="contacts--name fw-bold mb-0" (click)="seeProfile(contact._id)">{{contact.username}}</p>
-                            <p class="contacts--bio small text-muted">{{contact.biography}}</p>
+                            <p>{{a.length}}</p>
+                            <p type="button" class="contacts--name fw-bold mb-0" (click)="seeProfile(a._id)">{{a.username}}</p>
+                            <p class="contacts--bio small text-muted">{{a.biography}}</p>
                           </div>
-                          <a *ngIf="contact._id !== mycookie" class="btn btn-outline-dark">
+                          <a *ngIf="a._id !== mycookie" class="btn btn-outline-dark" (click)="goMessages()">
                             Enviar mensaje
                           </a>
                         </div>

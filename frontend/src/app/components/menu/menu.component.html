@@ -47,7 +47,9 @@
   </form>
 
   <div class="card mt-0">
+    <p>FILTAR POR</p>
     <div class="categoryfilter d-flex justify-content-between my-3 mx-4">
+      <button type="button" class="btn btn-primary fw-bold border-0" (click)="downloadPosts(mycookie)">TODOS</button>
       <button type="button" class="btn btn-primary fw-bold border-0" (click)="filterbyNews()">NOVEDADES</button>
       <button type="button" class="btn btn-primary fw-bold border-0" (click)="filterbyQAndA()">Q&A</button>
       <button type="button" class="btn btn-primary fw-bold border-0" (click)="filterbyGossips()">COTILLEOS</button>
@@ -64,7 +66,7 @@
       <a class="text-decoration-none text-dark">
   
         <div class="card-header">
-          <p class="username" type="button" (click)="seeProfile(post.userid)"><img src="assets/img/icon_user.png" type="button" alt="User Icon" width="20" height="20" class="user--photo rounded-circle" (click)="seeProfile(post.userid)">{{post.username}}</p>
+          <p class="username" type="button" (click)="seeProfile(post.userid)"><img [src]="'assets/photo/' + post.photoroute "type="button" alt="User Icon" width="20" height="20" class="user--photo rounded-circle" (click)="seeProfile(post.userid)">{{post.username}}</p>
           <p class="category btn btn-sm">{{post.type}}</p>
           <h5 class="card--title">{{post.title}}</h5>
         </div>
@@ -78,7 +80,7 @@
         </div>
 
         <div class="card-footer text-muted d-flex align-items-center justify-content-between">
-          <h6 class="comments pointer my-1" (click)="downloadComments(post.commentsid)">Comentarios ({{post.commentsid.length}})</h6>
+          <h6 class="comments pointer my-1" (click)="showComments(post.commentsid)">Comentarios ({{post.commentsid.length}})</h6>
           <a type="button" (click)="putLike(post._id)" class="my-1 post--up">
             <i class="fa-solid fa-circle-up"> {{post.likes.length}}</i>
             <div *ngFor="let like of post.likes" >
@@ -86,13 +88,12 @@
             </div>
           </a>
         </div>
-
-        <div *ngFor="let comment of post.commentsid" class="my-3">
-          <div class="card mb-3 mx-2">
+        <div *ngIf="commentsshow == true"class="my-3">
+          <div *ngFor="let comment of post.commentsid" class="card mb-3 mx-2">
             <div class="card-body">
               <div class="d-flex justify-content-between">
                 <div class="d-flex flex-row align-items-center">
-                  <img src="assets/img/NFT.jpg" class="pointer" alt="User Image" width="25" height="25" (click)="seeProfile(comment.userid)"/>
+                  <img [src]="'assets/photo/' + comment.photoroute" class="pointer" width="25" height="25" (click)="seeProfile(comment.userid)"/>
                   <p class="pointer small mb-0 ms-2 fw-bold" (click)="seeProfile(comment.userid)">{{comment.username}}</p>
                   <div *ngIf="comment.userid == mycookie">
                     <i class="fa-solid fa-star text-warning"></i>
@@ -103,7 +104,6 @@
               <p class="mt-2 my-auto">{{comment.text}}</p>
             </div>
           </div>
-
         </div>
 
         <form class="mx-3 mt-3" #commentForm="ngForm" (ngSubmit)="addComment(commentForm,post._id)">

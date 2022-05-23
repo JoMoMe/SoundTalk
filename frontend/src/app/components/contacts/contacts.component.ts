@@ -26,7 +26,6 @@ export class ContactsComponent implements OnInit {
   public myuserinfo: any
   public requests: any
 
-
   ngOnInit(): void {
     var cookiefound = this.cookie.get('cookieSoundTalkSession')
     if (cookiefound){
@@ -41,6 +40,7 @@ export class ContactsComponent implements OnInit {
         )
         let www = this.profileid
         this.downloadContacts(www)
+        console.log("MISCONTACTOS",this.contacts)
         this.myRequests(www)
         this.myuser = [this.myuser]
         },
@@ -59,31 +59,31 @@ export class ContactsComponent implements OnInit {
   downloadContacts(userid: string){
     this.registerandloginService.getUserInfo(userid).subscribe(
       res => {this.myuserinfo = res
-              for (let y = 0; y < this.myuserinfo.contactsid.length; y++){
-                this.registerandloginService.getUserInfo(this.myuserinfo.contactsid[y]).subscribe(
-                  res => {
-                    this.contacts = res
-                    this.contacts = [this.contacts]
-                    console.log("LA PRUEBA DEL DELITO",this.contacts)
-                    this.registerandloginService.findPhoto(this.contacts[y].photoid).subscribe(
-                      res=> {const restring = JSON.stringify(res)
-                        if (restring.includes("/")){
-                          const res2 = restring.split('/')
-                          const route = res2[7].slice(0, res2[7].length - 1);
-                          this.contacts[y].photoroute = route
+              this.contacts = [this.contacts]
+              if (this.myuserinfo.contactsid.length > 0){
+                for (let y = 0; y < this.myuserinfo.contactsid.length; y++){
+                  this.registerandloginService.getUserInfo(this.myuserinfo.contactsid[y]).subscribe(
+                    res => {
+                      this.contacts[y] = res                    
+                      this.registerandloginService.findPhoto(this.contacts[y].photoid).subscribe(
+                        res=> {const restring = JSON.stringify(res)
+                          if (restring.includes("/")){
+                            const res2 = restring.split('/')
+                            const route = res2[7].slice(0, res2[7].length - 1);
+                            this.contacts[y].photoroute = route
+                          }
+                          else{
+                            const res2 = restring.split('\\')
+                            const route = res2[14].slice(0, res2[14].length - 1);
+                            this.contacts[y].photoroute = route
+                          }
                         }
-                        else{
-                          const res2 = restring.split('\\')
-                          const route = res2[14].slice(0, res2[14].length - 1);
-                          this.contacts[y].photoroute = route
-                        }
-                      }
-                    )
-                  },
-                  err => console.error(err)
-                )
-                
-              }
+                      )
+                    },
+                    err => console.error(err)
+                  )
+                }  
+              }            
     },
     err=>console.error(err)
     )
@@ -95,8 +95,8 @@ export class ContactsComponent implements OnInit {
 
   myRequests(userid: string){
     this.registerandloginService.getmyRequests(userid).subscribe(
-      res=> {this.requests = res
-            console.log("pruebas",this.requests)
+      res=> {this.requests = [this.requests]
+            this.requests = res
             for (let y = 0; y < this.requests.length; y++){
               this.registerandloginService.findPhoto(this.requests[y].photoid).subscribe(
               res=> {const restring = JSON.stringify(res)
@@ -110,15 +110,40 @@ export class ContactsComponent implements OnInit {
                   const route = res2[14].slice(0, res2[14].length - 1);
                   this.requests[y].photoroute = route
                 }
-                this.requests = [this.requests]
-                console.log("pruebas",this.requests)
               }
               )
             }
-            
+            console.log("pruebas",this.requests)
+
     },
       err=> console.error(err)
     )
   }
 
+  denyRequest(iduser: string){
+    this.registerandloginService.deleteUserRequest(iduser, this.profileid).subscribe(
+      res=> {console.log(res)
+        location.reload()
+    },
+      err=> console.error(err)
+    )
+  }
+
+  acceptRequest(iduser: string){
+    let request : Object = {
+      status: 1,
+    }
+      
+    this.registerandloginService.acceptUserRequest(iduser, this.profileid, request).subscribe(
+      res=> {console.log(res)
+        location.reload()
+    },
+      err=> console.error(err)
+    )
+  }
+
+  goMessages(){
+    this.router.navigate(['/messages'])
+  }
+  
 }

@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { users as Users } from 'src/app/models/users';
 import { updatedusers as Updatedusers } from 'src/app/models/updatedusers';
+import { messages as Messages } from 'src/app/models/messages';
+
 import { Form, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { contacts as Contacts } from 'src/app/models/contacts';
@@ -19,7 +21,7 @@ export class RegisterAndLoginService {
   url_backendphotoprofile = 'http://localhost:4000/menu/profile/profilephoto/'
   url_backendmenu = 'http://localhost:4000/menu/posts'
   url_backendprofile = 'http://localhost:4000/menu/profile/user/'
-
+  url_backendchats = 'http://localhost:4000/menu/chats/'
 
   createdUser: Users =  {
     username: '',
@@ -39,9 +41,12 @@ export class RegisterAndLoginService {
     status: '',
     photoid: JSON.parse(JSON.stringify('')),
   };
-
-    
   
+  createdMessage: Messages =  {
+    text: '',
+    userid: JSON.parse(JSON.stringify('a')),
+  };
+
   findUserByID(cookie: string){
     return this.http.get(this.url_backendcookie + cookie)
   }
@@ -143,5 +148,29 @@ export class RegisterAndLoginService {
 
   removeFriendRequest(iduser: string, myid: string){
     return this.http.delete(this.url_backendprofile+myid+'/myfriends/deleteone/'+iduser)
+  }
+
+  seeChats(myid: string){
+    return this.http.get(this.url_backendchats+myid+'/getall')
+  }
+
+  openOneChat(userid: string, myid: string){
+    return this.http.get(this.url_backendchats+myid+'/get/'+userid)
+  }
+
+  sendAMessage(messages: Messages, userid: string, myid: string){
+    messages.userid=JSON.parse(JSON.stringify(myid))
+
+    return this.http.post(this.url_backendchats+myid+'/post/'+userid, messages)
+  }
+
+  deleteAMessage(userid: string, messageid: string, myid: string){
+    return this.http.delete(this.url_backendchats+myid+'/delete/'+userid+'/message/'+messageid)
+  }
+
+  editAMessage(userid: string, messageid: string, messages: Messages, myid: string){
+    messages.userid=JSON.parse(JSON.stringify(myid))
+
+    return this.http.put(this.url_backendchats+myid+'/edit/'+userid+'/message/'+messageid, messages)
   }
 }

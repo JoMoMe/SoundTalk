@@ -10,7 +10,11 @@ const messageCtrl = require('../controllers/message.controller.js')
 
 
 //BUSQUEDA DE MIS CHATS POR LA ID DE USUARIO, OBTENCION DEL OTRO USUARIO DEL CHAT Y CARGA DEL ÚLTIMO MENSAJE (PARA PODER VERLO SIN ABRIR EL CHAT)
-router.get('/', chatCtrl.getChats);
+router.get('/:id/getall', chatCtrl.getChats);
+router.get('/:id/get/:userid', chatCtrl.getOneChat);
+router.post('/:id/post/:userid', chatCtrl.putMessageInChat);
+router.delete('/:id/delete/:userid/message/:messageid', chatCtrl.deleteMessageInChat);
+router.put('/:id/edit/:userid/message/:messageid', chatCtrl.editMessageInChat);
 router.get('/', chatCtrl.getUserOfChat);
 router.get('/', chatCtrl.chargeLastMessage);
 
