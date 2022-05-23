@@ -230,7 +230,7 @@ exports.createUser = async (req, res) => {
                 var usertosend = req.body.mail
                 var title = "Confirma tu nuevo usuario!"
                 var message = "Gracias por formar parte de nuestro equipo en SoundTalk, solo nos falta un paso más para que disfrutes la experiencia..."
-                var link = "http://localhost:4002/#/validate/"+token
+                var link = "142.132.239.200" + "/#/validate/"+token
 
                 var mailsended = SendMail(usertosend, title, message, link)
                 res.send(true)
