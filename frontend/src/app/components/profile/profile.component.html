@@ -94,11 +94,13 @@
                       </div>
                       
                       <div class="card-body">
-                        <a [href]="'assets/photo/' + post.photoid" target="_blank"><img class="post--image mb-3" [src]="'assets/photo/' + post.photoid" alt="Post Image"></a>
-                        <audio class="w-100 mb-3" controls [src]="post.audioid" type="audio/*">
-                          Your browser does not support the <code>audio</code> element.
-                        </audio>
-                        <h5 class="post--text">{{post.content}}</h5>
+                        <a *ngIf="post.photoid != 'a'" [href]="'assets/photo/' + post.photoid" target="_blank"><img class="post--image mb-3" [src]="'assets/photo/' + post.photoid"></a>
+                        <div *ngIf="post.audioid != 'a'">
+                          <audio class="w-100 mb-3" controls [src]="post.audioid" type="audio/*">
+                            Your browser does not support the <code>audio</code> element.
+                          </audio>
+                        </div>
+                        <h5 *ngIf="post.content != ''" class="post--text">{{post.content}}</h5>
                       </div>
               
                       <div class="card-footer text-muted d-flex align-items-center justify-content-between">

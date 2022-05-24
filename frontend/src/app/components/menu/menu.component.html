@@ -18,15 +18,6 @@
         <label>Titulo</label>
         <input class="form-control mt-1" placeholder="Escribe un titulo..." id="title" name="title" [(ngModel)]="postsService.createdPost.title">
       </div>
-      <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
-        <button type="button" class="tipo btn btn-outline-primary btn-sm me-2" id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">Tipo de post</button>
-        <div ngbDropdownMenu aria-labelledby="dropdownManual">
-          <button ngbDropdownItem [(ngModel)]="postsService.createdPost.type" (click)="changeFilter('news')">Novedades</button>
-          <button ngbDropdownItem [(ngModel)]="postsService.createdPost.type" (click)="changeFilter('gossip')">Cotilleos</button>
-          <button ngbDropdownItem [(ngModel)]="postsService.createdPost.type" (click)="changeFilter('QAndA')">Q & A</button>
-          <button ngbDropdownItem [(ngModel)]="postsService.createdPost.type" (click)="changeFilter('meme')">Memes</button>
-        </div>
-      </div>
       <div>
         <div class="form-group my-2">
           <label class="mb-1">Imatge</label>
@@ -35,7 +26,18 @@
           <input type="file" accept="audio/*" class="form-control mb-3" id="audioid" name="audioid" [(ngModel)]="postsService.createdPost.audioid" (change)="onAudioUpload($event)"/>
           <label>Text</label>
           <textarea class="form-control mt-1" id="si" rows="3" id="content" name="content" [(ngModel)]="postsService.createdPost.content"></textarea>
-          <button type="submit" class="btn btn-success btn-sm mt-3">Crear post</button>
+          <button class="btn btn-success btn-sm mt-3" (click)="showType()">Crear post</button>
+        </div>
+      </div>
+      <div *ngIf="typeshow == true">
+        <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+          <button type="button" class="tipo btn btn-outline-primary btn-sm me-2" id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">Tipo de post</button>
+          <div ngbDropdownMenu aria-labelledby="dropdownManual">
+            <button ngbDropdownItem [(ngModel)]="postsService.createdPost.type" (click)="changeFilter('news')">Novedades</button>
+            <button ngbDropdownItem [(ngModel)]="postsService.createdPost.type" (click)="changeFilter('gossip')">Cotilleos</button>
+            <button ngbDropdownItem [(ngModel)]="postsService.createdPost.type" (click)="changeFilter('QAndA')">Q & A</button>
+            <button ngbDropdownItem [(ngModel)]="postsService.createdPost.type" (click)="changeFilter('meme')">Memes</button>
+          </div>
         </div>
       </div>
 
@@ -72,11 +74,13 @@
         </div>
         
         <div class="card-body">
-          <a [href]="'assets/photo/' + post.photoid" target="_blank"><img class="post--image mb-3" [src]="'assets/photo/' + post.photoid" alt="Post Image"></a>
-          <audio class="w-100 mb-3" controls [src]="post.audioid" type="audio/*">
-            Your browser does not support the <code>audio</code> element.
-          </audio>
-          <h5 class="post--text">{{post.content}}</h5>
+          <a *ngIf="post.photoid != 'a'" [href]="'assets/photo/' + post.photoid" target="_blank"><img class="post--image mb-3" [src]="'assets/photo/' + post.photoid"></a>
+          <div *ngIf="post.audioid != 'a'">
+            <audio class="w-100 mb-3" controls [src]="post.audioid" type="audio/*">
+              Your browser does not support the <code>audio</code> element.
+            </audio>
+          </div>
+          <h5 *ngIf="post.content != ''" class="post--text">{{post.content}}</h5>
         </div>
 
         <div class="card-footer text-muted d-flex align-items-center justify-content-between">

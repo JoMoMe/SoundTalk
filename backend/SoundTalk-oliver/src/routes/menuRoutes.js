@@ -25,7 +25,7 @@ const upload = multer({storage})
 router.get('/', userCtrl.getUser);
 router.get('/:id', postCtrl.getPost);
 router.get('/:id', postCtrl.searchCommentsOfPosts);
-
+router.get('/:id/getallusers', userCtrl.getAllUsers);
 //TENIM DOS SISTEMES D'OBTENCIÓ DE POSTS QUE NO SIGUIN ELS NOSTRES CONTACTES, UN ALEATORI QUE ENS TROBA 10 POSTS DEL TOTAL EXISTENTS (getRandomPosts)
 //(AQUEST SISTEMA NOMÉS LI FEM ÚS SI L'USUARI NO TÉ CONTACTES AGENDATS) 
 //EL SEGON SISTEMA FUNCIONA TENINT AMICS O NO, ES BUSCA A LA TAULA "promo" EL TOTAL DE POSTS QUE HAN PAGAT UNA PROMOCIÓ I ESTARÁN MOSTRATS A SOBRE DE TOTS ELS POSTS

@@ -22,7 +22,10 @@ export class MenuComponent implements OnInit {
   public comments: any;
   public mycookie: any
   public commentsshow: any
+  public typeshow = false
   public count = 0
+  public photoUpload = false
+  public audioUpload = false
 
   ngOnInit(): void {
     var cookiefound = this.cookie.get('cookieSoundTalkSession')
@@ -78,6 +81,7 @@ export class MenuComponent implements OnInit {
 
   onFileChanged(event: any): any{
     this.selectedFile = event.target.files[0]
+    this.photoUpload = true
     this.postsService.putPhoto(this.selectedFile).subscribe(
       res => this.photoid = res,
       err => console.error(err)
@@ -86,6 +90,7 @@ export class MenuComponent implements OnInit {
 
   onAudioUpload(event: any): any{
     this.selectedAudio = event.target.files[0]
+    this.audioUpload = true
     this.postsService.putAudio(this.selectedAudio).subscribe(
       res => this.audioid = res,
       err => console.error(err)
@@ -100,8 +105,12 @@ export class MenuComponent implements OnInit {
     this.typepost = value
   }
 
+  showType(){
+    this.typeshow = true
+  }
+
   createPost(form: NgForm){
-    this.postsService.createPost(form.value, this.cookie.get('cookieSoundTalkSession'),this.audioid, this.photoid, this.typepost).subscribe(
+    this.postsService.createPost(form.value, this.cookie.get('cookieSoundTalkSession'),this.audioid, this.photoid, this.typepost, this.audioUpload, this.photoUpload).subscribe(
       res => {console.log(res)
         location.reload()   
       },

@@ -21,6 +21,7 @@ export class RegisterAndLoginService {
   url_backendcookie = 'http://localhost:4000/login/cookie/'
   url_backendphotoprofile = 'http://localhost:4000/menu/profile/profilephoto/'
   url_backendmenu = 'http://localhost:4000/menu/posts'
+  url_backendallusers = 'http://localhost:4000/menu/'
   url_backendprofile = 'http://localhost:4000/menu/profile/user/'
   url_backendchats = 'http://localhost:4000/menu/chats/'
 
@@ -59,6 +60,10 @@ export class RegisterAndLoginService {
 
   findPhoto(idphoto: string){
     return this.http.get(this.url_backendphotoprofile + idphoto)
+  }
+
+  getAllUsers(myid: string){
+    return this.http.get(this.url_backendallusers+myid+'/getallusers')
   }
 
   getAllposts(){

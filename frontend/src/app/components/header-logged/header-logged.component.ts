@@ -20,8 +20,11 @@ export class HeaderLoggedComponent implements OnInit {
   public myPhoto: any
   public requests: any
   public commentsshow: any
+  public requestshow: any
   public count = 0
+  public reqcount = 0
   public searchContact: any
+  public allContacts: any
 
   ngOnInit(): void {
     this.getUser()
@@ -73,7 +76,23 @@ export class HeaderLoggedComponent implements OnInit {
   myRequests(userid: string){
     this.registerandloginService.getmyRequests(userid).subscribe(
       res=> {this.requests = res
-      console.log(this.requests)
+            this.requests = [this.requests]
+        for (let i = 0; i < this.requests[0].length; i++) {
+          this.registerandloginService.findPhoto(this.requests[0][i].photoid).subscribe(
+            res=> {const restring = JSON.stringify(res)
+              if (restring.includes("/")){
+                const res2 = restring.split('/')
+                const route = res2[7].slice(0, res2[7].length - 1);
+                this.requests[0][i].photoroute = route
+              }
+              else{
+                const res2 = restring.split('\\')
+                const route = res2[14].slice(0, res2[14].length - 1);
+                this.requests[0][i].photoroute = route
+              }
+            },
+            err => console.error(err))
+        }
     },
       err=> console.error(err)
     )
@@ -109,12 +128,44 @@ export class HeaderLoggedComponent implements OnInit {
       this.count=0
     }
     else{
-      this.downloadAllUsers(this.myUser._id)
+      this.downloadAllUsers()
     }
   }
 
-  downloadAllUsers(myid: string){
+  showAllRequests(myid: string){
+    this.reqcount+=1  
+    this.requestshow = true
+    if (this.reqcount == 2){
+      this.requestshow = false
+      this.reqcount=0
+    }
+    else{
+      this.myRequests(myid)
+    }
+  }
 
+  downloadAllUsers(){
+    this.registerandloginService.getAllUsers(this.cookie.get('cookieSoundTalkSession')).subscribe(
+      res=>{this.allContacts = res
+            this.allContacts = [this.allContacts]
+            for (let i = 0; i < this.allContacts[0].length; i++) {
+              this.registerandloginService.findPhoto(this.allContacts[0][i].photoid).subscribe(
+                res=> {const restring = JSON.stringify(res)
+                  if (restring.includes("/")){
+                    const res2 = restring.split('/')
+                    const route = res2[7].slice(0, res2[7].length - 1);
+                    this.allContacts[0][i].photoroute = route
+                  }
+                  else{
+                    const res2 = restring.split('\\')
+                    const route = res2[14].slice(0, res2[14].length - 1);
+                    this.allContacts[0][i].photoroute = route
+                  }
+                },
+                err => console.error(err))
+            }
+      },
+      err=>console.error(err))
   }
 
 }

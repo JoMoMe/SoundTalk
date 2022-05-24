@@ -34,6 +34,15 @@
     transition: 0.3s;
 }
 
+.request{
+    width: 170px;
+}
+
+.search--dropdown{
+    z-index: 1;
+    width: auto;
+}
+
 @media only screen and (max-width: 990px) {
     .user{
         margin-top: 0.5vw;

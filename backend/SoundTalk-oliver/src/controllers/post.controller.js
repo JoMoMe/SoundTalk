@@ -61,29 +61,30 @@ exports.createAudio = async (req, res) => {
 //OBTENCION DE UN AUDIO MEDIANTE RUTA menu/audio/:id 
 exports.getAudio = async (req, res) => {
     try {
+        if (req.params.id != 'a'){
+            const trackID = new ObjectID(req.params.id)
 
-        const trackID = new ObjectID(req.params.id)
-
-        res.set('content-type', 'audio/mp3')
-        res.set('accept-ranges', 'bytes')
-    
-        const bucket = new GridFSBucket(mongoose.connection.db,{
-            bucketName: 'audio'
-        })
+            res.set('content-type', 'audio/mp3')
+            res.set('accept-ranges', 'bytes')
         
-        let downloadAudio = bucket.openDownloadStream(trackID)
-    
-        downloadAudio.on('data', chunk => {
-            res.write(chunk)
-        })
-    
-        downloadAudio.on('error', () => {
-            res.sendStatus(404)
-        })
-    
-        downloadAudio.on('end', () => {
-            res.end()
-        })
+            const bucket = new GridFSBucket(mongoose.connection.db,{
+                bucketName: 'audio'
+            })
+            
+            let downloadAudio = bucket.openDownloadStream(trackID)
+        
+            downloadAudio.on('data', chunk => {
+                res.write(chunk)
+            })
+        
+            downloadAudio.on('error', () => {
+                res.sendStatus(404)
+            })
+        
+            downloadAudio.on('end', () => {
+                res.end()
+            })
+        }
     }
     catch (error){
         res.status(401).send("Audio inexistente")
@@ -116,12 +117,14 @@ exports.createPhoto = async (req, res) => {
 
 exports.getPhoto = async (req, res) => {
     try {
-        const myphoto = await Photos.findOne({_id: req.params.id})
-        if (myphoto){
-            res.json(myphoto.filepath)
-        }
-        else{
-            res.status(401).send("La imagen no existe")
+        if (req.params.id != 'a'){
+            const myphoto = await Photos.findOne({_id: req.params.id})
+            if (myphoto){
+                res.json(myphoto.filepath)
+            }
+            else{
+                res.status(401).send("La imagen no existe")
+            }
         }
     }
     catch (error){
@@ -233,7 +236,7 @@ exports.commentPost = async (req, res) => {
             if(comments){
                 post.commentsid.push(comments._id)
                 post.save()
-                res.json("MENSAJE SUBIDO")
+                res.json(comments)
             }
             else{
                 res.send("Error al subir el comentario")

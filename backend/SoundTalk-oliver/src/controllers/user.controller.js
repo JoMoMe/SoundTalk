@@ -79,6 +79,19 @@ exports.getUser = async (req, res) => {
     }
 }
 
+exports.getAllUsers = async (req, res) => {
+    try {
+        const allusers = await Users.find()
+        if (allusers){
+            console.log("LOS USERS",allusers)
+            res.send(allusers)
+        }
+    }
+    catch (error){
+        console.log(error)
+    }
+}
+
 exports.editUser = async (req, res) => {
     await Users.findByIdAndUpdate(req.params.id, req.body)
     res.json({status: 'User actualizado'})

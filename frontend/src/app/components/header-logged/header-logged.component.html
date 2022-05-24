@@ -8,8 +8,15 @@
 
       <div class="nav col-12 col-lg-6 me-lg-auto mb-2 justify-content-center mb-md-0">
         <input type="search" (click)="showAllContacts()" [(ngModel)]="searchContact" class="search form-control" placeholder="Buscar..." aria-label="Search">
-        <div *ngIf="commentsshow == true">
-          <p>Hola</p>
+        <div *ngIf="commentsshow == true" class="search--dropdown position-absolute mt-5 d-flex flex-col">
+          <div *ngFor="let contacts of allContacts">
+            <div *ngFor="let user of contacts | filter:searchContact" type="button" (click)="seeProfile(user._id)">
+              <div class="card d-flex align-items-center mx-3">
+                <img [src]="'assets/photo/' + user.photoroute" width="45" height="45" class="rounded-circle">
+                <p class="user--name mt-2 mx-4">{{ user.username }}</p>
+              </div>
+            </div>
+          </div>        
         </div>
       </div>
 
@@ -31,22 +38,26 @@
           </div>
         </div>
       </div>
-      <i type="button" class="fa-solid fa-bell" (click)="myRequests(u._id)"></i>
-      <div *ngFor="let req of requests" class="my-3">
-        <div class="card mb-3 mx-2">
-          <div class="card-body">
-            <div class="d-flex justify-content-between">
-              <div class="d-flex flex-row align-items-center">
-                <img src="assets/img/NFT.jpg" class="pointer" alt="User Image" width="25" height="25" (click)="seeProfile(req._id)"/>
-                <p class="pointer small mb-0 ms-2 fw-bold" (click)="seeProfile(req._id)">{{req.username}}</p>
-              </div>
+      <i type="button" class="fa-solid fa-bell" (click)="showAllRequests(u._id)"></i>
+    </div>
+  </div>
+</header>
+<div *ngIf="requestshow == true">
+  <div *ngFor="let req of requests" class="my-3">
+    <div *ngFor="let r of req">
+      <div class="request card mb-3 mx-5">
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <div class="d-flex flex-row align-items-center">
+              <img [src]="'assets/photo/' + r.photoroute" class="pointer" alt="User Image" width="25" height="25" (click)="seeProfile(r._id)"/>
+              <p class="pointer small mb-0 ms-2 fw-bold" (click)="seeProfile(r._id)">{{r.username}}</p>
             </div>
-            <p class="mt-2 my-auto">{{req.ubication}}</p>
-            <i type="button" class="fa-thin fa-hexagon-check" (click)="acceptRequest(req._id)">Aceptar</i><br>
-            <i type="button" class="fa-thin fa-circle-trash" (click)="denyRequest(req._id)">Denegar</i>          
           </div>
+          <p class="mt-2 my-auto">{{r.ubication}}</p>
+          <i type="button" class="fa-thin fa-hexagon-check" (click)="acceptRequest(r._id)">Aceptar</i><br>
+          <i type="button" class="fa-thin fa-circle-trash" (click)="denyRequest(r._id)">Denegar</i>          
         </div>
       </div>
     </div>
   </div>
-</header>
+</div>

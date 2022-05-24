@@ -28,7 +28,7 @@
                   <div class="contacts">
                     <ul class="list-unstyled mb-0">
                       <li *ngFor="let contact of contacts | filter:searchContact" class="contact p-2 border-bottom">
-                        <a class="d-flex justify-content-between">
+                        <a *ngIf="contact._id != ''" class="d-flex justify-content-between">
                           <div class="d-flex flex-row" type="button">
                             <img [src]="'assets/photo/' + contact.photoroute" alt="avatar" class="d-flex align-self-center rounded-circle" width="50" height="50">
                             <div class="pt-1" (click)="seeProfile(contact._id)">
@@ -47,8 +47,8 @@
               </div>
 
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Chat ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-
-              <div *ngFor="let a of actualuser" class="col-md-6 col-lg-7 col-xl-8" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+  
+              <div *ngFor="let a of actualuser" class="col-md-6 col-lg-7 col-xl-8">
                 <div class="d-flex flex-row justify-content-start mb-3" (click)="seeProfile(a._id)" type="button">
                   <img [src]="'assets/photo/' + a.photoroute" class="d-flex align-self-center me-3 rounded-circle" width="50" height="50">
                   <p class="contacts--name fw-bold mb-0">{{a.username}}</p>
@@ -78,7 +78,7 @@
                 <div *ngIf="showForm == true">
                   <form class="text-muted d-flex justify-content-start align-items-center pe-3 pt-3 mt-2"  #editForm="ngForm" (ngSubmit)="editMessage(a._id, editForm)">
                     <input value="text" class="form-control form-control-lg  mx-3" placeholder="Edita el mensaje aquí..." name="text" [(ngModel)]="registerandloginService.createdMessage.text">
-                    <button class="fa fa-paper-plane" aria-hidden="true" type="submit"></button>
+                    <button class="btn btn-success" aria-hidden="true" type="submit"><i class="fa-solid fa-paper-plane"></i></button>
                   </form>
                 </div>
                 <div *ngIf="showForm !== true">
@@ -88,11 +88,9 @@
                   </form>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </div>

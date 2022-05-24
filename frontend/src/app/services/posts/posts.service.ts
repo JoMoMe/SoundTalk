@@ -56,24 +56,26 @@ export class PostsService {
     return this.http.get(environment.api + '/menu/audio/'+id, {responseType: 'blob'})
   }
 
-  createPost(posts: Posts, userid: string, audioid: string, photoid: string, posttype: string){
+  createPost(posts: Posts, userid: string, audioid: string, photoid: string, posttype: string, audioUpload: boolean, photoUpload: boolean){
     const idstring = JSON.stringify(userid)
     const iduserpost = JSON.parse(idstring)
 
-    const audiostring = JSON.stringify(audioid)
-    const idaudio = JSON.parse(audiostring)
-
-    const photostring = JSON.stringify(photoid)
-    const idphoto = JSON.parse(photostring)
+    if (audioUpload){
+      const audiostring = JSON.stringify(audioid)
+      const idaudio = JSON.parse(audiostring) 
+      posts.audioid=idaudio
+ 
+    }
+    if (photoUpload){
+      const photostring = JSON.stringify(photoid)
+      const idphoto = JSON.parse(photostring)
+      posts.photoid=idphoto
+    }
 
     const typestring = JSON.stringify(posttype)
     const typeofpost = JSON.parse(typestring)
     
-    console.log(posts)
-
     posts.userid=iduserpost
-    posts.audioid=idaudio
-    posts.photoid=idphoto
     posts.type=typeofpost
 
     return this.http.post(this.url_menu, posts)
