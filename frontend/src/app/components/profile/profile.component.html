@@ -4,7 +4,7 @@
 
   <app-header-logged></app-header-logged>
 
-  <section class="" *ngFor="let u of user">
+  <section *ngFor="let u of user">
     <div class="container">
       <div class="row d-flex justify-content-center align-items-center">
         <div class="col">
@@ -18,22 +18,22 @@
                   <a *ngIf="u._id !== mycookie && !isContact && !isRequested && !requestedMe" type="button" class="btn btn-outline-dark" style="z-index: 1;" (click)="sendFriendRequest(this.cookie.get('cookieSoundTalkSession'),u._id)">
                     Agregar contacto
                   </a>
-                  <a *ngIf="u._id !== mycookie && !isContact && isRequested && !requestedMe" class="btn btn-outline-dark" style="z-index: 1;">
+                  <a *ngIf="u._id !== mycookie && !isContact && isRequested && !requestedMe" class="btn btn-success mb-1" style="z-index: 1;">
                     Solicitud enviada
                   </a>
-                  <a *ngIf="u._id !== mycookie && !isContact && isRequested && !requestedMe" type="button" class="btn btn-outline-dark" style="z-index: 1;" (click)="sendFriendRequest(this.cookie.get('cookieSoundTalkSession'),u._id)">
+                  <a *ngIf="u._id !== mycookie && !isContact && isRequested && !requestedMe" type="button" class="btn btn-danger mb-1" style="z-index: 1;" (click)="sendFriendRequest(this.cookie.get('cookieSoundTalkSession'),u._id)">
                     Cancelar
                   </a>
-                  <a *ngIf="u._id !== mycookie && isContact" class="btn btn-outline-dark" style="z-index: 1;">
+                  <a *ngIf="u._id !== mycookie && isContact" class="btn btn-info mb-1" style="z-index: 1;">
                     Amigos
                   </a>
-                  <a *ngIf="u._id !== mycookie && isContact" class="btn btn-outline-dark" style="z-index: 1;" (click)="removemyFriend(u._id)">
+                  <a *ngIf="u._id !== mycookie && isContact" class="btn btn-danger mb-1" style="z-index: 1;" (click)="removemyFriend(u._id)">
                     Eliminar
                   </a>
-                  <a *ngIf="u._id !== mycookie && !isContact && requestedMe" class="btn btn-outline-dark" style="z-index: 1;" (click)="acceptRequest(u._id)">
+                  <a *ngIf="u._id !== mycookie && !isContact && requestedMe" class="btn btn-warning mb-1" style="z-index: 1;" (click)="acceptRequest(u._id)">
                     Aceptar solicitud
                   </a>
-                  <a *ngIf="u._id !== mycookie && !isContact && requestedMe" class="btn btn-outline-dark" style="z-index: 1;" (click)="denyRequest(u._id)">
+                  <a *ngIf="u._id !== mycookie && !isContact && requestedMe" class="btn btn-danger mb-1" style="z-index: 1;" (click)="denyRequest(u._id)">
                     Denegar solicitud
                   </a>
               </div>
@@ -50,7 +50,7 @@
                 </div>
                 <div class="px-3">
                   <p type="button" class="mb-1 h5" (click)="seeContacts(u._id)">{{u.contactsid.length}}</p>
-                  <p type="button" class="small text-muted mb-0" (click)="seeContacts(u._id)">Amigos</p>
+                  <p type="button" class="small text-muted mb-0 border-top" (click)="seeContacts(u._id)">Amigos</p>
                 </div>
                 <div class="px-3">
                   <p class="mb-1 h5">{{u.mylikes.length}}</p>

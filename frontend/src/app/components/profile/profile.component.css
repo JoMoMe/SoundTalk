@@ -13,7 +13,8 @@ body {
 }
 
 .profile--image{
-    width: 150px; 
+    width: 150px;
+    height: 150px;
     z-index: 1;
     background: rgb(18,219,255);
     background: linear-gradient(125deg, rgba(18,219,255,1) 16%, rgba(218,0,212,1) 88%);
